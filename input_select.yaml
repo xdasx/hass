@@ -1,0 +1,48 @@
+  mode:
+    name: MODE
+    options:
+     - Away
+     - Home
+     - Zzz
+    initial: Home  
+  motion_event:
+    name: Motion
+    options:
+     - Active
+     - Idle
+     - Hall
+     - Room
+     - Kitchen
+    initial: Idle
+  door_event:
+    name: Door
+    options:
+     - Door Closed
+     - Door Opened
+     - Door Armed
+     - Someone entered
+     - Someone left
+    initial: Door Closed
+  power_mode:
+    name: Power Mode
+    options:
+     - Standard
+     - Eco
+     - High
+    initial: Standard
+  # archy_event:
+    # name: arChy
+    # options:
+     # - Home
+     # - Coming
+     # - Watching
+     # - Away
+    # initial: Watching
+  # jane_event:
+    # name: Jane
+    # options:
+     # - Home
+     # - Coming
+     # - Watching
+     # - Away
+    # initial: Watching

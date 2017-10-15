@@ -1,0 +1,28 @@
+  - name: Zzz
+    entities:
+      input_select.mode:
+        option: Zzz
+  - name: Home
+    entities:
+      input_select.mode:
+        option: Home
+  - name: Away
+    entities:
+      input_select.mode:
+        option: Away
+  # - name: Day
+    # entities:
+      # automation.door_open_light_on:
+        # state: off
+  # - name: Silient
+    # entities:
+      # automation.door_open_light_on:
+        # state: off
+      # automation.motion_light:
+        # state: off
+  # - name: AWAY
+    # entities:
+      # automation.door_open_light_on:
+        # state: on
+      # switch.hall:
+        # state: off

@@ -1,0 +1,44 @@
+  n_door:
+    name: Notify Door Event 
+    initial: on
+    icon: mdi:message-alert
+  n_motion:
+    name: Notify Motion Event 
+    initial: off
+    icon: mdi:message-alert
+  n_mode:
+    name: Notify Mode Event 
+    initial: off
+    icon: mdi:message-alert
+  n_debug:
+    name: Notify Debug 
+    initial: off
+    icon: mdi:message-alert
+  motion_light:
+    name: Motion light  
+    initial: on
+    icon: mdi:run
+  # motion_light_kitchen:
+    # name: Motion light Kitchen  
+    # initial: on
+    # icon: mdi:run
+  motion_light_room:
+    name: Motion light Room  
+    initial: off
+    icon: mdi:run
+  # motion_light:
+    # name: Motion light  
+    # initial: on
+    # icon: mdi:run
+  # n_itag:
+    # name: Notify iTag Event 
+    # initial: off
+    # icon: mdi:message-alert
+  # sun_sensor:
+    # name: Sun_triger  
+    # initial: on
+    # icon: mdi:sun
+  dev:
+    name: Developer Options
+    initial: on
+    icon: mdi:settings
