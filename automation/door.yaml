@@ -1,0 +1,17 @@
+#TODO EXTRACT SCRIPTS
+ - alias: door.open
+   trigger:
+     platform: state
+     entity_id: binary_sensor.front_door
+     to: 'on'
+   action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.door_event
+        option: Door Opened
+    - service: script.door_in
+    # - service: script.device_in_jane
+    # - service: script.device_in_dmitri
+    - service: automation.turn_on
+      entity_id: automation.doorclose
+    - service: script.pb_door_opened

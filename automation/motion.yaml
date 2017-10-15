@@ -1,0 +1,87 @@
+ - alias: motion.DetectedHall
+   trigger:
+     platform: state
+     entity_id: binary_sensor.motion_sensor
+     to: 'on'
+   action:
+    - service: script.motion_light_timer_hall_start
+    # - service: automation.turn_on
+      # entity_id: automation.motionEndHall
+    - service: script.motion_watchdog_init
+      data:
+        place: Hall
+
+ - alias: motion.DetectedRoom
+   trigger:
+     platform: state
+     entity_id: binary_sensor.motion_sensor_158d00016db268
+     to: 'on'
+   action:
+    # - service: automation.turn_on
+      # entity_id: automation.motionEndRoom
+    - service: script.motion_light_timer_room_start
+    - service: script.motion_watchdog_init
+      data:
+        place: Room
+    
+ # - alias: motion.DetectedKitchen
+   # trigger:
+     # platform: state
+     # entity_id: binary_sensor.motion_sensor_158d0001a40748
+     # to: 'on'
+   # action:
+    - service: automation.turn_on
+      entity_id: automation.motionEndKitchen
+    # - service: script.motion_light_timer_kitchen_start
+    # - service: script.motion_watchdog_init
+      # data:
+        # place: Kitchen
+
+### UTIL ###
+ - alias: motion.EndHall
+   initial_state: 'off'
+   trigger:
+     platform: state
+     entity_id: binary_sensor.motion_sensor
+     to: 'off'
+   condition:
+    condition: state
+    entity_id: input_boolean.motion_light
+    state: 'on'
+   action:
+    - service: script.motion_light_timer_hall_end
+    - service: script.motion_watchdog_init
+      data:
+        place: Hall
+
+ - alias: motion.EndRoom
+   initial_state: 'off'
+   trigger:
+     platform: state
+     entity_id: binary_sensor.motion_sensor_158d00016db268
+     to: 'off'
+   condition:
+    condition: state
+    entity_id: input_boolean.motion_light_room
+    state: 'on'
+   action:
+    - service: script.motion_light_timer_room_end
+    - service: script.motion_watchdog_init
+      data:
+        place: Room
+    
+ # - alias: motion.EndKitchen
+   # initial_state: 'off'
+   # trigger:
+     # platform: state
+     # entity_id: binary_sensor.motion_sensor_158d0001a40748
+     # to: 'off'
+   # condition:
+    # condition: state
+    # entity_id: input_boolean.motion_light_kitchen
+    # state: 'on'
+   # action:
+    # - service: script.motion_light_timer_kitchen_end
+    # - service: script.motion_watchdog_init
+      # data:
+        # place: Kitchen

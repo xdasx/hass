@@ -1,0 +1,48 @@
+input_select:
+  motion_event:
+    name: Motion
+    options:
+     - Active
+     - Idle
+     - Hall
+     - Room
+     - Kitchen
+    initial: Idle
+    
+script:
+  motion_watchdog:
+    alias: MOTION.watchdog
+    sequence:
+    - delay: 00:{{ states.input_slider.motion_watchdog_delay.state | int }}:00
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.motion_event
+        option: Idle
+  motion_watchdog_init:
+    alias: MOTION.watchdog.init
+    sequence:
+    - service: script.door_out_away_kill
+    - service: input_select.select_option
+      entity_id: input_select.motion_event
+      data_template:
+        option: '{{ place }}'
+    - service: script.motion_watchdog_kill
+    - service: script.motion_watchdog
+  motion_watchdog_kill:
+    alias: MOTION.watchdog.kill
+    sequence:
+    - condition: state
+      entity_id: script.motion_watchdog
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: script.motion_watchdog
+  pb_motion_state:
+    alias: Send Motion state to PB
+    sequence:
+    - condition: state
+      entity_id: input_boolean.n_motion
+      state: 'on'
+    - service: script.pb_debug
+      data_template:
+        title: MOTION Status
+        text: Motion detected

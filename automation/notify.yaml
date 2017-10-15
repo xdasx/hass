@@ -1,0 +1,28 @@
+ - alias: notify.updateAvailable
+   trigger:
+     platform: state
+     entity_id: updater.updater
+   action:
+     - service: persistent_notification.create
+       data_template:
+         title: "NEW HASS : version {{ states.updater.updater.state}}"
+         message: "{{ states.updater.updater.attributes.release_notes}}"
+     - service: notify.pb
+       data_template:
+           {
+         "title": "NEW HASS : version {{ states.updater.updater.state}}",
+         "message": "{{ states.updater.updater.attributes.friendly_name}}",
+         "data":{"url": "{{ states.updater.updater.attributes.release_notes}}"}
+         }  
+ # - alias: notify.miFlora.allert
+   # trigger: 
+     # platform: state
+     # entity_id: plant.simulated_plant
+     # to: 'problem'
+   # action:
+     # service: notify.pb
+     # data_template:
+         # {
+       # "title": "MI Flora: Problem",
+       # "message": "{{ states.plant.simulated_plant.attributes.problem }} !"
+       # }  

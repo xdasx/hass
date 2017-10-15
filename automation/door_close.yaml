@@ -1,0 +1,12 @@
+ - alias: door.close
+   initial_state: 'off'
+   trigger:
+     platform: state
+     entity_id: binary_sensor.front_door
+     to: 'off'
+   action:
+    - service: script.door_out
+    - service: script.pb_door_opened
+    - service: script.mqtt_door_opened
+    - service: automation.turn_off
+      entity_id: automation.doorclose

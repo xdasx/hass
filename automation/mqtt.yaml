@@ -1,0 +1,74 @@
+ - alias: MQTT.PUB.ClimaTempChange
+   trigger:
+     platform: state
+     entity_id: sensor.climate_room_temp
+   action:
+     - service: script.pb_debug
+       data_template:
+         title: climate_room_temp
+         text: Temperature Changed  to {{ states('sensor.climate_room_temp') }}
+     - service: mqtt.publish
+       data:
+         topic: home/clima/current
+         payload_template: "{{ states('sensor.climate_room_temp') }}"
+         retain: 'true'
+     - service: script.save_home_temp         
+
+ # - alias: MQTT.ClimaCurrentTempChange
+   # trigger:
+     # platform: state
+     # entity_id: sensor.current_temp
+   # action:
+     # - service: script.pb_debug
+       # data_template:
+         # title: climate_room_temp
+         # text: Temperature Changed  to {{ states('sensor.current_temp') }}
+     # - service: mqtt.publish
+       # data:
+         # topic: home/clima/current
+         # payload_template: "{{ states('sensor.current_temp') }}"
+         # retain: 'true'    
+         
+ # - alias: MQTT.ClimaAwayTempChange
+   # trigger:
+     # platform: state
+     # entity_id: sensor.away_temp
+   # action:
+     # - service: script.pb_debug
+       # data_template:
+         # title: climate_room_temp
+         # text: Temperature Changed  to {{ states('sensor.away_temp') }}
+     # - service: mqtt.publish
+       # data:
+         # topic: home/clima/current
+         # payload_template: "{{ states('sensor.away_temp') }}"
+         # retain: 'true'    
+         
+ 
+ # - alias: MQTT.UPD.ClimaHomeTempChange
+   # trigger:
+     # platform: state
+     # entity_id: sensor.home_temp
+   # action:
+     # - service: script.pb_debug
+       # data_template:
+         # title: climate_home_temp
+         # text: Home Temperature Changed  to {{ states('sensor.home_temp') }}
+     # - service: input_slider.select_value
+       # data_template:
+        # entity_id: input_slider.clima_home_temp
+        # value: {{ states('sensor.home_temp') }}
+        
+ # - alias: MQTT.UPD.ClimaAwayTempChange
+   # trigger:
+     # platform: state
+     # entity_id: sensor.away_temp
+   # action:
+     # - service: script.pb_debug
+       # data_template:
+         # title: climate_away_temp
+         # text: Home Temperature Changed  to {{ states('sensor.away_temp') }}
+     # - service: input_slider.select_value
+       # data_template:
+        # entity_id: input_slider.clima_away_temp
+        # value: {{ states('sensor.away_temp') }}

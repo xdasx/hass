@@ -1,0 +1,61 @@
+automation:
+  - alias: motion.DetectedHall
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_hall
+      to: 'on'
+    action:
+     - service: script.motion_light_timer_hall_start
+     - service: script.motion_watchdog_init
+       data:
+         place: Hall
+  
+  - alias: motion.EndHall
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor
+      to: 'off'
+    condition:
+     condition: state
+     entity_id: input_boolean.motion_hall
+     state: 'on'
+    action:
+     - service: script.motion_light_timer_hall_end
+     - service: script.motion_watchdog_init
+       data:
+         place: Hall
+         
+script:
+  motion_light_timer_hall_end:
+    alias: MOTION.light.timer.hall.end
+    sequence:
+    - delay: 00:00:30
+    - service: switch.turn_off
+      entity_id: switch.hall
+      
+  motion_light_timer_hall_start:
+    alias: MOTION.light.timer.hall.start
+    sequence:
+    - condition: state
+      entity_id: input_boolean.motion_light_hall
+      state: 'on'
+    - service: script.turn_off
+      entity_id: script.motion_light_timer_hall_end
+    - service: switch.turn_on
+      entity_id: switch.hall
+    - service: automation.turn_on
+      entity_id: automation.motionendhall
+      
+binary_sensor:
+  - platform: rpi_gpio
+    invert_logic: false
+    pull_mode: DOWN
+    ports:
+     12: Motion Hall
+     
+input_boolean:   
+  motion_light_hall:
+    name: Motion light  
+    initial: on
+    icon: mdi:run

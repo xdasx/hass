@@ -1,0 +1,60 @@
+# ### MAIN BUTTON C
+ # - alias: mqtt_rf.main.but_c
+   # trigger:
+     # platform: mqtt
+     # topic: stat/esp_rf/433toMQTT
+     # payload: '10174113'
+   # action:
+    # - service: script.rf_mqtt_delay_tv
+        
+# ### MAIN BUTTON D        
+ # - alias: mqtt_rf.main.but_D      
+   # trigger:
+     # platform: mqtt
+     # topic: stat/esp_rf/433toMQTT
+     # payload: '10174114'
+   # action:
+    # - service: mqtt.publish
+      # data:
+        # topic: 'stat/esp_rf/433toMQTT'
+        # payload: '10174114_done good night'
+        # retain: 'true'
+    # - service: homeassistant.turn_off
+      # entity_id: switch.hall
+      
+# #living Switch
+
+ # - alias: mqtt_rf.living.but_1      
+   # trigger:
+     # platform: mqtt
+     # topic: stat/esp_rf/433toMQTT
+     # payload: '4975460'
+   # action:
+    # - service: mqtt.publish
+      # data:
+        # topic: 'stat/esp_rf/433toMQTT'
+        # payload: '10174120'
+        # retain: 'true'
+    # # - service: homeassistant.turn_off
+      # # entity_id: switch.hall
+      
+ # - alias: mqtt_rf.living.but_2     
+   # trigger:
+     # platform: mqtt
+     # topic: stat/esp_rf/433toMQTT
+     # payload: '4975458'
+   # action:
+    # - service: mqtt.publish
+      # data:
+        # topic: 'cmnd/esp_rf/MQTTto433'
+        # payload: '10174116'
+        # retain: 'true'
+    # # - service: homeassistant.turn_off
+      # # entity_id: switch.hall
+ # - alias: mqtt_rf.living.but_3      
+   # trigger:
+     # platform: mqtt
+     # topic: stat/esp_rf/433toMQTT
+     # payload: '4975457'
+   # action:
+    # - service: script.rf_mqtt_delay_tv

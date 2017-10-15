@@ -1,0 +1,159 @@
+### HOME MODE
+- platform: template
+  sensors:
+    mode:
+      icon_template: '{% if is_state("input_select.mode", "Away") %}mdi:account-remove{% else %}mdi:account{% endif %}'
+      friendly_name: 'Mode'
+      value_template: >-
+          {% if states.input_select.mode.state == "Home" %}
+          {{ states.sensor.who_is_at_home.state }}           
+          {% else %} 
+          {{ states("input_select.mode") }}
+          {% endif %}
+    who_is_at_home:
+      friendly_name: 'At Home'
+      value_template:  >-
+          {% if (states.device_tracker.jane.state == "home") and (states.device_tracker.dmitri.state == "home") %}
+          J&D         
+          {% elif states.device_tracker.dmitri.state == "home"%}
+          Dmitri
+          {% elif states.device_tracker.jane.state == "home" %}
+          Jane
+          {% else %} 
+          None
+          {% endif %}
+    door_event:
+      friendly_name: 'Door'
+      value_template:  >-
+          {% if states.input_select.door_event.state == "Door Opened" %}
+          Open          
+          {% elif states.input_select.door_event.state == "Door Closed" %}
+          Closed
+          {% elif states.input_select.door_event.state == "Door Armed" %}
+          Armed
+          {% elif states.input_select.door_event.state == "Someone entered" %}
+          Entry
+          {% elif states.input_select.door_event.state == "Someone left" %}
+          Away...
+          {% else %} 
+          N/A
+          {% endif %}
+    motion_event:
+      value_template: '{{ states("input_select.motion_event") }}'
+      friendly_name: 'Motion'
+    tv_timer:
+      value_template: '{{ states("input_slider.tv_timer") }}'
+      friendly_name: 'Timer'
+      unit_of_measurement: Min
+    climate_room_temp:
+      value_template: '{{states.climate.room.attributes.temperature}}'
+      friendly_name: 'Climate temp'
+      unit_of_measurement: °C
+    # new_commits:
+      # value_template: >
+        # {{ states("sensor.new_commits") }}
+    motion_tracker:
+      friendly_name: 'Motion'
+      # unit_of_measurement: Hall
+      value_template: >-
+          {% if states.script.motion_watchdog.attributes.last_triggered == none%}
+          {{ states("input_select.motion_event") }}           
+          {% elif states.input_select.motion_event.state == "Idle" %}
+          {{ relative_time(states.script.motion_watchdog.attributes.last_triggered ) }}
+          {% else %} 
+          {{ states("input_select.motion_event") }}
+          {% endif %}
+      entity_id:
+        # - sensor.time
+        - sensor.motion_event
+        - binary_sensor.motion_sensor_158d00016db268
+        - binary_sensor.motion_sensor_158d0001a40748
+### RF
+- platform: mqtt
+  name: "RF Code"
+  state_topic: "stat/esp_rf/433toMQTT"
+  
+### LWT
+- platform: mqtt
+  name: "RF HUB"
+  state_topic: "tele/esp_rf/LWT"
+- platform: mqtt
+  name: "Hall ESP"
+  state_topic: "tele/sonoff1/LWT"
+- platform: mqtt
+  name: "TV ESP"
+  state_topic: "tele/sonoff3/LWT"
+- platform: mqtt
+  name: "Heater ESP"
+  state_topic: "tele/sonoff2/LWT"
+  
+  
+### PI STATE
+- platform: command_line
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ value | multiply(0.001) | round(2) }}'
+
+- platform: command_line
+  name: CPU Temp
+  command: "/bin/cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "ºC"
+  value_template: '{{ value | multiply(0.001) }}'
+
+- platform: systemmonitor
+  resources:
+  - type: disk_use_percent
+    arg: /
+  - type: memory_free
+  - type: memory_use_percent
+  - type: processor_use
+  - type: since_last_boot
+  #- type: network_in
+  #  arg: eth0
+  #- type: network_out
+  #  arg: eth0  
+  
+- platform: command_line
+  name: IP ext
+  command: "curl icanhazip.com"
+
+- platform: history_stats
+  name: Heater 
+  entity_id: switch.heating
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: HOME TIME
+  entity_id: input_select.mode
+  state: 'Home'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: ZZZ TIME
+  entity_id: input_select.mode
+  state: 'Zzz'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: AWAY TIME
+  entity_id: input_select.mode
+  state: 'Away'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+# - platform: mold_indicator
+  # indoor_temp_sensor: sensor.dht_sensor_temperature
+  # indoor_humidity_sensor: sensor.dht_sensor_humidity
+  # outdoor_temp_sensor: sensor.yr_temperature
+  # calibration_factor: 2.0
+
+- platform: mqtt
+  name: "Dmitri"
+  state_topic: "stat/hass/dmitri"
+- platform: mqtt
+  name: "Jane"
+  state_topic: "stat/hass/jane"

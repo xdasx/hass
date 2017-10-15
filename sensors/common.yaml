@@ -1,0 +1,25 @@
+### DATE TIME
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+    # - 'time_utc'
+    # - 'beat'
+- platform: api_streams
+   
+### Pushbullet Mirror
+# - platform: pushbullet
+  # api_key: o.dlebIoFKl4nPbb4wH86Ut7G45EkGTNkn
+  # monitored_conditions:
+    # - body
+    # - application_name
+    # - notification_id
+    # - notification_tag
+    # - package_name
+    # - receiver_email
+    # - sender_email
+    # - source_device_iden
+    # - title
+    # - type

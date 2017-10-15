@@ -1,0 +1,23 @@
+ - alias: mode.AtHomeTrigger
+   trigger:
+     platform: state
+     entity_id: input_select.mode
+     to: 'Home'
+   action:
+     service: script.mode_at_home
+     
+ - alias: mode.ZzzTrigger
+   trigger:
+     platform: state
+     entity_id: input_select.mode
+     to: 'Zzz'
+   action:
+     service: script.mode_zzz
+     
+ - alias: mode.AwayTrigger
+   trigger:
+     platform: state
+     entity_id: input_select.mode
+     to: 'Away'
+   action:
+     service: script.mode_away

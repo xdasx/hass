@@ -1,0 +1,56 @@
+ - alias: hallButton.switchToOn_motionLightToOff
+   trigger:
+    platform: mqtt
+    topic: cmnd/Press1/POWER1
+    payload: 'TOGGLE'
+   condition:
+    condition: state
+    entity_id: input_boolean.motion_light
+    state: 'on'
+   action:
+    - service: homeassistant.turn_on
+      entity_id: switch.hall
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motion_light
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motion_light_kitchen
+    - service: homeassistant.turn_off
+      entity_id: script.motion_light_timer_kitchen_end
+    - service: homeassistant.turn_on
+      entity_id: script.motion_light_timer_hall_end_kill      
+    - service: script.flash_green
+    - service: script.pb_debug
+      data:
+        title: "Hall button"
+        text: "motion light turned off"
+ 
+ 
+ 
+ 
+ 
+ - alias: hallButton.Togle
+   trigger:
+     platform: mqtt
+     topic: cmnd/Press1/POWER1
+     payload: 'TOGGLE'
+   condition:
+     condition: state
+     entity_id: input_boolean.motion_light
+     state: 'off'
+   action:
+    # - service: switch.toggle
+      # data:
+        # entity_id: switch.hall
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.motion_light 
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.motion_light_kitchen 
+    - service: script.pb_debug
+      data:
+        title: "Hall button"
+        text: "motion light turned on" 
+    - service: fan.turn_on
+      data:
+        entity_id: fan.hall_blink
+        speed: low
+        # test

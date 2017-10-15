@@ -1,0 +1,231 @@
+automation:
+  - alias: door.open
+    trigger:
+      platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.door_event
+          option: Door Opened
+      - service: script.door_in
+      # - service: script.device_in_jane
+      # - service: script.device_in_dmitri
+      - service: automation.turn_on
+        entity_id: automation.doorclose
+      - service: script.pb_door_opened
+      
+  - alias: door.close
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.front_door
+      to: 'off'
+    action:
+      - service: script.door_out
+      - service: script.pb_door_opened
+      - service: script.mqtt_door_opened
+      - service: automation.turn_off
+        entity_id: automation.doorclose
+        
+script:
+  door_in:
+    alias: 'DOOR: IN'
+    sequence:
+    - condition: state
+      entity_id: sensor.motion_event
+      state: Idle
+    - data:
+        entity_id: input_select.door_event
+        option: Someone entered
+      service: input_select.select_option
+    - service: script.door_in_mode
+    - service: script.door_light_hall_timer
+    - service: script.securety_entrance
+  door_in_mode:
+    alias: 'DOOR: IN - change  mode'
+    sequence:
+    - condition: state
+      entity_id: input_select.mode
+      state: Away
+    - data:
+        entity_id: input_select.mode
+        option: Home
+      service: input_select.select_option
+  door_light_hall_timer:
+    alias: DOOR.light.hall.timer
+    sequence:
+    - service: switch.turn_on
+      entity_id: switch.hall_switch
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motion_light
+    - delay: 00:{{ states.input_slider.door_light_delay.state | int }}:00
+    - service: switch.turn_off
+      entity_id: switch.hall_switch
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.motion_light
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.door_event
+        option: Door Closed
+  door_out:
+    alias: DOOR.out
+    sequence:
+    - condition: template
+      value_template: '{{ states.sensor.motion_event.state != "Away" }}'
+    - condition: state
+      entity_id: input_select.door_event
+      state: Door Opened
+    - service: script.door_out_away_init
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.door_event
+        option: Someone left
+    - service: script.securety_exit
+    
+  door_out_away_init:
+    alias: DOOR.out.away.init
+    sequence:
+    - service: homeassistant.turn_off
+      entity_id: script.door_out_away
+    - service: script.door_out_away
+    - service: script.device_away_jane
+    - service: script.device_away_dmitri
+  door_out_away:
+    alias: DOOR.out.away
+    sequence:
+    - service: script.pb_debug
+      data:
+        title: Looking for activity
+        text: Timer is set for {{ states.input_slider.door_away_delay.state | int }} min
+    - service: script.flash_red_init
+    - delay: 00:{{ states.input_slider.door_away_delay.state | int }}:00
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode
+        option: Away
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.door_event
+        option: Door Closed
+    - service: script.pb_debug
+      data:
+        title: Status Away
+        text: No movement detected
+  door_out_away_kill:
+    alias: DOOR.out.away.kill
+    sequence:
+    - condition: state
+      entity_id: script.door_out_away
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: script.door_out_away
+    - service: script.pb_debug
+      data:
+        title: Status Home
+        text: Movement detected
+    - service: script.flash_red_kill
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.door_event
+        option: Door Closed
+        
+  pb_door_opened:
+    alias: Send Door state to PB
+    sequence:
+    - service: script.pb_debug
+      data_template:
+        title: Home door Status
+        text: ' Door {% if states.binary_sensor.front_door.state == ''on'' %} Open {%
+          elif states.binary_sensor.front_door.state == ''off'' %} Closed {% else %}
+          n/a {% endif %}'
+input_boolean:
+  n_door:
+    name: Notify Door Event 
+    initial: on
+    icon: mdi:message-alert
+binary_sensor:
+  - platform: rpi_gpio
+    invert_logic: false
+    ports:
+      11: Front Door
+      
+sensor:
+  - platform: template
+    sensors:
+      door_event:
+        friendly_name: 'Door Event'
+        value_template:  >-
+            {% if states.input_select.door_event.state == "Door Opened" %}
+            Open          
+            {% elif states.input_select.door_event.state == "Door Closed" %}
+            Closed
+            {% elif states.input_select.door_event.state == "Door Armed" %}
+            Armed
+            {% elif states.input_select.door_event.state == "Someone entered" %}
+            Entry
+            {% elif states.input_select.door_event.state == "Someone left" %}
+            Away...
+            {% else %} 
+            N/A
+            {% endif %}
+input_slider:
+  door_light_delay:
+    name: Light dellay
+    min: 1
+    max: 20
+    step: 1
+    initial: 5
+    icon: mdi:timer
+  door_away_delay:
+    name: Door Away Delay
+    min: 5
+    max: 60
+    step: 5
+    initial: 10
+    icon: mdi:timer
+group:
+  door_automation:
+    entities:
+      - automation.doorclose
+      - automation.dooropen
+  door_scripts:
+    entities:
+      - script.door_in
+      - script.door_in_mode
+      - script.door_light_hall_timer
+      - script.door_out
+      - script.door_out_away
+      - script.door_out_away_init
+      - script.door_out_away_kill
+  door_dev:
+    entities:
+      - group.door_automation
+      - group.door_scripts
+  door_settings:
+    entities:
+      - input_slider.door_light_delay
+      - input_slider.door_away_delay
+  door:
+    name: Door
+    entities:
+      - binary_sensor.front_door
+      - sensor.door_event
+      - input_boolean.n_door
+      - group.door_automation
+      - group.door_scripts
+      - group.door_settings
+  
+      
+      
+input_select:
+  door_event:
+    name: Door
+    options:
+     - Door Closed
+     - Door Opened
+     - Door Armed
+     - Someone entered
+     - Someone left
+    initial: Door Closed

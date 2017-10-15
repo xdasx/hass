@@ -1,0 +1,194 @@
+- alias: Cube event flip90
+  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: flip90
+  action:
+    # - service: light.turn_on
+      # entity_id: light.gateway_light_34ce008c0676
+      # data:
+        # color_name: "springgreen"
+    - service: switch.toggle
+      entity_id: switch.living_switch_1
+- alias: Cube event flip180
+  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: flip180
+  action:
+    # - service: light.turn_on
+      # entity_id: light.gateway_light_34ce008c0676
+      # data:
+        # color_name: "darkviolet"
+    - service: switch.toggle
+      entity_id: switch.living_switch_2
+- alias: Cube event move
+  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: move
+  action:
+    - service: light.turn_on
+      entity_id: light.gateway_light_34ce008c0676
+      data:
+        color_name: "gold"
+- alias: Cube event tap_twice
+  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: tap_twice
+  action:
+    # - service: light.turn_on
+      # entity_id: light.gateway_light_34ce008c0676
+      # data:
+        # color_name: "deepskyblue"
+    - service: light.turn_on
+      entity_id: light.gateway_light_34ce008c0676
+      data:
+        color_name: "deepskyblue"
+- alias: Cube event shake_air
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: shake_air
+  action:
+    # - service: light.turn_on
+      # entity_id: light.gateway_light_34ce008c0676
+      # data:
+        # color_name: "blue"
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.mode
+        option: >-
+          {% if is_state('input_select.mode', 'Home') %}
+            Zzz
+          {% else %}
+            Home
+          {% endif %}
+    
+        
+- alias: Cube event swing
+  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: swing
+  action:
+    - service: light.turn_on
+      entity_id: light.gateway_light_34ce008c0676
+      data:
+        color_name: "red"
+- alias: Cube event alert
+  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: alert
+  action:
+    # - service: light.turn_on
+      # entity_id: light.gateway_light_34ce008c0676
+      # data:
+        # color_name: "green"
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode
+        option: Home
+- alias: Cube event free_fall
+  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: free_fall
+  action:
+    - service: light.turn_on
+      entity_id: light.gateway_light_34ce008c0676
+      data:
+        color_name: "purple"
+- alias: Cube event rotate
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d000103a328
+      action_type: rotate
+  action:
+    # - service: switch.toggle
+      # data_template:
+      # entity_id: >
+      # {%if trigger.event.data.action_value | float > 0 %}
+      # switch.focos_tele_comedor
+      # {% else %}
+      # switch.focos_another_one
+      # {% endif %}
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.cube_rotate
+        value: '{{ trigger.event.data.action_value | float }}'
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.room_light
+        value: >-
+          {%if (trigger.event.data.action_value | int > 25) and (states.input_slider.room_light.state | int < 2) %}
+          2
+          {% elif (trigger.event.data.action_value | int) < -25 and (states.input_slider.room_light.state | int > 0) %}
+          0
+          {% elif (trigger.event.data.action_value | int > 0) and (states.input_slider.room_light.state | int < 2) %}
+          {{ (states.input_slider.room_light.state | int) + 1 }}
+          {% elif (trigger.event.data.action_value | int) < 0 and (states.input_slider.room_light.state | int > 0) %}
+          {{ (states.input_slider.room_light.state | int) - 1 }}
+          {% else %}
+          {{ states.input_slider.room_light.state | int }}
+          {% endif %}
+          
+- alias: Cube event rotate light tracker 0
+  trigger:
+    platform: state
+    entity_id: input_slider.room_light
+    to: '0.0'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.living_switch_1
+    - service: switch.turn_off
+      entity_id: switch.living_switch_2
+      
+- alias: Cube event rotate light tracker 1
+  trigger:
+    platform: state
+    entity_id: input_slider.room_light
+    to: '1.0'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.living_switch_1
+    - service: switch.turn_off
+      entity_id: switch.living_switch_2
+      
+- alias: Cube event rotate light tracker 2
+  trigger:
+    platform: state
+    entity_id: input_slider.room_light
+    to: '2.0'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.living_switch_1
+    - service: switch.turn_on
+      entity_id: switch.living_switch_2

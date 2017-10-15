@@ -1,0 +1,56 @@
+automation:
+  - alias: motion.DetectedRoom
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00016db268
+      to: 'on'
+    action:
+     # - service: automation.turn_on
+       # entity_id: automation.motionEndRoom
+      - service: script.motion_light_timer_room_start
+      - service: script.motion_watchdog_init
+        data:
+          place: Room
+  
+  - alias: motion.EndRoom
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00016db268
+      to: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.motion_light_room
+      state: 'on'
+    action:
+      - service: script.motion_light_timer_room_end
+      - service: script.motion_watchdog_init
+        data:
+          place: Room
+          
+          
+script:
+  motion_light_timer_room_end:
+    alias: MOTION.light.timer.room.end
+    sequence:
+    - delay: 00:03:00
+    - service: switch.turn_off
+      entity_id: switch.living_switch_1
+  motion_light_timer_room_start:
+    alias: MOTION.light.timer.room.start
+    sequence:
+    - condition: state
+      entity_id: input_boolean.motion_light_room
+      state: 'on'
+    - service: switch.turn_on
+      entity_id: switch.living_switch_1
+    - service: script.turn_off
+      entity_id: script.motion_light_timer_room_end
+    - service: automation.turn_on
+      entity_id: automation.motionendroom
+input_boolean:
+  motion_light_room:
+    name: Motion light Room  
+    initial: off
+    icon: mdi:run
+ 

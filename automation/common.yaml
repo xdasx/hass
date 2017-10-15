@@ -1,0 +1,19 @@
+ - alias: common.systemStarted
+   trigger:
+    platform: homeassistant
+    event: start
+   action:
+    - service: script.pb_notify
+      data:
+        title: Common
+        text: Server Started
+        
+ # - alias: common.dev_mode
+   # trigger:
+    # platform: state
+    # entity_id: input_boolean.dev
+   # action:
+    # - service: script.pb_debug
+      # data:
+        # title: dev_mode
+        # text: "{{ states.input_boolean.dev.state }}"

@@ -1,0 +1,68 @@
+# homeassistant:
+  # customize_glob:
+    # "sensor.alarm_panel_*":
+      # emulated_hue: False
+      # hidden: False
+
+#---Sensors for Fire Tablet-----------------------------
+
+# script:
+  # motion_light_timer_kitchen_end:
+    # alias: MOTION.light.timer.kitchen.end
+    # sequence:
+    # - delay: 00:{{ states.input_slider.motion_light_kitchen_delay.state | int }}:00
+    # - service: switch.turn_off
+      # entity_id: switch.kitchen_switch
+      
+  # motion_light_timer_kitchen_start:
+    # alias: MOTION.light.timer.kitchen.start
+    # sequence:
+    # - condition: state
+      # entity_id: input_boolean.motion_light_kitchen
+      # state: 'on'
+    # - service: switch.turn_on
+      # entity_id: switch.kitchen_switch
+    # - service: script.turn_off
+      # entity_id: script.motion_light_timer_kitchen_end
+    # - service: automation.turn_on
+      # entity_id: automation.motionendkitchen
+automation:
+  - alias: motion_kitchen_on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a40748
+      to: 'on'
+    action:
+    - service: script.motion_light_timer_kitchen_start
+    - service: script.motion_watchdog_init
+      data:
+        place: Kitchen
+         
+  - alias: motion_kitchen_off
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a40748
+      to: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.motion_light_kitchen
+      state: 'on'
+    action:
+    - service: script.motion_light_timer_kitchen_end
+
+
+input_boolean:    
+  motion_light_kitchen:
+    name: Motion light Kitchen  
+    initial: off
+    icon: mdi:run
+    
+input_slider:   
+  motion_light_kitchen_delay:
+   name: Motion light Kitchen Delay
+   min: 1
+   max: 60
+   step: 1
+   initial: 5
+   icon: mdi:timer

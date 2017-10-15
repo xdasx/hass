@@ -1,0 +1,155 @@
+automation:
+  - alias: device.archy.home
+    trigger:
+      platform: state
+      entity_id: device_tracker.ars7
+      to: 'home'
+    action:
+    - service: mqtt.publish
+      data:
+        retain: 'true'
+        topic: stat/hass/dmitri
+        payload: home
+    - service: script.pb_notify
+      data:
+        title: DEVICE TRACKER
+        text: Dmitri at Home  
+    - service: automation.turn_off
+      entity_id: automation.devicearchyhome
+  
+  - alias: device.jane.home
+    trigger:
+      platform: state
+      entity_id: device_tracker.jane_op3
+      to: 'home'
+    action:
+    - service: mqtt.publish
+      data:
+        retain: 'true'
+        topic: stat/hass/jane
+        payload: home
+    - service: script.pb_notify
+      data:
+        title: DEVICE TRACKER
+        text: Jane at Home 
+    - service: automation.turn_off
+      entity_id: automation.devicejanehome
+      
+        
+  - alias: device.archy.out
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: device_tracker.ars7
+      to: 'not_home'
+    action:
+    - service: mqtt.publish
+      data:
+        retain: 'true'
+        topic: stat/hass/dmitri
+        payload: away
+    - service: script.turn_off
+      entity_id: script.device_away_dmitri
+    - service: script.pb_notify
+      data:
+        title: DEVICE TRACKER
+        text: Dmitri Left Home 
+    - service: automation.turn_off
+      entity_id: automation.devicearchyout 
+    - service: automation.turn_on
+      entity_id: automation.devicearchyhome
+  
+  - alias: device.jane.out
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: device_tracker.jane_op3
+      to: 'not_home'
+    action:
+    - service: mqtt.publish
+      data:
+        retain: 'true'
+        topic: stat/hass/jane
+        payload: away
+    - service: script.turn_off
+      entity_id: script.device_away_jane
+    - service: script.pb_notify
+      data:
+        title: DEVICE TRACKER
+        text: Jane Left Home  
+    - service: automation.turn_off
+      entity_id: automation.devicejaneout 
+    - service: automation.turn_on
+      entity_id: automation.devicejanehome
+      
+script:
+  device_in_dmitri:
+    alias: Device In Dmitri
+    sequence:
+    - condition: state
+      entity_id: device_tracker.dmitri
+      state: 'home'
+    - service: automation.turn_on
+      entity_id: automation.devicearchyhome
+  device_in_jane:
+    alias: Device In Jane
+    sequence:
+    - condition: state
+      entity_id: device_tracker.jane
+      state: 'home'
+    - service: automation.turn_on
+      entity_id: automation.devicejanehome
+  device_away_dmitri:
+    alias: Device Tracker Dmitri
+    sequence:
+    - service: automation.turn_on
+      entity_id: automation.devicearchyout
+    - service: script.pb_debug
+      data:
+        title: Looking for OP3
+        text: Timer is set for {{ states.input_slider.device_out_delay.state | int }} min
+    - delay: 00:{{ states.input_slider.device_out_delay.state | int }}:00
+    - service: automation.turn_off
+      entity_id: automation.devicearchyout
+    # - service: automation.turn_on
+      # entity_id: automation.devicearchyhome
+    
+  device_away_jane:
+    alias: Device Tracker Jane
+    sequence:
+    - service: automation.turn_on
+      entity_id: automation.devicejaneout
+    - service: script.pb_debug
+      data:
+        title: Looking for arS7
+        text: Timer is set for {{ states.input_slider.device_out_delay.state | int }} min
+    - delay: 00:{{ states.input_slider.device_out_delay.state | int }}:00
+    - service: automation.turn_off
+      entity_id: automation.devicejaneout    
+    # - service: automation.turn_on
+      # entity_id: automation.devicejanehome
+sensor:
+  - platform: mqtt
+    name: "Dmitri"
+    state_topic: "stat/hass/dmitri"
+  - platform: mqtt
+    name: "Jane"
+    state_topic: "stat/hass/jane"
+
+device_tracker:
+  - platform: xiaomi
+    host: 192.168.31.1
+    password: 1127664523
+  - platform: mqtt
+    devices:
+      Jane: stat/hass/jane
+      Dmitri: stat/hass/dmitri
+
+input_slider:
+  device_out_delay:
+    name: Device Away Delay
+    min: 5
+    max: 60
+    step: 5
+    initial: 20
+    icon: mdi:timer

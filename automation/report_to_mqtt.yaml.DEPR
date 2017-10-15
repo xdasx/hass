@@ -1,0 +1,277 @@
+### SWITHCES
+- alias: 'MQTT.switch.hall'
+  trigger:
+    - platform: state
+      entity_id: switch.hall
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/switch/hall'
+      payload_template: "{{ states('switch.hall') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.switch.heating'
+  trigger:
+    - platform: state
+      entity_id: switch.heating
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/switch/heating'
+      payload_template: "{{ states('switch.heating') }}"
+      retain: 'true'
+- alias: 'MQTT.switch.tv'
+  trigger:
+    - platform: state
+      entity_id: switch.tv
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/switch/tv'
+      payload_template: "{{ states('switch.tv') }}"
+      retain: 'true'
+      
+### SENSORS
+- alias: 'MQTT.sensor.motion_event'
+  trigger:
+    - platform: state
+      entity_id: sensor.motion_event
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/sensor/motion_event'
+      payload_template: "{{ states('sensor.motion_event') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.binary_sensor.front_door'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/binary_sensor/front_door'
+      payload_template: "{{ states('binary_sensor.front_door') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.binary_sensor.motion_sensor'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/binary_sensor/motion_sensor'
+      payload_template: "{{ states('binary_sensor.motion_sensor') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.input_slider.motion_watchdog_delay'
+  trigger:
+    - platform: state
+      entity_id: input_slider.motion_watchdog_delay
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_slider/motion_watchdog_delay'
+      payload_template: "{{ states('input_slider.motion_watchdog_delay') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.input_slider.light_intensity'
+  trigger:
+    - platform: state
+      entity_id: input_slider.light_intensity
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_slider/light_intensity'
+      payload_template: "{{ states('input_slider.light_intensity') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.input_slider.door_away_delay'
+  trigger:
+    - platform: state
+      entity_id: input_slider.door_away_delay
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_slider/door_away_delay'
+      payload_template: "{{ states('input_slider.door_away_delay') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.input_boolean.n_motion'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.n_motion
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_boolean/n_motion'
+      payload_template: "{{ states('input_boolean.n_motion') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.input_boolean.n_mode'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.n_mode
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_boolean/n_mode'
+      payload_template: "{{ states('input_boolean.n_mode') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.input_boolean.n_door'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.n_door
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_boolean/n_door'
+      payload_template: "{{ states('input_boolean.n_door') }}"
+      retain: 'true'
+      
+- alias: 'MQTT.input_boolean.motion_light'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.motion_light
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_boolean/motion_light'
+      payload_template: "{{ states('input_boolean.motion_light') }}"
+      retain: 'true' 
+      
+- alias: 'MQTT.climate.room'
+  trigger:
+    - platform: state
+      entity_id: climate.room
+  # condition:
+    # - condition: state
+      # entity_id: alarm_control_panel.ha_alarm
+      # state: armed_away
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'stat/hass/input_boolean/motion_light'
+      payload_template: "{{ states('input_boolean.motion_light') }}"
+      retain: 'true'
+      
+### TIMED
+- alias: 'MQTT.climaAutoSender'
+  trigger:
+    platform: time
+    minutes: '/5'
+    seconds: 00
+  action:
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/dht/temp'
+       payload_template: '{{ states("sensor.dht_sensor_temperature") }}'
+       retain: 'true'
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/dht/hum'
+       payload_template: '{{ states("sensor.dht_sensor_humidity") }}'
+       retain: 'true'
+    # - service: mqtt.publish
+      # data:
+       # topic: 'stat/pi/mi_flora/state'
+       # payload_template: >
+         # {
+         # "battery":"{{ states('sensor.mi_flora_battery') }}",
+         # "conductivity":"{{ states('sensor.mi_flora_conductivity') }}",
+         # "light":"{{ states('sensor.mi_flora_light_intensity') }}",
+         # "moisture":"{{ states('sensor.mi_flora_moisture') }}",
+         # "temperature":"{{ states('sensor.mi_flora_temperature') }}"
+         # }
+       # retain: 'true'
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/mi_flora/battery'
+       payload_template: '{{ states("sensor.mi_flora_battery") }}'
+       retain: 'true'
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/mi_flora/conductivity'
+       payload_template: '{{ states("sensor.mi_flora_conductivity") }}'
+       retain: 'true'
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/mi_flora/light'
+       payload_template: '{{ states("sensor.mi_flora_light") }}'
+       retain: 'true'
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/mi_flora/moisture'
+       payload_template: '{{ states("sensor.mi_flora_moisture") }}'
+       retain: 'true'
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/mi_flora/temperature'
+       payload_template: '{{ states("sensor.mi_flora_temperature") }}'
+       retain: 'true'
+    - service: mqtt.publish
+      data:
+       topic: 'stat/hass/clima/state'
+       payload_template: >
+        {
+         "operation_mode":"{{ states.climate.room.attributes.operation_mode }}",
+         "current_temperature":"{{ states.climate.room.attributes.current_temperature}}",
+         "temperature":"{{ states.climate.room.attributes.temperature }}",
+         "moisture":"{{ states.climate.room.attributes.moisture }}",
+         "humidity":"{{ states("sensor.dht_sensor_humidity") }}"
+         }
+       retain: 'true'

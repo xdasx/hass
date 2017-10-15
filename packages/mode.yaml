@@ -1,0 +1,132 @@
+automation:
+  - alias: mode.AtHomeTrigger
+    trigger:
+      platform: state
+      entity_id: input_select.mode
+      to: 'Home'
+    action:
+      service: script.mode_at_home
+      
+  - alias: mode.ZzzTrigger
+    trigger:
+      platform: state
+      entity_id: input_select.mode
+      to: 'Zzz'
+    action:
+      service: script.mode_zzz
+      
+  - alias: mode.AwayTrigger
+    trigger:
+      platform: state
+      entity_id: input_select.mode
+      to: 'Away'
+    action:
+      service: script.mode_away
+      
+script:
+  pb_mode:
+    alias: Send Mode state to PB
+    sequence:
+    - service: script.pb_debug
+      data_template:
+        title: Mode
+        text: Mode Changed  to {{ states('input_select.mode') }}
+  mode_at_home:
+    alias: AtHome Mode
+    sequence:
+    - entity_id: input_boolean.motion_light
+      service: homeassistant.turn_on
+    - entity_id: input_boolean.motion_light_kitchen
+      service: homeassistant.turn_on
+    - entity_id: switch.tv
+      service: switch.turn_on
+    - service: script.pb_mode
+    - service: mqtt.publish
+      data:
+        payload_template: '{{ states(''input_select.mode'') }}'
+        retain: 'true'
+        topic: stat/hass/mode
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.room
+        temperature: "{{ states.sensor.home_temp.state | float }}"
+      
+  mode_away:
+    alias: Away Mode
+    sequence:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motion_light
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motion_light_kitchen
+    - service: homeassistant.turn_off
+      entity_id: group.light
+    - service: homeassistant.turn_off
+      entity_id: switch.hall
+    - service: homeassistant.turn_off
+      entity_id: switch.tv
+    - service: script.pb_mode
+    - service: mqtt.publish
+      data:
+        topic: stat/hass/mode
+        payload_template: '{{ states(''input_select.mode'') }}'
+        retain: 'true'
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.room
+        temperature: "{{ states.sensor.away_temp.state | float }}"
+      
+  mode_zzz:
+    alias: Zzz Mode
+    sequence:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motion_light
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.motion_light_kitchen
+    - service: homeassistant.turn_off
+      entity_id: group.light
+    - service: switch.turn_off
+      entity_id: switch.hall
+    - service: switch.turn_off
+      entity_id: switch.tv
+    - service: script.pb_mode
+    - service: mqtt.publish
+      data:
+        topic: stat/hass/mode
+        payload_template: '{{ states(''input_select.mode'') }}'
+        retain: 'true'
+        
+sensor:        
+  - platform: template
+    sensors:
+      mode:
+        icon_template: '{% if is_state("input_select.mode", "Away") %}mdi:account-remove{% else %}mdi:account{% endif %}'
+        friendly_name: 'Mode'
+        value_template: >-
+            {% if states.input_select.mode.state == "Home" %}
+            {{ states.sensor.who_is_at_home.state }}           
+            {% else %} 
+            {{ states("input_select.mode") }}
+            {% endif %}
+            
+input_select:
+  mode:
+    name: MODE
+    options:
+     - Away
+     - Home
+     - Zzz
+    initial: Home 
+scene:
+  - name: Zzz
+    entities:
+      input_select.mode:
+        option: Zzz
+  - name: Home
+    entities:
+      input_select.mode:
+        option: Home
+  - name: Away
+    entities:
+      input_select.mode:
+        option: Away    
+        

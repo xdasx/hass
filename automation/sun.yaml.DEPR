@@ -1,0 +1,30 @@
+ - alias: 'Send notification when sun rises'
+   trigger:
+     platform: sun
+     event: sunrise
+     offset: '+00:00:00'
+   action:
+     - service: notify.pb
+       data_template:
+           {
+         "title": "The sun is up.",
+         "message": "{{ states('sensor.time') }}"
+         }     
+     - service: homeassistant.turn_off
+       entity_id: input_boolean.motion_light
+       
+ - alias: 'Send notification when sun sets'
+   trigger:
+     platform: sun
+     event: sunset
+     offset: '+00:00:00'
+   action:
+     service: notify.pb
+     data_template:
+         {
+       "title": "The sun is down.",
+       "message": "{{ states('sensor.time') }}"
+       }     
+   
+   
+    
