@@ -56,7 +56,7 @@ sensor:
   - platform: mqtt
     name: "Heater Temp"
     state_topic: "tele/sonoff2/SENSOR"
-    unit_of_measurement: 'C'
+#    unit_of_measurement: 'C'
     value_template: "{{value_json.DS18B20.Temperature}}"
     
   - platform: mqtt
@@ -79,7 +79,7 @@ sensor:
       climate_room_temp:
         value_template: '{{states.climate.room.attributes.temperature}}'
         friendly_name: 'Climate temp'
-        unit_of_measurement: 'C'
+#        unit_of_measurement: 'C'
 
 input_slider:
   clima_home_temp:
