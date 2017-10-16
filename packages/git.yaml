@@ -1,7 +1,7 @@
 shell_command:
-  get_latest_config: bash /config/bin/pullconfig.sh
-  get_master: bash /config/bin/master.sh
-  get_sandbox: bash /config/bin/sandbox.sh
+  get_latest_config: sudo bash /config/bin/pullconfig.sh
+  get_master: sudo bash /config/bin/master.sh
+  get_sandbox: sudo bash /config/bin/sandbox.sh
 
 script:
   update_config:
