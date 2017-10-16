@@ -2,5 +2,5 @@
 
 cd "/config"
 git pull
-git checkout sandbox
+git checkout master
 git pull
