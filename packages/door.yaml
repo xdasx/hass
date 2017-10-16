@@ -140,11 +140,13 @@ script:
         text: ' Door {% if states.binary_sensor.front_door.state == ''on'' %} Open {%
           elif states.binary_sensor.front_door.state == ''off'' %} Closed {% else %}
           n/a {% endif %}'
+
 input_boolean:
   n_door:
     name: Notify Door Event 
     initial: on
     icon: mdi:message-alert
+
 binary_sensor:
   - platform: rpi_gpio
     invert_logic: false
@@ -185,6 +187,18 @@ input_slider:
     step: 5
     initial: 10
     icon: mdi:timer
+
+input_select:
+  door_event:
+    name: Door
+    options:
+     - Door Closed
+     - Door Opened
+     - Door Armed
+     - Someone entered
+     - Someone left
+    initial: Door Closed
+
 group:
   door_automation:
     entities:
@@ -216,16 +230,3 @@ group:
       - group.door_automation
       - group.door_scripts
       - group.door_settings
-  
-      
-      
-input_select:
-  door_event:
-    name: Door
-    options:
-     - Door Closed
-     - Door Opened
-     - Door Armed
-     - Someone entered
-     - Someone left
-    initial: Door Closed

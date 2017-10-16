@@ -1,3 +1,4 @@
+### automation ###
 automation:
   - alias: Cube event flip90
     initial_state: 'off'
@@ -194,6 +195,14 @@ automation:
       - service: switch.turn_on
         entity_id: switch.living_switch_2
 
+input_slider:
+  cube_rotate:
+    name: cube_rotate
+    min: -200
+    max: 200
+    step: 10
+    initial: 0
+
 group:
   mi_cube_automation:
     entities:
@@ -209,11 +218,3 @@ group:
       - automation.cube_event_shake_air
       - automation.cube_event_swing
       - automation.cube_event_tap_twice
-
-input_slider:
-  cube_rotate:
-    name: cube_rotate
-    min: -200
-    max: 200
-    step: 10
-    initial: 0

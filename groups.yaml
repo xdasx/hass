@@ -26,6 +26,7 @@ light:
   - switch.hall
   - switch.hall_switch
   - light.gateway_light_34ce008c0676
+
 lightg:
   view: false
   name: Light
@@ -39,36 +40,8 @@ lightg:
   - switch.hall_switch
   - light.gateway_light_34ce008c0676
   - group.motion
-  
-clima:
-  name: Clima Indoor
-  entities:
-  - climate.room
-  - group.heater
-  
-heater:
-  name: Clima Dev
-  control: hidden
-  icon: mdi:tune
-  entities:
-  - switch.heating
-  - sensor.heater
-  - sensor.current_temp
-  - sensor.home_temp
-  - sensor.away_temp
-  - input_slider.clima_home_temp
-  - input_slider.clima_away_temp
-  - script.mqtt_temp_set
-  - script.warmup  
 
-scenes:
-  name: Scenes
-  entities:
-  - scene.zzz
-  - scene.home
-  - scene.away
-  
-## MEDIA ## 
+## MEDIA ##
 media:
   name: Media
   view: false
@@ -83,6 +56,7 @@ tv:
   - media_player.tv
   - switch.tv
   - group.tv_timer
+
 tv_timer:
   name: Tv Timer
   entities:
@@ -121,15 +95,7 @@ notify:
   - input_boolean.n_motion
   - input_boolean.n_mode
   - input_boolean.n_debug 
-presence :
-  name: Presence 
-  entities:
-  - input_slider.device_out_delay
-  - group.all_devices 
-  - automation.devicearchyhome
-  - automation.devicearchyout
-  - automation.devicejanehome
-  - automation.devicejaneout
+
 
 ## DEV ##  
 dev:
@@ -145,7 +111,6 @@ dev:
   - input_select.mode
   - input_select.power_mode
 
-
 weather:
   name: Weather
   view: false
@@ -155,9 +120,6 @@ weather:
   - sensor.yr_wind_speed
   - sensor.yr_cloudiness
   - sensor.yr_precipitation
-
-
-
 
 dev_states:
   name: Dev States
@@ -178,7 +140,6 @@ dev_pi:
   - sensor.ram_free
   - sensor.ram_use_percent
   - sensor.since_last_boot
-
 
 xiaomi:
   name: xiaomi

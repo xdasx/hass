@@ -116,6 +116,7 @@ input_select:
      - Home
      - Zzz
     initial: Home 
+
 scene:
   - name: Zzz
     entities:
@@ -129,4 +130,11 @@ scene:
     entities:
       input_select.mode:
         option: Away    
-        
+
+group:
+  scenes:
+    name: Scenes
+    entities:
+    - scene.zzz
+    - scene.home
+    - scene.away

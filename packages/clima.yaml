@@ -96,3 +96,25 @@ input_slider:
     step: 0.5
     initial: 10
     icon: mdi:temperature-celsius
+    
+group:
+  clima:
+    name: Clima Indoor
+    entities:
+    - climate.room
+    - group.heater
+
+  heater:
+    name: Clima Dev
+    control: hidden
+    icon: mdi:tune
+    entities:
+    - switch.heating
+    - sensor.heater
+    - sensor.current_temp
+    - sensor.home_temp
+    - sensor.away_temp
+    - input_slider.clima_home_temp
+    - input_slider.clima_away_temp
+    - script.mqtt_temp_set
+    - script.warmup
