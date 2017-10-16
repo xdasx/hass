@@ -8,7 +8,7 @@ homeassistant:
   customize: !include customize.yaml  
   # packages: !include_dir_named packages
   packages:
-    pack_1: !include git.yaml
+    pack_1: !include packages/git.yaml
   
 sensor: !include_dir_merge_list sensors
 automation old: !include_dir_merge_list automation
