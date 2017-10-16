@@ -140,18 +140,18 @@ presence :
   - automation.devicejaneout
 
 ## DEV ##  
-dev:
-  view: true
-  name: Dev
-  icon: mdi:developer-board
-  entities:
-  - group.all_devices
-  - group.dev_pi
-  - group.xiaomi
-  - group.dev_states
-  - group.debug
-  - input_select.mode
-  - input_select.power_mode
+#dev:
+#  view: true
+#  name: Dev
+#  icon: mdi:developer-board
+#  entities:
+#  - group.all_devices
+#  - group.dev_pi
+#  - group.xiaomi
+#  - group.dev_states
+#  - group.debug
+#  - input_select.mode
+#  - input_select.power_mode
 
 
 weather:
