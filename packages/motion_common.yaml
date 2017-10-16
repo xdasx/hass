@@ -56,6 +56,6 @@ group:
     - binary_sensor.motion_sensor_158d00016db268
     - binary_sensor.motion_sensor_158d0001a40748
     - input_slider.motion_watchdog_delay
-    - input_boolean.motion_light
+    - input_boolean.motion_light_hall
     - input_boolean.motion_light_kitchen
     - input_boolean.motion_light_room
