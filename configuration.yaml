@@ -179,7 +179,7 @@ tts:
 notify:
  - name: fb
    platform: facebook
-   page_access_token: EAAR1CtMQNZB0BABph8XdhHmPrKhAcaIdvIjkG5VM6H3wK728cdfvVfZBZBy7NpqGXiB2VUExcBWMVaeEFWvZAVUOISYn6HHvlr4sMUkCjqvg0vd54huMCFgafAHIqtY1qAjzHZAyBrJORiCLifQqo9iyeS7OrRX2T5xWcMC9j2VqAEzW0jZAma
+   page_access_token: !secret fb_token
  - platform: nfandroidtv
    name: Mi_Tv_Box
    host: !secret mi_tv_box_host
