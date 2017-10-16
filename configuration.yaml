@@ -7,6 +7,8 @@ homeassistant:
   time_zone: Europe/Tallinn  
   customize: !include customize.yaml  
   # packages: !include_dir_named packages
+  packages:
+    pack_1: !include git.yaml
   
 sensor: !include_dir_merge_list sensors
 automation old: !include_dir_merge_list automation
@@ -23,7 +25,7 @@ shell_command: !include_dir_named shell_command/
 
 
 #introduction:
-config:
+#config:
 updater:
 discovery:
 # conversation:
@@ -191,7 +193,7 @@ notify:
 device_tracker:
   - platform: xiaomi
     host: 192.168.31.1
-    password: 1127664523
+    password: !secret wifi_pwd
   - platform: mqtt
     devices:
       Jane: stat/hass/jane

@@ -1,0 +1,25 @@
+shell_command:
+  get_latest_config: bash /config/bin/pullconfig.sh
+  get_master: bash /config/bin/master.sh
+  get_sandbox: bash /config/bin/sandbox.sh
+
+script:
+  update_config:
+    sequence:
+      - service: shell_command.get_latest_config
+      - service: homeassistant.restart
+  git_master:
+    sequence:
+      - service: shell_command.get_master
+      - service: homeassistant.restart
+  git_sandbox:
+    sequence:
+      - service: shell_command.get_sandbox
+      - service: homeassistant.restart
+
+group:
+  git:
+    entities:
+      - script.update_config
+      - script.git_master
+      - script.git_sandbox

@@ -101,7 +101,8 @@ settings:
   - group.motion
   - group.notify
   - group.presence
-  
+  - group.git
+
 door:
   name: Door
   entities:
