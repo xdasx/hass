@@ -1,15 +1,6 @@
 ### HOME MODE
 - platform: template
   sensors:
-    mode:
-      icon_template: '{% if is_state("input_select.mode", "Away") %}mdi:account-remove{% else %}mdi:account{% endif %}'
-      friendly_name: 'Mode'
-      value_template: >-
-          {% if states.input_select.mode.state == "Home" %}
-          {{ states.sensor.who_is_at_home.state }}           
-          {% else %} 
-          {{ states("input_select.mode") }}
-          {% endif %}
     who_is_at_home:
       friendly_name: 'At Home'
       value_template:  >-
@@ -22,36 +13,17 @@
           {% else %} 
           None
           {% endif %}
-    door_event:
-      friendly_name: 'Door'
-      value_template:  >-
-          {% if states.input_select.door_event.state == "Door Opened" %}
-          Open          
-          {% elif states.input_select.door_event.state == "Door Closed" %}
-          Closed
-          {% elif states.input_select.door_event.state == "Door Armed" %}
-          Armed
-          {% elif states.input_select.door_event.state == "Someone entered" %}
-          Entry
-          {% elif states.input_select.door_event.state == "Someone left" %}
-          Away...
-          {% else %} 
-          N/A
-          {% endif %}
-    motion_event:
-      value_template: '{{ states("input_select.motion_event") }}'
-      friendly_name: 'Motion'
+    
     tv_timer:
       value_template: '{{ states("input_slider.tv_timer") }}'
       friendly_name: 'Timer'
       unit_of_measurement: Min
-    climate_room_temp:
-      value_template: '{{states.climate.room.attributes.temperature}}'
-      friendly_name: 'Climate temp'
-      unit_of_measurement: °C
     # new_commits:
       # value_template: >
         # {{ states("sensor.new_commits") }}
+    motion_event:
+      value_template: '{{ states("input_select.motion_event") }}'
+      friendly_name: 'Motion'
     motion_tracker:
       friendly_name: 'Motion'
       # unit_of_measurement: Hall
@@ -151,9 +123,3 @@
   # outdoor_temp_sensor: sensor.yr_temperature
   # calibration_factor: 2.0
 
-- platform: mqtt
-  name: "Dmitri"
-  state_topic: "stat/hass/dmitri"
-- platform: mqtt
-  name: "Jane"
-  state_topic: "stat/hass/jane"

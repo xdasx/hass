@@ -102,13 +102,6 @@ settings:
   - group.notify
   - group.presence
   
-door:
-  name: Door
-  entities:
-  - input_slider.door_light_delay
-  - input_slider.door_away_delay
-  - binary_sensor.front_door
-  - sensor.door_event
 motion:
   name: Motion
   entities:
