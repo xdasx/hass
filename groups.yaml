@@ -142,7 +142,7 @@
     - sensor.ram_use_percent
     - sensor.since_last_boot
   
-   xiaomi:
+  xiaomi:
     name: xiaomi
     entities:
     - binary_sensor.cube_158d000103a328
