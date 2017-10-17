@@ -24,7 +24,7 @@ shell_command: !include_dir_named shell_command/
 
 #introduction:
 emulated_hue:
-  type: alexa
+  listen_port: 8300
   expose_by_default: true
   exposed_domains:
     - switch
