@@ -24,6 +24,11 @@ shell_command: !include_dir_named shell_command/
 
 #introduction:
 emulated_hue:
+  type: alexa
+  expose_by_default: true
+  exposed_domains:
+    - switch
+    - light
 config:
 updater:
 discovery:
