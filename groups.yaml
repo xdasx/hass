@@ -102,6 +102,7 @@ settings:
   - group.notify
   - group.presence
   - group.git
+  - sensor.git
 
 door:
   name: Door
