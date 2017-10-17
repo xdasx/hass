@@ -4,9 +4,9 @@
       event: start
     action:
       - service: script.pb_notify
-        data:
+        data_template:
           title: Common
-          text: Server Started
+          text: Server Started on {{ states('sensor.git') }}
           
 ### MQTT ###
   - alias: MQTT.PUB.ClimaTempChange
