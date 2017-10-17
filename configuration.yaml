@@ -23,6 +23,7 @@ shell_command: !include_dir_named shell_command/
 
 
 #introduction:
+emulated_hue:
 config:
 updater:
 discovery:
