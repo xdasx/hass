@@ -23,3 +23,9 @@ group:
       - script.update_config
       - script.git_master
       - script.git_sandbox
+
+sensor:
+  - platform: command_line
+    name: Git
+    command: "git rev-parse --abbrev-ref HEAD"
+    unit_of_measurement: "Branch"
