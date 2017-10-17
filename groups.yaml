@@ -76,7 +76,8 @@
     - group.notify
     - group.presence
     - group.git
-    
+    - sensor.git
+
   notify:
     name: Notifications
     entities:
