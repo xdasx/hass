@@ -23,9 +23,14 @@ group:
       - script.update_config
       - script.git_master
       - script.git_sandbox
+      - sensor.commits
 
 sensor:
   - platform: command_line
     name: Git
     command: "sudo bash /config/bin/git_branch.sh"
     unit_of_measurement: "Branch"
+  - platform: command_line
+    name: commits
+    command: "sudo bash /config/bin/git_commits.sh"
+    unit_of_measurement: "Commit"
