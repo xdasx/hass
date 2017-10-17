@@ -27,5 +27,5 @@ group:
 sensor:
   - platform: command_line
     name: Git
-    command: "git rev-parse --abbrev-ref HEAD"
+    command: "sudo git rev-parse --abbrev-ref HEAD"
     unit_of_measurement: "Branch"
