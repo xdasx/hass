@@ -134,3 +134,23 @@ sensor.motion_event:
   friendly_name: Home Motion
 sensor.heater_temp:
   friendly_name: Temp
+group.motion_hall:
+  custom_ui_state_card: state-card-custom-ui
+  extra_badge:
+    entity_id: input_boolean.motion_light_hall
+  hide_control: true
+group.motion_kitchen:
+  custom_ui_state_card: state-card-custom-ui
+  extra_badge:
+    entity_id: input_boolean.motion_light_kitchen
+  hide_control: true
+group.motion_room:
+  custom_ui_state_card: state-card-custom-ui
+  extra_badge:
+    entity_id: input_boolean.motion_light_kitchen
+  hide_control: true
+group.motion_wc:
+  custom_ui_state_card: state-card-custom-ui
+  extra_badge:
+    entity_id: input_boolean.motion_light_kitchen
+  hide_control: true
