@@ -14,17 +14,15 @@ automation:
     initial_state: 'off'
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor
+      entity_id: binary_sensor.motion_hall
       to: 'off'
     condition:
      condition: state
-     entity_id: input_boolean.motion_hall
+     entity_id: input_boolean.motion_light_hall
      state: 'on'
     action:
      - service: script.motion_light_timer_hall_end
-     - service: script.motion_watchdog_init
-       data:
-         place: Hall
+
          
 script:
   motion_light_timer_hall_end:
@@ -65,8 +63,8 @@ input_slider:
    name: Hall light Delay
    min: 1
    max: 60
-   step: 1
-   initial: 5
+   step: 10
+   initial: 30
    icon: mdi:timer
 
 group:
