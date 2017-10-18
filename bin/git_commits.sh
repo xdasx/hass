@@ -2,4 +2,4 @@
 
 cd "/config"
 git fetch
-git rev-list --count master..origin/master
+git rev-list --count dev..origin/dev
