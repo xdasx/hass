@@ -68,3 +68,11 @@ input_slider:
    step: 1
    initial: 5
    icon: mdi:timer
+
+group:
+  motion:
+    name: Motion Hall
+    entities:
+    - binary_sensor.motion_sensor_hall
+    - input_boolean.motion_light_hall
+    - input_slider.motion_light_hall_delay

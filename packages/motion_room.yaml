@@ -63,4 +63,12 @@ input_slider:
    step: 1
    initial: 5
    icon: mdi:timer
+
+group:
+  motion:
+    name: Motion Room
+    entities:
+    - binary_sensor.motion_sensor_158d00016db268
+    - input_boolean.motion_light_room
+    - input_slider.motion_light_room_delay
  

@@ -58,3 +58,11 @@ input_slider:
    step: 1
    initial: 5
    icon: mdi:timer
+
+group:
+  motion:
+    name: Motion Kitchen
+    entities:
+    - binary_sensor.motion_sensor_158d0001a40748
+    - input_boolean.motion_light_kitchen
+    - input_slider.motion_light_kitchen_delay
