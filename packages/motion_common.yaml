@@ -57,4 +57,12 @@ group:
     - group.motion_room
     - group.motion_hall
     - group.motion_kitchen
+  motion_dev:
+    name: Motion
+    entities:
+    - sensor.motion_event
+    - group.motion_wc
+    - group.motion_room
+    - group.motion_hall
+    - group.motion_kitchen
 

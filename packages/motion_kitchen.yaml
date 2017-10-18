@@ -66,3 +66,11 @@ group:
     - binary_sensor.motion_sensor_158d0001a40748
     - input_boolean.motion_light_kitchen
     - input_slider.motion_light_kitchen_delay
+
+homeassistant:
+  customize:
+    group.motion_kitchen:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: binary_sensor.motion_sensor_158d0001a40748
+      hide_control: true

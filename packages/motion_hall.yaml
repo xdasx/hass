@@ -74,3 +74,11 @@ group:
     - binary_sensor.motion_sensor_hall
     - input_boolean.motion_light_hall
     - input_slider.motion_light_hall_delay
+
+homeassistant:
+  customize:
+    group.motion_hall:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: binary_sensor.motion_sensor_hall
+      hide_control: true

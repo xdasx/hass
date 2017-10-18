@@ -71,4 +71,11 @@ group:
     - binary_sensor.motion_sensor_158d00016db268
     - input_boolean.motion_light_room
     - input_slider.motion_light_room_delay
- 
+
+homeassistant:
+  customize:
+    group.motion_room:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: binary_sensor.motion_sensor_158d00016db268
+      hide_control: true
