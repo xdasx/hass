@@ -41,11 +41,14 @@ sensor:
 
 homeassistant:
   customize:
+    sensor.git:
+      custom_ui_state_card: state-card-custom-ui
+      blacklist_states: 0
     group.gitin:
       custom_ui_state_card: state-card-custom-ui
       extra_badge:
         entity_id: sensor.commits
       hide_control: true
       icon: mdi:git
-      blacklist_states: 0
+#      blacklist_states: 0
       extra_data_template: ${ entities['sensor.git'].state}
