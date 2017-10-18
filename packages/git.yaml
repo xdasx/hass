@@ -27,11 +27,11 @@ group:
       - script.update_config
       - script.git_master
       - script.git_sandbox
-      - sensor.commits
+#      - sensor.commits
 
 sensor:
   - platform: command_line
-    name: Git
+    name: sensor
     command: "sudo bash /config/bin/git_branch.sh"
     unit_of_measurement: "Branch"
   - platform: command_line
@@ -47,3 +47,5 @@ homeassistant:
         entity_id: sensor.commits
       hide_control: true
       icon: mdi:git
+      blacklist_states: 0
+      extra_data_template: ${ entities['sensor.git'].state}
