@@ -22,6 +22,30 @@ automation:
       to: 'Away'
     action:
       service: script.mode_away
+
+  - alias: mode.arChy
+    trigger:
+      platform: state
+      entity_id: sensor.mode
+      to: 'Dmitri'
+    action:
+      service: script.mode_archy
+
+  - alias: mode.jane
+    trigger:
+      platform: state
+      entity_id: sensor.mode
+      to: 'Jane'
+    action:
+      service: script.mode_jane
+
+  - alias: mode.jandd
+    trigger:
+      platform: state
+      entity_id: sensor.mode
+      to: 'J&D'
+    action:
+      service: script.mode_jane
       
 script:
   pb_mode:
@@ -112,6 +136,18 @@ sensor:
             {{ states.sensor.who_is_at_home.state }}           
             {% else %} 
             {{ states("input_select.mode") }}
+            {% endif %}
+      who_is_at_home:
+        friendly_name: 'At Home'
+        value_template:  >-
+            {% if (states.device_tracker.jane.state == "home") and (states.device_tracker.dmitri.state == "home") %}
+            J&D
+            {% elif states.device_tracker.dmitri.state == "home"%}
+            Dmitri
+            {% elif states.device_tracker.jane.state == "home" %}
+            Jane
+            {% else %}
+            None
             {% endif %}
             
 input_select:

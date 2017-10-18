@@ -1,18 +1,7 @@
 ### HOME MODE
 - platform: template
   sensors:
-    who_is_at_home:
-      friendly_name: 'At Home'
-      value_template:  >-
-          {% if (states.device_tracker.jane.state == "home") and (states.device_tracker.dmitri.state == "home") %}
-          J&D         
-          {% elif states.device_tracker.dmitri.state == "home"%}
-          Dmitri
-          {% elif states.device_tracker.jane.state == "home" %}
-          Jane
-          {% else %} 
-          None
-          {% endif %}
+
     
     tv_timer:
       value_template: '{{ states("input_slider.tv_timer") }}'
