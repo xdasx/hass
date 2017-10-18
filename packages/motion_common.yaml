@@ -65,4 +65,10 @@ group:
     - group.motion_room
     - group.motion_hall
     - group.motion_kitchen
+  motion_triggers:
+    - input_boolean.motion_light_hall
+    - input_boolean.motion_light_kitchen
+    - input_boolean.motion_light_room
+    - input_boolean.motion_light_wc
+
 

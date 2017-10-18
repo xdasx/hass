@@ -34,9 +34,7 @@ script:
   mode_at_home:
     alias: AtHome Mode
     sequence:
-    - entity_id: input_boolean.motion_light
-      service: homeassistant.turn_on
-    - entity_id: input_boolean.motion_light_kitchen
+    - entity_id: input_boolean.motion_light_hall
       service: homeassistant.turn_on
     - entity_id: switch.tv
       service: switch.turn_on
@@ -55,9 +53,7 @@ script:
     alias: Away Mode
     sequence:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light_kitchen
+      entity_id: group.motion_triggers
     - service: homeassistant.turn_off
       entity_id: group.light
     - service: homeassistant.turn_off
@@ -79,9 +75,7 @@ script:
     alias: Zzz Mode
     sequence:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light_kitchen
+      entity_id: group.motion_triggers
     - service: homeassistant.turn_off
       entity_id: group.light
     - service: switch.turn_off
@@ -94,6 +88,18 @@ script:
         topic: stat/hass/mode
         payload_template: '{{ states(''input_select.mode'') }}'
         retain: 'true'
+
+    mode_archy:
+      alias: arChy Mode
+      sequence:
+      - service: homeassistant.turn_on
+        entity_id: group.motion_triggers
+
+    mode_jane:
+      alias: Jane Mode
+      sequence:
+      - service: homeassistant.turn_off
+        entity_id: group.motion_triggers
         
 sensor:        
   - platform: template

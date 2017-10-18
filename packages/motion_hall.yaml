@@ -82,3 +82,7 @@ homeassistant:
       extra_badge:
         entity_id: binary_sensor.motion_sensor_hall
       hide_control: true
+    binary_sensor.motion_hall:
+#      custom_ui_state_card: state-card-custom-ui
+#      show_last_changed: true
+      device_class: motion
