@@ -43,6 +43,7 @@ script:
     - service: script.door_in_mode
     - service: script.door_light_hall_timer
     - service: script.securety_entrance
+
   door_in_mode:
     alias: 'DOOR: IN - change  mode'
     sequence:
@@ -53,22 +54,24 @@ script:
         entity_id: input_select.mode
         option: Home
       service: input_select.select_option
+
   door_light_hall_timer:
     alias: DOOR.light.hall.timer
     sequence:
     - service: switch.turn_on
       entity_id: switch.hall_switch
     - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light
+      entity_id: input_boolean.motion_light_hall
     - delay: 00:{{ states.input_slider.door_light_delay.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.hall_switch
     - service: homeassistant.turn_on
-      entity_id: input_boolean.motion_light
+      entity_id: input_boolean.motion_light_hall
     - service: input_select.select_option
       data:
         entity_id: input_select.door_event
         option: Door Closed
+
   door_out:
     alias: DOOR.out
     sequence:
@@ -92,6 +95,7 @@ script:
     - service: script.door_out_away
     - service: script.device_away_jane
     - service: script.device_away_dmitri
+
   door_out_away:
     alias: DOOR.out.away
     sequence:

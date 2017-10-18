@@ -30,7 +30,7 @@ script:
   motion_light_timer_hall_end:
     alias: MOTION.light.timer.hall.end
     sequence:
-    - delay: 00:00:30
+    - delay: 00:00:{{ states.input_slider.motion_light_hall_delay.state | int }}
     - service: switch.turn_off
       entity_id: switch.hall
       
@@ -59,3 +59,12 @@ input_boolean:
     name: Motion light  
     initial: on
     icon: mdi:run
+
+input_slider:
+  motion_light_hall_delay:
+   name: Hall light Delay
+   min: 1
+   max: 60
+   step: 1
+   initial: 5
+   icon: mdi:timer

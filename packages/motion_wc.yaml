@@ -1,0 +1,64 @@
+automation:
+  - alias: motion.DetectedWc
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656a38
+      to: 'on'
+    action:
+     # - service: automation.turn_on
+       # entity_id: automation.motionEndRoom
+      - service: script.motion_light_timer_wc_start
+      - service: script.motion_watchdog_init
+        data:
+          place: Wc
+  
+  - alias: motion.EndWc
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656a38
+      to: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.motion_light_wc
+      state: 'on'
+    action:
+      - service: script.motion_light_timer_room_wc
+      - service: script.motion_watchdog_init
+        data:
+          place: Room
+
+script:
+  motion_light_timer_wc_end:
+    alias: MOTION.light.timer.wc.end
+    sequence:
+    - delay: 00:{{ states.input_slider.motion_light_wc_delay.state | int }}:00
+    - service: switch.turn_off
+      entity_id: switch.living_switch_1
+  motion_light_timer_wc_start:
+    alias: MOTION.light.timer.wc.start
+    sequence:
+    - condition: state
+      entity_id: input_boolean.motion_light_wc
+      state: 'on'
+    - service: switch.turn_on
+      entity_id: switch.wc
+    - service: script.turn_off
+      entity_id: script.motion_light_timer_wc_end
+    - service: automation.turn_on
+      entity_id: automation.motionendwc
+
+input_boolean:
+  motion_light_wc:
+    name: Motion light Wc
+    initial: off
+    icon: mdi:run
+
+input_slider:
+  motion_light_wc_delay:
+   name: Wc light Delay
+   min: 1
+   max: 60
+   step: 1
+   initial: 5
+   icon: mdi:timer

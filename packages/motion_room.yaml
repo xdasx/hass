@@ -32,7 +32,7 @@ script:
   motion_light_timer_room_end:
     alias: MOTION.light.timer.room.end
     sequence:
-    - delay: 00:03:00
+    - delay: 00:{{ states.input_slider.motion_light_room_delay.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.living_switch_1
   motion_light_timer_room_start:
@@ -54,4 +54,13 @@ input_boolean:
     name: Motion light Room  
     initial: off
     icon: mdi:run
+
+input_slider:
+  motion_light_room_delay:
+   name: Motion light Room Delay
+   min: 1
+   max: 60
+   step: 1
+   initial: 5
+   icon: mdi:timer
  
