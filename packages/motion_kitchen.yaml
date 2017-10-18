@@ -74,3 +74,4 @@ homeassistant:
       extra_badge:
         entity_id: binary_sensor.motion_sensor_158d0001a40748
       hide_control: true
+      icon: mdi:run

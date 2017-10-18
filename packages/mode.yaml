@@ -89,17 +89,17 @@ script:
         payload_template: '{{ states(''input_select.mode'') }}'
         retain: 'true'
 
-    mode_archy:
-      alias: arChy Mode
-      sequence:
-      - service: homeassistant.turn_on
-        entity_id: group.motion_triggers
+  mode_archy:
+    alias: arChy Mode
+    sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.motion_triggers
 
-    mode_jane:
-      alias: Jane Mode
-      sequence:
-      - service: homeassistant.turn_off
-        entity_id: group.motion_triggers
+  mode_jane:
+    alias: Jane Mode
+    sequence:
+    - service: homeassistant.turn_off
+      entity_id: group.motion_triggers
         
 sensor:        
   - platform: template
