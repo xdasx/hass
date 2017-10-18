@@ -70,7 +70,7 @@ input_slider:
    icon: mdi:timer
 
 group:
-  motion:
+  motion_hall:
     name: Motion Hall
     entities:
     - binary_sensor.motion_sensor_hall

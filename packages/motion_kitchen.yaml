@@ -60,7 +60,7 @@ input_slider:
    icon: mdi:timer
 
 group:
-  motion:
+  motion_kitchen:
     name: Motion Kitchen
     entities:
     - binary_sensor.motion_sensor_158d0001a40748

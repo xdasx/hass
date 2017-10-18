@@ -65,7 +65,7 @@ input_slider:
 
 
 group:
-  motion:
+  motion_wc:
     name: Motion Wc
     entities:
     - binary_sensor.motion_sensor_158d0001656a38

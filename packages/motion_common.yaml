@@ -53,12 +53,8 @@ group:
     name: Motion
     entities:
     - sensor.motion_event
-    - binary_sensor.motion_sensor_hall
-    - binary_sensor.motion_sensor_158d00016db268
-    - binary_sensor.motion_sensor_158d0001a40748
-    - binary_sensor.motion_sensor_158d0001656a38
-    - input_slider.motion_watchdog_delay
-    - input_boolean.motion_light_hall
-    - input_boolean.motion_light_kitchen
-    - input_boolean.motion_light_room
-    - input_boolean.motion_light_wc
+    - group.motion_wc
+    - group.motion_room
+    - group.motion_hall
+    - group.motion_kitchen
+

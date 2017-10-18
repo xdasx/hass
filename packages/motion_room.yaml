@@ -65,7 +65,7 @@ input_slider:
    icon: mdi:timer
 
 group:
-  motion:
+  motion_room:
     name: Motion Room
     entities:
     - binary_sensor.motion_sensor_158d00016db268
