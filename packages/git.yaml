@@ -31,7 +31,7 @@ group:
 
 sensor:
   - platform: command_line
-    name: sensor
+    name: git
     command: "sudo bash /config/bin/git_branch.sh"
     unit_of_measurement: "Branch"
   - platform: command_line
@@ -41,7 +41,7 @@ sensor:
 
 homeassistant:
   customize:
-    sensor.git:
+    sensor.commits:
       custom_ui_state_card: state-card-custom-ui
       blacklist_states: 0
     group.gitin:
