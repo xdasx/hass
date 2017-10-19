@@ -113,8 +113,10 @@ sensor.motion_tracker:
 group.dev_clima:
   friendly_name: Heater
 scene.zzz:
+  emulated_hue_name: Sleep mode
   icon: mdi:sleep
 scene.home:
+  emulated_hue_name: automation
   icon: mdi:home-variant
 scene.away:
   icon: mdi:account-remove

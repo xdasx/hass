@@ -29,6 +29,8 @@ emulated_hue:
   exposed_domains:
     - switch
     - light
+    - scene
+    - scripts
 config:
 updater:
 discovery:
