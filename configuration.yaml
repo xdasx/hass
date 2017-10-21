@@ -63,8 +63,7 @@ history:
       # - sensor.ram_use
       # - sensor.rf_code
       # - sensor.rf_hub
-
- 1     # - sensor.since_last_boot
+      # - sensor.since_last_boot
       # - sensor.tv_esp
 
 logbook:
