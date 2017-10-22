@@ -72,3 +72,28 @@ group:
     - input_boolean.motion_light_wc
 
 
+
+#
+#      ### HOME MODE
+#      - platform: template
+#        sensors:
+#          motion_event:
+#            value_template: '{{ states("input_select.motion_event") }}'
+#            friendly_name: 'Motion'
+#          motion_tracker:
+#            friendly_name: 'Motion'
+#            value_template: >-
+#                {% if states.script.motion_watchdog.attributes.last_triggered == none%}
+#                {{ states("input_select.motion_event") }}
+#                {% elif states.input_select.motion_event.state == "Idle" %}
+#                {{ relative_time(states.script.motion_watchdog.attributes.last_triggered ) }}
+#                {% else %}
+#                {{ states("input_select.motion_event") }}
+#                {% endif %}
+#            entity_id:
+#              # - sensor.time
+#              - sensor.motion_event
+#              - binary_sensor.motion_sensor_158d00016db268
+#              - binary_sensor.motion_sensor_158d0001a40748
+
+
