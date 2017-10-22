@@ -39,6 +39,7 @@ group:
     name: Tv
     entities:
     - media_player.tv
+    - media_player.yamaha_receiver
     - switch.tv
     - group.tv_timer
 
