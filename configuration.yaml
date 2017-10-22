@@ -198,6 +198,14 @@ notify:
    
 
 media_player:
+  - platform: yamaha
+    host: 192.168.31.27
+#    source_ignore:
+#      - "AUX"
+#      - "HDMI6"
+    source_names:
+      HDMI1: "ChromeCast"
+      AUDIO: "Bluetooth"
   # - platform: spotify
     # client_id: !secret spotify_client_id
     # client_secret: !secret spotify_client_secret
