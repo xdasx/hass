@@ -1,9 +1,6 @@
 ### HOME MODE
 - platform: template
   sensors:
-    # new_commits:
-      # value_template: >
-        # {{ states("sensor.new_commits") }}
     motion_event:
       value_template: '{{ states("input_select.motion_event") }}'
       friendly_name: 'Motion'
