@@ -84,6 +84,7 @@ homeassistant:
       hide_control: true
       icon: mdi:run
     binary_sensor.motion_hall:
-#      custom_ui_state_card: state-card-custom-ui
-#      show_last_changed: true
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
       device_class: motion
+      friendly_name: Hall Motion

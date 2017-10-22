@@ -1,0 +1,53 @@
+script:
+  tv_shutdown_timer:
+    alias: TV.shutdown_timer.
+    sequence:
+    - delay: 00:{{ states.input_slider.tv_timer.state | int }}:00
+    - service: switch.turn_off
+      entity_id: switch.tv
+
+
+switch:
+  - platform: mqtt
+    state_topic: "stat/sonoff3/POWER"
+    command_topic: "cmnd/sonoff3/POWER"
+    #availability_topic: "tele/sonoff3/LWT"
+    name: "TV"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+input_slider:
+  tv_timer:
+    name: Tv Timer
+    min: 5
+    max: 90
+    step: 5
+    initial: 30
+    icon: mdi:timer
+
+sensor:
+  tv_timer:
+    value_template: '{{ states("input_slider.tv_timer") }}'
+    friendly_name: 'Timer'
+    unit_of_measurement: Min
+
+group:
+  tv:
+    name: Tv
+    entities:
+    - media_player.tv
+    - switch.tv
+    - group.tv_timer
+
+  tv_timer:
+    name: Tv Timer
+    entities:
+    - sensor.tv_timer
+    - input_slider.tv_timer
+    - script.tv_shutdown_timer
+
+homeassistant:
+  customize:
+    switch.tv:
+      icon: mdi:monitor

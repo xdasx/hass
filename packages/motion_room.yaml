@@ -80,3 +80,11 @@ homeassistant:
         entity_id: binary_sensor.motion_sensor_158d00016db268
       hide_control: true
       icon: mdi:run
+    sensor.illumination_158d00016db268:
+      friendly_name: Room Light
+      icon: mdi:weather-sunny
+    binary_sensor.motion_sensor_158d00016db268:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+      device_class: motion
+      friendly_name: Room Motion

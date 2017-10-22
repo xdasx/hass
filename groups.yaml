@@ -50,19 +50,7 @@
     - media_player.tv
     - group.tv
     
-  tv:
-    name: Tv
-    entities:
-    - media_player.tv
-    - switch.tv
-    - group.tv_timer
-  
-  tv_timer:
-    name: Tv Timer
-    entities:
-    - sensor.tv_timer
-    - input_slider.tv_timer
-    - script.tv_shutdown_timer
+
     
   ## SETTINGS ##
   settings:

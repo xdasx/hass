@@ -176,6 +176,7 @@ sensor:
             {% else %} 
             N/A
             {% endif %}
+
 input_slider:
   door_light_delay:
     name: Light dellay
@@ -234,3 +235,8 @@ group:
       - group.door_automation
       - group.door_scripts
       - group.door_settings
+
+homeassistant:
+  customize:
+    binary_sensor.front_door:
+      device_class: opening

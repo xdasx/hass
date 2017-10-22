@@ -1,12 +1,6 @@
 ### HOME MODE
 - platform: template
   sensors:
-
-    
-    tv_timer:
-      value_template: '{{ states("input_slider.tv_timer") }}'
-      friendly_name: 'Timer'
-      unit_of_measurement: Min
     # new_commits:
       # value_template: >
         # {{ states("sensor.new_commits") }}

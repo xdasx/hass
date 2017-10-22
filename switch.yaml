@@ -17,16 +17,7 @@
    payload_on: "ON"
    payload_off: "OFF"
    retain: true
-   
-### TV
- - platform: mqtt
-   state_topic: "stat/sonoff3/POWER"
-   command_topic: "cmnd/sonoff3/POWER"
-   #availability_topic: "tele/sonoff3/LWT"
-   name: "TV"
-   payload_on: "ON"
-   payload_off: "OFF"
-   retain: true
+
    
 ### RF SWITCHES
  - platform: mqtt
