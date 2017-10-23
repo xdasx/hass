@@ -5,6 +5,24 @@ script:
     - delay: 00:{{ states.input_slider.tv_timer.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.tv
+  tv_on:
+    alias: TV on
+    sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver
+    - service: switch.turn_on
+      entity_id: switch.tv
+    - service: media_player.select_source
+      entity_id: media_player.yamaha_receiver
+      source: Bluetooth
+  tv_off:
+    alias: TV off
+    sequence:
+    - service: media_player.turn_off
+      entity_id: media_player.yamaha_receiver
+    - service: switch.turn_off
+      entity_id: switch.tv
+
 
 
 switch:
@@ -12,10 +30,18 @@ switch:
     state_topic: "stat/sonoff3/POWER"
     command_topic: "cmnd/sonoff3/POWER"
     #availability_topic: "tele/sonoff3/LWT"
-    name: "TV"
+    name: "TVrelay"
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+  - platform: template
+    switches:
+      tv:
+        value_template: "{{ is_state('switch.tvrelay', 'on') }}"
+        turn_on:
+          service: script.tv_on
+        turn_off:
+          service: script.tv_off
 
 input_slider:
   tv_timer:
