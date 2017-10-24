@@ -59,7 +59,10 @@ script:
     alias: AtHome Mode
     sequence:
     - entity_id: input_boolean.motion_light_hall
+#    - entity_id: input_boolean.motion_light_room
       service: homeassistant.turn_on
+#    - entity_id: input_boolean.motion_light_kitchen
+#      service: homeassistant.turn_on
     - entity_id: switch.tv
       service: switch.turn_on
     - service: script.pb_mode
