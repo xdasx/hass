@@ -22,6 +22,30 @@ automation:
       to: 'Away'
     action:
       service: script.mode_away
+
+  - alias: mode.arChy
+    trigger:
+      platform: state
+      entity_id: sensor.mode
+      to: 'Dmitri'
+    action:
+      service: script.mode_archy
+
+  - alias: mode.jane
+    trigger:
+      platform: state
+      entity_id: sensor.mode
+      to: 'Jane'
+    action:
+      service: script.mode_jane
+
+  - alias: mode.jandd
+    trigger:
+      platform: state
+      entity_id: sensor.mode
+      to: 'J&D'
+    action:
+      service: script.mode_jane
       
 script:
   pb_mode:
@@ -34,7 +58,8 @@ script:
   mode_at_home:
     alias: AtHome Mode
     sequence:
-    - entity_id: input_boolean.motion_light_room
+    - entity_id: input_boolean.motion_light_hall
+#    - entity_id: input_boolean.motion_light_room
       service: homeassistant.turn_on
 #    - entity_id: input_boolean.motion_light_kitchen
 #      service: homeassistant.turn_on
@@ -55,9 +80,7 @@ script:
     alias: Away Mode
     sequence:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light_room
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light_kitchen
+      entity_id: group.motion_triggers
     - service: homeassistant.turn_off
       entity_id: group.light
     - service: homeassistant.turn_off
@@ -79,9 +102,7 @@ script:
     alias: Zzz Mode
     sequence:
     - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light_room
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.motion_light_kitchen
+      entity_id: group.motion_triggers
     - service: homeassistant.turn_off
       entity_id: group.light
     - service: switch.turn_off
@@ -94,6 +115,20 @@ script:
         topic: stat/hass/mode
         payload_template: '{{ states(''input_select.mode'') }}'
         retain: 'true'
+
+  mode_archy:
+    alias: arChy Mode
+    sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.motion_triggers
+
+  mode_jane:
+    alias: Jane Mode
+    sequence:
+    - service: homeassistant.turn_off
+      entity_id: group.motion_triggers
+    - entity_id: input_boolean.motion_light_hall
+      service: homeassistant.turn_on
         
 sensor:        
   - platform: template
@@ -106,6 +141,18 @@ sensor:
             {{ states.sensor.who_is_at_home.state }}           
             {% else %} 
             {{ states("input_select.mode") }}
+            {% endif %}
+      who_is_at_home:
+        friendly_name: 'At Home'
+        value_template:  >-
+            {% if (states.device_tracker.jane.state == "home") and (states.device_tracker.dmitri.state == "home") %}
+            J&D
+            {% elif states.device_tracker.dmitri.state == "home"%}
+            Dmitri
+            {% elif states.device_tracker.jane.state == "home" %}
+            Jane
+            {% else %}
+            None
             {% endif %}
             
 input_select:

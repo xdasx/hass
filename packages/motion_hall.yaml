@@ -14,23 +14,21 @@ automation:
     initial_state: 'off'
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor
+      entity_id: binary_sensor.motion_hall
       to: 'off'
     condition:
      condition: state
-     entity_id: input_boolean.motion_hall
+     entity_id: input_boolean.motion_light_hall
      state: 'on'
     action:
      - service: script.motion_light_timer_hall_end
-     - service: script.motion_watchdog_init
-       data:
-         place: Hall
+
          
 script:
   motion_light_timer_hall_end:
     alias: MOTION.light.timer.hall.end
     sequence:
-    - delay: 00:00:30
+    - delay: 00:00:{{ states.input_slider.motion_light_hall_delay.state | int }}
     - service: switch.turn_off
       entity_id: switch.hall
       
@@ -59,3 +57,34 @@ input_boolean:
     name: Motion light Hall
     initial: on
     icon: mdi:run
+
+input_slider:
+  motion_light_hall_delay:
+   name: Hall light Delay
+   min: 1
+   max: 60
+   step: 10
+   initial: 30
+   icon: mdi:timer
+
+group:
+  motion_hall:
+    name: Motion Hall
+    entities:
+    - binary_sensor.motion_sensor_hall
+    - input_boolean.motion_light_hall
+    - input_slider.motion_light_hall_delay
+
+homeassistant:
+  customize:
+    group.motion_hall:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: binary_sensor.motion_hall
+      hide_control: true
+      icon: mdi:run
+    binary_sensor.motion_hall:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+      device_class: motion
+      friendly_name: Hall Motion
