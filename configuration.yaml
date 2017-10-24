@@ -23,7 +23,7 @@ shell_command: !include_dir_named shell_command/
 
 
 #introduction:
-config:
+#config:
 updater:
 discovery:
 # conversation:
@@ -33,7 +33,7 @@ history:
       - group
       - script
       - sensor
-      - sun
+#      - sun
   # include:
     # entities:
       # - sensor.away_time
@@ -58,19 +58,19 @@ history:
       # - sensor.since_last_boot
       # - sensor.tv_esp
 
-logbook:
-  exclude:
-    entities:
-      - sensor.cpu_temp
-      - sensor.cpu_use
-      - sensor.date
-      - sensor.date__time
-      - sensor.disk_use_
-      - sensor.home_time
-      - sensor.since_last_boot
-      - sensor.time
-      - sensor.time__date
-sun:
+#logbook:
+#  exclude:
+#    entities:
+#      - sensor.cpu_temp
+#      - sensor.cpu_use
+#      - sensor.date
+#      - sensor.date__time
+#      - sensor.disk_use_
+#      - sensor.home_time
+#      - sensor.since_last_boot
+#      - sensor.time
+#      - sensor.time__date
+#sun:
 frontend:
   extra_html_url:
     - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui.html
@@ -155,7 +155,7 @@ frontend:
       table-row-alternative-background-color: "var(--sidebar-text_-_background)"
 http:
   api_password: !secret http_password
-  development: 0
+#  development: 0
   login_attempts_threshold: 5
   trusted_networks:
     - 127.0.0.1
@@ -177,7 +177,7 @@ tts:
 notify:
  - name: fb
    platform: facebook
-   page_access_token: EAAR1CtMQNZB0BABph8XdhHmPrKhAcaIdvIjkG5VM6H3wK728cdfvVfZBZBy7NpqGXiB2VUExcBWMVaeEFWvZAVUOISYn6HHvlr4sMUkCjqvg0vd54huMCFgafAHIqtY1qAjzHZAyBrJORiCLifQqo9iyeS7OrRX2T5xWcMC9j2VqAEzW0jZAma
+   page_access_token: !secret fb_token
  - platform: nfandroidtv
    name: Mi_Tv_Box
    host: !secret mi_tv_box_host
@@ -188,7 +188,6 @@ notify:
    # gcm_api_key: !secret gcm_api_key
    # gcm_sender_id: !secret gcm_sender_id
    
-
 media_player:
   # - platform: spotify
     # client_id: !secret spotify_client_id

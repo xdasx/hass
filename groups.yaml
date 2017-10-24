@@ -100,7 +100,7 @@
     - group.debug
     - input_select.mode
     - input_select.power_mode
-  
+
   weather:
     name: Weather
     view: false
