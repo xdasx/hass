@@ -1,228 +1,170 @@
-## HOME PAGE ##
-default_view:
-  name: default_view
-  view: true
-  icon: mdi:home
-  entities:
-  - sensor.motion_tracker
-  - sensor.door_event 
-  - sensor.heater_temp
-  - sensor.mode
+  ## HOME PAGE ##
+  default_view:
+    name: default_view
+    view: true
+    icon: mdi:home
+    entities:
+    - sensor.motion_tracker
+    - sensor.door_event
+    - sensor.heater_temp
+    - sensor.mode
+    
+    - group.light
+    - group.clima
+    - group.scenes
+    - group.Tv
+    
+  light:
+    view: false
+    name: Light
+    entities:
+    - switch.living_switch_1
+    - switch.living_switch_2
+    - switch.wc_switch
+    - switch.bath_switch
+    - switch.kitchen_switch
+    - switch.hall
+    - switch.hall_switch
+    - light.gateway_light_34ce008c0676
   
-  - group.light
-  - group.clima
-  - group.scenes
-  - group.Tv
+  lightg:
+    view: false
+    name: Light
+    entities:
+    - switch.living_switch_1
+    - switch.living_switch_2
+    - switch.wc_switch
+    - switch.bath_switch
+    - switch.kitchen_switch
+    - switch.hall
+    - switch.hall_switch
+    - light.gateway_light_34ce008c0676
+    - group.motion
   
-light:
-  view: false
-  name: Light
-  entities:
-  - switch.living_switch_1
-  - switch.living_switch_2
-  - switch.wc_switch
-  - switch.bath_switch
-  - switch.kitchen_switch
-  - switch.hall
-  - switch.hall_switch
-  - light.gateway_light_34ce008c0676
-lightg:
-  view: false
-  name: Light
-  entities:
-  - switch.living_switch_1
-  - switch.living_switch_2
-  - switch.wc_switch
-  - switch.bath_switch
-  - switch.kitchen_switch
-  - switch.hall
-  - switch.hall_switch
-  - light.gateway_light_34ce008c0676
-  - group.motion
+  ## MEDIA ##
+  media:
+    name: Media
+    view: false
+    icon: mdi:play-circle-outline
+    entities:
+    - media_player.tv
+    - group.tv
+    
+  tv:
+    name: Tv
+    entities:
+    - media_player.tv
+    - switch.tv
+    - group.tv_timer
   
-clima:
-  name: Clima Indoor
-  entities:
-  - climate.room
-  - group.heater
+  tv_timer:
+    name: Tv Timer
+    entities:
+    - sensor.tv_timer
+    - input_slider.tv_timer
+    - script.tv_shutdown_timer
+    
+  ## SETTINGS ##
+  settings:
+    icon: mdi:settings
+    view: true
+    name: Settings
+    entities:
+    - alarm_control_panel.ha_alarm
+    - group.door
+    - group.motion
+    - group.notify
+    - group.presence
+    - group.git
+    - sensor.git
+
+  notify:
+    name: Notifications
+    entities:
+    - input_boolean.n_door
+    - input_boolean.n_motion
+    - input_boolean.n_mode
+    - input_boolean.n_debug
   
-heater:
-  name: Clima Dev
-  control: hidden
-  icon: mdi:tune
-  entities:
-  - switch.heating
-  - sensor.heater
-  - sensor.current_temp
-  - sensor.home_temp
-  - sensor.away_temp
-  - input_slider.clima_home_temp
-  - input_slider.clima_away_temp
-  - script.mqtt_temp_set
-  - script.warmup  
-
-scenes:
-  name: Scenes
-  entities:
-  - scene.zzz
-  - scene.home
-  - scene.away
   
-## MEDIA ## 
-media:
-  name: Media
-  view: false
-  icon: mdi:play-circle-outline
-  entities:
-  - media_player.tv
-  - group.tv
+  ## DEV ##
+  dev:
+    view: true
+    name: Dev
+    icon: mdi:developer-board
+    entities:
+    - group.all_devices
+    - group.dev_pi
+    - group.xiaomi
+    - group.dev_states
+    - group.debug
+    - input_select.mode
+    - input_select.power_mode
+
+  weather:
+    name: Weather
+    view: false
+    entities:
+    - sensor.yr_temperature
+    - sensor.yr_humidity
+    - sensor.yr_wind_speed
+    - sensor.yr_cloudiness
+    - sensor.yr_precipitation
   
-tv:
-  name: Tv
-  entities:
-  - media_player.tv
-  - switch.tv
-  - group.tv_timer
-tv_timer:
-  name: Tv Timer
-  entities:
-  - sensor.tv_timer
-  - input_slider.tv_timer
-  - script.tv_shutdown_timer  
+  dev_states:
+    name: Dev States
+    entities:
+    - sensor.ip_ext
+    - sensor.rf_code
+    - sensor.rf_hub
+    - sensor.tv_esp
+    - sensor.heater_esp
+    - sensor.hall_esp
   
-## SETTINGS ##
-settings:
-  icon: mdi:settings
-  view: true
-  name: Settings
-  entities:
-  - alarm_control_panel.ha_alarm
-  - group.door
-  - group.motion
-  - group.notify
-  - group.presence
-  - group.git
-  - sensor.git
-
-door:
-  name: Door
-  entities:
-  - input_slider.door_light_delay
-  - input_slider.door_away_delay
-  - binary_sensor.front_door
-  - sensor.door_event
-motion:
-  name: Motion
-  entities:
-  - sensor.motion_event
-  - binary_sensor.motion_sensor
-  - binary_sensor.motion_sensor_158d00016db268
-  - binary_sensor.motion_sensor_158d0001a40748
-  - input_slider.motion_watchdog_delay
-  - input_boolean.motion_light
-  - input_boolean.motion_light_kitchen
-  - input_boolean.motion_light_room
+  dev_pi:
+    name: Pi
+    entities:
+    - sensor.cpu_use
+    - sensor.cpu_temp
+    - sensor.disk_use_
+    - sensor.ram_free
+    - sensor.ram_use_percent
+    - sensor.since_last_boot
   
-notify:
-  name: Notifications
-  entities:
-  - input_boolean.n_door
-  - input_boolean.n_motion
-  - input_boolean.n_mode
-  - input_boolean.n_debug 
-presence :
-  name: Presence 
-  entities:
-  - input_slider.device_out_delay
-  - group.all_devices 
-  - automation.devicearchyhome
-  - automation.devicearchyout
-  - automation.devicejanehome
-  - automation.devicejaneout
-
-## DEV ##  
-#dev:
-#  view: true
-#  name: Dev
-#  icon: mdi:developer-board
-#  entities:
-#  - group.all_devices
-#  - group.dev_pi
-#  - group.xiaomi
-#  - group.dev_states
-#  - group.debug
-#  - input_select.mode
-#  - input_select.power_mode
-
-
-weather:
-  name: Weather
-  view: false
-  entities:
-  - sensor.yr_temperature
-  - sensor.yr_humidity
-  - sensor.yr_wind_speed
-  - sensor.yr_cloudiness
-  - sensor.yr_precipitation
-
-
-
-
-dev_states:
-  name: Dev States
-  entities:
-  - sensor.ip_ext
-  - sensor.rf_code
-  - sensor.rf_hub
-  - sensor.tv_esp
-  - sensor.heater_esp
-  - sensor.hall_esp
-
-dev_pi:
-  name: Pi
-  entities:
-  - sensor.cpu_use
-  - sensor.cpu_temp
-  - sensor.disk_use_
-  - sensor.ram_free
-  - sensor.ram_use_percent
-  - sensor.since_last_boot
-
-
-xiaomi:
-  name: xiaomi
-  entities:
-  - binary_sensor.cube_158d000103a328
-  - binary_sensor.motion_sensor_158d00016db268
-  - binary_sensor.motion_sensor_158d0001a40748
-  - sensor.illumination_158d00016db268
-  - sensor.illumination_158d0001a40748
-  - light.gateway_light_34ce008c0676
-  - sensor.illumination_34ce008c0676
-  - binary_sensor.switch_158d0001644276
-  - binary_sensor.switch_158d00016c49f1
-  
-debug:
-  entities:
-  - group.all_automations
-  - group.all_scripts
-  - group.all_switches  
-# switches:
-  # name: Switches
-  # view: false
-  # entities:
-  # - switch.tv
-  # - switch.hall
-# zones:
-  # name: Zones
-  # entities:
-    # - binary_sensor.floorplan
-# plant:
-  # name: Bonsai
-  # entities:
-  # - plant.simulated_plant
-  # - sensor.mi_flora_battery
-  # - sensor.mi_flora_conductivity
-  # - sensor.mi_flora_light_intensity
-  # - sensor.mi_flora_moisture
-  # - sensor.mi_flora_temperature
+  xiaomi:
+    name: xiaomi
+    entities:
+    - binary_sensor.cube_158d000103a328
+    - binary_sensor.motion_sensor_158d00016db268
+    - binary_sensor.motion_sensor_158d0001a40748
+    - sensor.illumination_158d00016db268
+    - sensor.illumination_158d0001a40748
+    - light.gateway_light_34ce008c0676
+    - sensor.illumination_34ce008c0676
+    - binary_sensor.switch_158d0001644276
+    - binary_sensor.switch_158d00016c49f1
+    
+  debug:
+    entities:
+    - group.all_automations
+    - group.all_scripts
+    - group.all_switches
+  # switches:
+    # name: Switches
+    # view: false
+    # entities:
+    # - switch.tv
+    # - switch.hall
+  # zones:
+    # name: Zones
+    # entities:
+      # - binary_sensor.floorplan
+  # plant:
+    # name: Bonsai
+    # entities:
+    # - plant.simulated_plant
+    # - sensor.mi_flora_battery
+    # - sensor.mi_flora_conductivity
+    # - sensor.mi_flora_light_intensity
+    # - sensor.mi_flora_moisture
+    # - sensor.mi_flora_temperature

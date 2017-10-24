@@ -27,8 +27,7 @@ automation:
       - service: script.motion_watchdog_init
         data:
           place: Room
-          
-          
+
 script:
   motion_light_timer_room_end:
     alias: MOTION.light.timer.room.end
@@ -48,6 +47,8 @@ script:
       entity_id: script.motion_light_timer_room_end
     - service: automation.turn_on
       entity_id: automation.motionendroom
+
+
 input_boolean:
   motion_light_room:
     name: Motion light Room  

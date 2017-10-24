@@ -6,12 +6,10 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Tallinn  
   customize: !include customize.yaml  
-  # packages: !include_dir_named packages
-  packages:
-    pack_1: !include packages/git.yaml
+  packages: !include_dir_named packages
   
 sensor: !include_dir_merge_list sensors
-automation old: !include_dir_merge_list automation
+# automation old: !include_dir_merge_list automation
 automation: !include automations.yaml
 scene: !include scene.yaml
 switch: !include switch.yaml
@@ -190,14 +188,6 @@ notify:
    # gcm_api_key: !secret gcm_api_key
    # gcm_sender_id: !secret gcm_sender_id
    
-device_tracker:
-  - platform: xiaomi
-    host: 192.168.31.1
-    password: !secret wifi_pwd
-  - platform: mqtt
-    devices:
-      Jane: stat/hass/jane
-      Dmitri: stat/hass/dmitri
 media_player:
   # - platform: spotify
     # client_id: !secret spotify_client_id
@@ -221,27 +211,7 @@ mqtt:
     topic: 'tele/hass/LWT'
     payload: 'Offline'
 
-climate:
- - platform: generic_thermostat
-   name: Room
-   heater: switch.heating
-   target_sensor: sensor.heater_temp
-   min_temp: 19
-   max_temp: 30
-   target_temp: 20
-   tolerance: 2
-   
-binary_sensor:
- - platform: rpi_gpio
-   invert_logic: false
-   ports:
-    11: Front Door
-    
- - platform: rpi_gpio
-   invert_logic: false
-   pull_mode: DOWN
-   ports:
-    12: Motion Sensor
+
 
 fan:
   - platform: mqtt

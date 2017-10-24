@@ -33,23 +33,23 @@
     # - pressure
     # - dewpointTemperature
     
-- platform: mqtt
-  name: "Heater Temp"
-  state_topic: "tele/sonoff2/SENSOR"
-  unit_of_measurement: "°C"
-  value_template: "{{value_json.DS18B20.Temperature}}"
+# - platform: mqtt
+  # name: "Heater Temp"
+  # state_topic: "tele/sonoff2/SENSOR"
+  # unit_of_measurement: "°C"
+  # value_template: "{{value_json.DS18B20.Temperature}}"
   
-- platform: mqtt
-  name: "Home Temp"
-  state_topic: "home/clima/home"
-  unit_of_measurement: "°C"
+# - platform: mqtt
+  # name: "Home Temp"
+  # state_topic: "home/clima/home"
+  # unit_of_measurement: "°C"
   
-- platform: mqtt
-  name: "Away Temp"
-  state_topic: "home/clima/away"
-  unit_of_measurement: "°C"
+# - platform: mqtt
+  # name: "Away Temp"
+  # state_topic: "home/clima/away"
+  # unit_of_measurement: "°C"
   
-- platform: mqtt
-  name: "Current Temp"
-  state_topic: "home/clima/current"
-  unit_of_measurement: "°C"
+# - platform: mqtt
+  # name: "Current Temp"
+  # state_topic: "home/clima/current"
+  # unit_of_measurement: "°C"
