@@ -25,12 +25,35 @@ script:
 group:
   git:
     entities:
+      - group.gitin
+  gitin:
+    name: git
+    entities:
       - script.update_config
-      - script.git_sandbox
+#      - script.git_sandbox
+#      - sensor.commits
       - script.git_dev
 
 sensor:
   - platform: command_line
-    name: Git
+    name: git
     command: "sudo bash /config/bin/git_branch.sh"
     unit_of_measurement: "Branch"
+  - platform: command_line
+    name: commits
+    command: "sudo bash /config/bin/git_commits.sh"
+    unit_of_measurement: "Commit"
+
+homeassistant:
+  customize:
+    sensor.commits:
+      custom_ui_state_card: state-card-custom-ui
+      blacklist_states: 0
+    group.gitin:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: sensor.commits
+      hide_control: true
+      icon: mdi:git
+#      blacklist_states: 0
+      extra_data_template: ${ entities['sensor.git'].state}

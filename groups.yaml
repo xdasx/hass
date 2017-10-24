@@ -12,7 +12,7 @@
     - group.light
     - group.clima
     - group.scenes
-    - group.Tv
+#    - group.Tv
     
   light:
     view: false
@@ -44,25 +44,15 @@
   ## MEDIA ##
   media:
     name: Media
-    view: false
+    view: true
     icon: mdi:play-circle-outline
     entities:
-    - media_player.tv
-    - group.tv
+
+    - group.Tv
+    - media_player.spotify
+
     
-  tv:
-    name: Tv
-    entities:
-    - media_player.tv
-    - switch.tv
-    - group.tv_timer
-  
-  tv_timer:
-    name: Tv Timer
-    entities:
-    - sensor.tv_timer
-    - input_slider.tv_timer
-    - script.tv_shutdown_timer
+
     
   ## SETTINGS ##
   settings:
@@ -77,6 +67,8 @@
     - group.presence
     - group.git
     - sensor.git
+    - configurator.spotify
+
 
   notify:
     name: Notifications
@@ -137,8 +129,10 @@
     - binary_sensor.cube_158d000103a328
     - binary_sensor.motion_sensor_158d00016db268
     - binary_sensor.motion_sensor_158d0001a40748
+    - binary_sensor.motion_sensor_158d0001656a38
     - sensor.illumination_158d00016db268
     - sensor.illumination_158d0001a40748
+    - sensor.illumination_158d0001656a38
     - light.gateway_light_34ce008c0676
     - sensor.illumination_34ce008c0676
     - binary_sensor.switch_158d0001644276
