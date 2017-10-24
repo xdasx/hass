@@ -65,6 +65,8 @@
     - group.presence
     - group.git
     - sensor.git
+    - configurator.spotify
+
 
   notify:
     name: Notifications
