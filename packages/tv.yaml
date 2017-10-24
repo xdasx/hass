@@ -79,5 +79,10 @@ group:
 
 homeassistant:
   customize:
+    group.tv_timer:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: sensor.tv_timer
+      icon: mdi:timer
     switch.tv:
       icon: mdi:monitor

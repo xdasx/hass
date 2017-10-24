@@ -6,10 +6,7 @@
     hidden: false
   group.all_switches:
     hidden: false
-  group.tv_timer:
-    hidden: false
-    icon: mdi:timer
-  
+
   #plant.simulated_plant:
   #  friendly_name: Bonsai
   
