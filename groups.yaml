@@ -44,12 +44,12 @@
   ## MEDIA ##
   media:
     name: Media
-    view: false
+    view: true
     icon: mdi:play-circle-outline
     entities:
-    - media_player.tv
+
+    - group.Tv
     - media_player.spotify
-    - media_player.yamaha_receiver
 
     
 
