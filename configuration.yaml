@@ -277,8 +277,13 @@ panel_iframe:
   router:
     title: Router
     icon: mdi:router-wireless
-    url: !secret wifi_url
-
+    url:
+weblink:
+  entities:
+    - name: Router
+      url: !secret wifi_url
+    - name: Home Assistant
+      url: https://home-assistant.io
 # plant:
   # simulated_plant:
     # sensors:
