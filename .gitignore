@@ -23,3 +23,5 @@ pyozw.sqlite
 nest.conf
 .uuid
 ipchange.yaml
+.spotify-token-cache
+emulated_hue_ids.json
