@@ -218,3 +218,11 @@ group:
       - automation.cube_event_shake_air
       - automation.cube_event_swing
       - automation.cube_event_tap_twice
+
+homeassistant:
+  customize:
+    binary_sensor.cube_158d000103a328:
+      custom_ui_state_card: state-card-custom-ui
+      extra_data_template: ${ entities['input_slider.cube_rotate'].state}
+      friendly_name: Cube
+      icon: mdi:cube-outline

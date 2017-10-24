@@ -7,6 +7,7 @@ input_select:
      - Hall
      - Room
      - Kitchen
+     - Wc
     initial: Idle
     
 script:
@@ -52,10 +53,45 @@ group:
     name: Motion
     entities:
     - sensor.motion_event
-    - binary_sensor.motion_sensor
-    - binary_sensor.motion_sensor_158d00016db268
-    - binary_sensor.motion_sensor_158d0001a40748
-    - input_slider.motion_watchdog_delay
+    - group.motion_wc
+    - group.motion_room
+    - group.motion_hall
+    - group.motion_kitchen
+  motion_dev:
+    name: Motion
+    entities:
+    - sensor.motion_event
+    - group.motion_wc
+    - group.motion_room
+    - group.motion_hall
+    - group.motion_kitchen
+  motion_triggers:
     - input_boolean.motion_light_hall
     - input_boolean.motion_light_kitchen
-    - input_boolean.motion_light_room
+#    - input_boolean.motion_light_room
+    - input_boolean.motion_light_wc
+
+
+sensor:
+  - platform: template
+    sensors:
+      motion_event:
+        value_template: '{{ states("input_select.motion_event") }}'
+        friendly_name: 'Motion'
+      motion_tracker:
+        friendly_name: 'Motion'
+        value_template: >-
+            {% if states.script.motion_watchdog.attributes.last_triggered == none%}
+            {{ states("input_select.motion_event") }}
+            {% elif states.input_select.motion_event.state == "Idle" %}
+            {{ relative_time(states.script.motion_watchdog.attributes.last_triggered ) }}
+            {% else %}
+            {{ states("input_select.motion_event") }}
+            {% endif %}
+        entity_id:
+          # - sensor.time
+          - sensor.motion_event
+          - binary_sensor.motion_sensor_158d00016db268
+          - binary_sensor.motion_sensor_158d0001a40748
+
+

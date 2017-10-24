@@ -1,96 +1,87 @@
-### HALL
- - platform: mqtt
-   state_topic: "stat/sonoff1/POWER1"
-   command_topic: "cmnd/sonoff1/POWER1"
-   ##availability_topic: "tele/sonoff1/LWT"
-   name: "Hall"
-   payload_on: "ON"
-   payload_off: "OFF"
-   retain: true
-   
-### Heating
- - platform: mqtt
-   state_topic: "stat/sonoff2/POWER"
-   command_topic: "cmnd/sonoff2/POWER"
-   #availability_topic: "tele/sonoff2/LWT"
-   name: "Heating"
-   payload_on: "ON"
-   payload_off: "OFF"
-   retain: true
-   
-### TV
- - platform: mqtt
-   state_topic: "stat/sonoff3/POWER"
-   command_topic: "cmnd/sonoff3/POWER"
-   #availability_topic: "tele/sonoff3/LWT"
-   name: "TV"
-   payload_on: "ON"
-   payload_off: "OFF"
-   retain: true
-   
-### RF SWITCHES
- - platform: mqtt
-   name: "Living Switch 1"
-   # state_topic: "home/bedroom/switch1"
-   command_topic: "cmnd/esp_rf/MQTTto433"
-   #availability_topic: "tele/esp_rf/LWT"
-   payload_on: "11110112"
-   payload_off: "11110113"
-   optimistic: false
-   qos: 0
-   retain: false   
-   
- - platform: mqtt
-   name: "Living Switch 2"
-   # state_topic: "home/bedroom/switch1"
-   command_topic: "cmnd/esp_rf/MQTTto433"
-   #availability_topic: "tele/esp_rf/LWT"
-   payload_on: "11110122"
-   payload_off: "11110123"
-   optimistic: false
-   qos: 0
-   retain: false  
-   
- - platform: mqtt
-   name: "Hall Switch"
-   # state_topic: "home/bedroom/switch1"
-   command_topic: "cmnd/esp_rf/MQTTto433"
-   #availability_topic: "tele/esp_rf/LWT"
-   payload_on: "11110012"
-   payload_off: "11110013"
-   optimistic: false
-   qos: 0
-   retain: false  
-   
- - platform: mqtt
-   name: "WC Switch"
-   # state_topic: "home/bedroom/switch1"
-   command_topic: "cmnd/esp_rf/MQTTto433"
-   #availability_topic: "tele/esp_rf/LWT"
-   payload_on: "11110212"
-   payload_off: "11110213"
-   optimistic: false
-   qos: 0
-   retain: false  
-   
- - platform: mqtt
-   name: "Bath Switch"
-   # state_topic: "home/bedroom/switch1"
-   command_topic: "cmnd/esp_rf/MQTTto433"
-   #availability_topic: "tele/esp_rf/LWT"
-   payload_on: "11110312"
-   payload_off: "11110313"
-   optimistic: false
-   qos: 0
-   retain: false  
-   
- - platform: mqtt
-   name: "Kitchen Switch"
-   # state_topic: "home/bedroom/switch1"
-   command_topic: "cmnd/esp_rf/MQTTto433"
-   #availability_topic: "tele/esp_rf/LWT"
-   payload_on: "11110412"
-   payload_off: "11110413"
-   optimistic: true
-   qos: 0
-   retain: false  
+ ### HALL
+  - platform: mqtt
+    state_topic: "stat/sonoff1/POWER1"
+    command_topic: "cmnd/sonoff1/POWER1"
+    ##availability_topic: "tele/sonoff1/LWT"
+    name: "Hall"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+ ### Heating
+  - platform: mqtt
+    state_topic: "stat/sonoff2/POWER"
+    command_topic: "cmnd/sonoff2/POWER"
+    #availability_topic: "tele/sonoff2/LWT"
+    name: "Heating"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+
+ ### RF SWITCHES
+  - platform: mqtt
+    name: "Living Switch 1"
+    # state_topic: "home/bedroom/switch1"
+    command_topic: "cmnd/esp_rf/MQTTto433"
+    #availability_topic: "tele/esp_rf/LWT"
+    payload_on: "11110112"
+    payload_off: "11110113"
+    optimistic: false
+    qos: 0
+    retain: false
+
+  - platform: mqtt
+    name: "Living Switch 2"
+    # state_topic: "home/bedroom/switch1"
+    command_topic: "cmnd/esp_rf/MQTTto433"
+    #availability_topic: "tele/esp_rf/LWT"
+    payload_on: "11110122"
+    payload_off: "11110123"
+    optimistic: false
+    qos: 0
+    retain: false
+
+  - platform: mqtt
+    name: "Hall Switch"
+    # state_topic: "home/bedroom/switch1"
+    command_topic: "cmnd/esp_rf/MQTTto433"
+    #availability_topic: "tele/esp_rf/LWT"
+    payload_on: "11110012"
+    payload_off: "11110013"
+    optimistic: false
+    qos: 0
+    retain: false
+
+  - platform: mqtt
+    name: "WC Switch"
+    # state_topic: "home/bedroom/switch1"
+    command_topic: "cmnd/esp_rf/MQTTto433"
+    #availability_topic: "tele/esp_rf/LWT"
+    payload_on: "11110212"
+    payload_off: "11110213"
+    optimistic: false
+    qos: 0
+    retain: false
+
+  - platform: mqtt
+    name: "Bath Switch"
+    # state_topic: "home/bedroom/switch1"
+    command_topic: "cmnd/esp_rf/MQTTto433"
+    #availability_topic: "tele/esp_rf/LWT"
+    payload_on: "11110312"
+    payload_off: "11110313"
+    optimistic: false
+    qos: 0
+    retain: false
+
+  - platform: mqtt
+    name: "Kitchen Switch"
+    # state_topic: "home/bedroom/switch1"
+    command_topic: "cmnd/esp_rf/MQTTto433"
+    #availability_topic: "tele/esp_rf/LWT"
+    payload_on: "11110412"
+    payload_off: "11110413"
+    optimistic: true
+    qos: 0
+    retain: false
