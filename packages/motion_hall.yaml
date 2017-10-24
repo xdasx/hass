@@ -54,7 +54,7 @@ binary_sensor:
      
 input_boolean:   
   motion_light_hall:
-    name: Motion light  
+    name: Motion light Hall
     initial: on
     icon: mdi:run
 

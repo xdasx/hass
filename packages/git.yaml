@@ -2,6 +2,7 @@ shell_command:
   get_latest_config: sudo bash /config/bin/pullconfig.sh
   get_master: sudo bash /config/bin/git_master.sh
   get_sandbox: sudo bash /config/bin/git_sandbox.sh
+  get_dev: sudo bash /config/bin/git_dev.sh
 
 script:
   update_config:
@@ -16,6 +17,10 @@ script:
     sequence:
       - service: shell_command.get_sandbox
       - service: homeassistant.restart
+  git_dev:
+    sequence:
+      - service: shell_command.get_dev
+      - service: homeassistant.restart
 
 group:
   git:
@@ -25,9 +30,9 @@ group:
     name: git
     entities:
       - script.update_config
-      - script.git_master
-      - script.git_sandbox
+#      - script.git_sandbox
 #      - sensor.commits
+      - script.git_dev
 
 sensor:
   - platform: command_line
