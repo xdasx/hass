@@ -30,9 +30,10 @@ group:
     name: git
     entities:
       - script.update_config
-#      - script.git_sandbox
+      - script.git_master
+      - script.git_sandbox
 #      - sensor.commits
-      - script.git_dev
+#      - script.git_dev
 
 sensor:
   - platform: command_line
