@@ -50,7 +50,7 @@ climate:
     min_temp: 19
     max_temp: 30
     target_temp: 20
-    tolerance: 1
+    tolerance: 2
     
 sensor:
   - platform: mqtt

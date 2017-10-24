@@ -11,7 +11,7 @@ homeassistant:
 sensor: !include_dir_merge_list sensors
 # automation old: !include_dir_merge_list automation
 automation: !include automations.yaml
-#scene: !include scene.yaml
+scene: !include scene.yaml
 switch: !include switch.yaml
 # script: !include_dir_merge_named script
 script: !include scripts.yaml
@@ -23,14 +23,6 @@ shell_command: !include_dir_named shell_command/
 
 
 #introduction:
-emulated_hue:
-  listen_port: 8300
-  expose_by_default: true
-  exposed_domains:
-    - switch
-    - light
-    - scene
-    - script
 #config:
 updater:
 discovery:
@@ -197,27 +189,9 @@ notify:
    # gcm_sender_id: !secret gcm_sender_id
    
 media_player:
-  - platform: yamaha
-    host: 192.168.31.27
-    source_ignore:
-      - "AUX"
-      - "AV1"
-      - "AV2"
-      - "AV3"
-      - "AV4"
-      - "AV5"
-      - "AV6"
-      - "NET RADIO"
-      - "HDMI3"
-      - "HDMI4"
-    source_names:
-      HDMI1: "TV"
-      HDMI2: "PC"
-      AUDIO: "Bluetooth"
-#      source_list: AirPlay,Bluetooth,SERVER,TUNER,USB,V-AUX,iPod (USB)
-  - platform: spotify
-    client_id: !secret spotify_client_id
-    client_secret: !secret spotify_client_secret
+  # - platform: spotify
+    # client_id: !secret spotify_client_id
+    # client_secret: !secret spotify_client_secret
   #- platform: vlc
     # name: vlc
  # - platform: cast
