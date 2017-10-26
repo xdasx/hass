@@ -207,14 +207,15 @@ media_player:
       - "AV3"
       - "AV4"
       - "AV5"
-      - "AV6"
+
       - "NET RADIO"
       - "HDMI3"
       - "HDMI4"
     source_names:
-      HDMI1: "TV"
+      HDMI1: "miTV"
       HDMI2: "PC"
-      AUDIO: "Bluetooth"
+      AUDIO: "Alexa"
+      AV6: 'Bluetooth'
 #      source_list: AirPlay,Bluetooth,SERVER,TUNER,USB,V-AUX,iPod (USB)
   - platform: spotify
     client_id: !secret spotify_client_id
