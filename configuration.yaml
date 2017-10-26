@@ -215,7 +215,7 @@ media_player:
       HDMI1: "miTV"
       HDMI2: "PC"
       AUDIO: "Alexa"
-      AV6: 'Bluetooth'
+      AV6: "Bluetooth"
 #      source_list: AirPlay,Bluetooth,SERVER,TUNER,USB,V-AUX,iPod (USB)
   - platform: spotify
     client_id: !secret spotify_client_id
