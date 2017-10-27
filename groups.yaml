@@ -49,6 +49,7 @@
     entities:
 
     - group.Tv
+    - group.yamaha_input
     - media_player.spotify
 
     

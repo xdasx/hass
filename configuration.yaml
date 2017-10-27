@@ -208,14 +208,13 @@ media_player:
       - "AV4"
       - "AV5"
       - "AV6"
-      - "NET RADIO"
       - "HDMI3"
       - "HDMI4"
     source_names:
       HDMI1: "TV"
       HDMI2: "PC"
       AUDIO: "Bluetooth"
-#      source_list: AirPlay,Bluetooth,SERVER,TUNER,USB,V-AUX,iPod (USB)
+#      source_list: AirPlay,Alexa,Bluetooth,PC,SERVER,TUNER,USB,V-AUX,iPod (USB),miTV
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
@@ -284,6 +283,8 @@ weblink:
       url: !secret wifi_url
     - name: Home Assistant
       url: https://home-assistant.io
+    - name: GitHub
+      url: https://github.com/xdasx/hass
 # plant:
   # simulated_plant:
     # sensors:
