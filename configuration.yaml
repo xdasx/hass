@@ -207,11 +207,13 @@ media_player:
       - "AV3"
       - "AV4"
       - "AV5"
+
+      - "NET RADIO"
       - "AV6"
       - "HDMI3"
       - "HDMI4"
     source_names:
-      HDMI1: "TV"
+      HDMI1: "miTV"
       HDMI2: "PC"
       AUDIO: "Bluetooth"
 #      source_list: AirPlay,Alexa,Bluetooth,PC,SERVER,TUNER,USB,V-AUX,iPod (USB),miTV
