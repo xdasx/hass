@@ -58,18 +58,21 @@ script:
 
   yamaha_source_blue:
     alias: sound blue
+    sequence:
     - service: media_player.select_source
       data:
         entity_id: media_player.yamaha_receiver
         source: Bluetooth
   yamaha_source_tv:
     alias: sound tv
+    sequence:
     - service: media_player.select_source
       data:
         entity_id: media_player.yamaha_receiver
         source: miTV
   yamaha_source_alexa:
     alias: sound Alexa
+    sequence: 
     - service: media_player.select_source
       data:
         entity_id: media_player.yamaha_receiver
