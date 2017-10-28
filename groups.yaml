@@ -127,6 +127,7 @@
   xiaomi:
     name: xiaomi
     entities:
+    - group.mi_cube_automation
     - binary_sensor.cube_158d000103a328
     - binary_sensor.motion_sensor_158d00016db268
     - binary_sensor.motion_sensor_158d0001a40748

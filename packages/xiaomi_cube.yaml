@@ -227,5 +227,10 @@ homeassistant:
       extra_data_template: ${ entities['input_slider.cube_rotate'].state}
       friendly_name: Cube
       icon: mdi:cube-outline
+    group.mi_cube_automation:
+      custom_ui_state_card: state-card-custom-ui
+      extra_data_template: ${ entities['input_slider.cube_rotate'].state}
+      friendly_name: Cube Settings
+      icon: mdi:cube-outline
 
 
