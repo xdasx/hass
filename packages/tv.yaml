@@ -25,7 +25,7 @@ script:
       entity_id: switch.tvrelay
 
   play_spotify_alexa:
-    alias: Spotify on Alexa
+    alias: play Spotify on Alexa
     sequence:
     - service: media_player.turn_on
       entity_id: media_player.yamaha_receiver
@@ -41,7 +41,7 @@ script:
       entity_id: media_player.spotify
 
   play_spotify_echo:
-    alias: Spotify on echo
+    alias: play Spotify on echo
     sequence:
     - service: media_player.turn_on
       entity_id: media_player.yamaha_receiver
@@ -57,21 +57,21 @@ script:
       entity_id: media_player.spotify
 
   yamaha_source_blue:
-    alias: sound blue
+    alias: Input Bluetooth
     sequence:
     - service: media_player.select_source
       data:
         entity_id: media_player.yamaha_receiver
         source: Bluetooth
   yamaha_source_tv:
-    alias: sound tv
+    alias: Input tv
     sequence:
     - service: media_player.select_source
       data:
         entity_id: media_player.yamaha_receiver
         source: miTV
   yamaha_source_alexa:
-    alias: sound Alexa
+    alias: Input Alexa
     sequence: 
     - service: media_player.select_source
       data:
