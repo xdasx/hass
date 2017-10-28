@@ -118,14 +118,14 @@ sensor:
       spotify_input:
         value_template: '{{ states.media_player.spotify.attributes.source}}'
         friendly_name: Spotfy
-        icon: mdi:spotify
+        icon_template: mdi:spotify
 #        unit_of_measurement: Min
   - platform: template
     sensors:
       yamaha_input:
         value_template: '{{ states.media_player.yamaha_receiver.attributes.source}}'
         friendly_name: Reciever
-        icon: mdi:speaker
+        icon_template: mdi:speaker
 #        unit_of_measurement: Min
 
 group:
