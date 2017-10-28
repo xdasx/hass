@@ -110,6 +110,20 @@ sensor:
         value_template: '{{ states("input_slider.tv_timer") }}'
         friendly_name: 'Timer'
         unit_of_measurement: Min
+  - platform: template
+    sensors:
+      spotify_input:
+        value_template: '{{ states.media_player.spotify.attributes.source}}'
+        friendly_name: Spotfy
+        icon: mdi:spotify
+#        unit_of_measurement: Min
+  - platform: template
+    sensors:
+      yamaha_input:
+        value_template: '{{ states.media_player.yamaha_receiver.attributes.source}}'
+        friendly_name: Reciever
+        icon: mdi:speaker
+#        unit_of_measurement: Min
 
 group:
   tv:
@@ -127,6 +141,8 @@ group:
     - input_slider.tv_timer
     - script.tv_shutdown_timer
   yamaha_input:
+    - sensor.spotify_input
+    - sensor.yamaha_input
     - script.yamaha_source_blue
     - script.yamaha_source_tv
     - script.yamaha_source_alexa
