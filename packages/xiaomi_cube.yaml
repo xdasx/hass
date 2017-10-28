@@ -113,7 +113,7 @@ automation:
           entity_id: input_select.mode
           option: Home
   - alias: Cube event free_fall
-    initial_state: 'off'
+    initial_state: 'on'
     trigger:
       platform: event
       event_type: cube_action
