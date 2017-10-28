@@ -212,8 +212,8 @@ media_player:
     source_names:
       HDMI1: "miTV"
       HDMI2: "PC"
-      AUDIO: "Bluetooth"
-      AV6: "Alexa"
+      AUDIO: "Alexa"
+      AV6: "Bluetooth"
 #      source_list: AirPlaySERVER,TUNER,USB,V-AUX,iPod (USB),miTV
 #      AUDIO,AirPlay,HDMI1,HDMI2,HDMI3,HDMI4,NET RADIO,SERVER,TUNER,USB,V-AUX,iPod (USB)
 
