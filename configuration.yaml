@@ -277,6 +277,7 @@ panel_iframe:
     url: !secret docker_url
   router:
     title: Router
+    url: !secret wifi_url
     icon: mdi:router-wireless
     url:
 weblink:
@@ -286,7 +287,7 @@ weblink:
     - name: Home Assistant
       url: https://home-assistant.io
     - name: GitHub
-      url: https://github.com/xdasx/hass
+      url: !secret github_url
 # plant:
   # simulated_plant:
     # sensors:
