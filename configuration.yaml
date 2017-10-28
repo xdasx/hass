@@ -200,22 +200,23 @@ notify:
 media_player:
   - platform: yamaha
     host: 192.168.31.27
-#    source_ignore:
-#      - "AUX"
-#      - "AV1"
-#      - "AV2"
-#      - "AV3"
-#      - "AV4"
-#      - "AV5"
-#      - "NET RADIO"
-#      - "AV6"
-#      - "HDMI3"
-#      - "HDMI4"
-#    source_names:
-#      HDMI1: "miTV"
-#      HDMI2: "PC"
-#      AUDIO: "Bluetooth"
-#      source_list: AirPlay,Alexa,Bluetooth,PC,SERVER,TUNER,USB,V-AUX,iPod (USB),miTV
+    source_ignore:
+      - "AV1"
+      - "AV2"
+      - "AV3"
+      - "AV4"
+      - "AV5"
+      - "NET RADIO"
+      - "HDMI3"
+      - "HDMI4"
+    source_names:
+      HDMI1: "miTV"
+      HDMI2: "PC"
+      AUDIO: "Bluetooth"
+      AV6: "Alexa"
+#      source_list: AirPlaySERVER,TUNER,USB,V-AUX,iPod (USB),miTV
+#      AUDIO,AirPlay,HDMI1,HDMI2,HDMI3,HDMI4,NET RADIO,SERVER,TUNER,USB,V-AUX,iPod (USB)
+
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
@@ -278,7 +279,6 @@ panel_iframe:
     title: Router
     url: !secret wifi_url
     icon: mdi:router-wireless
-    url:
 weblink:
   entities:
     - name: Router
