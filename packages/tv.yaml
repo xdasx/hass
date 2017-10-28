@@ -35,7 +35,7 @@ script:
         source: Alexa
     - service: media_player.select_source
       data:
-        entity_id: media_player.yamaha_receiver
+        entity_id: media_player.spotify
         source: "eufy Genie-63F0"
     - service: media_player.media_play
       entity_id: media_player.spotify
@@ -51,7 +51,7 @@ script:
         source: Bluetooth
     - service: media_player.select_source
       data:
-        entity_id: media_player.yamaha_receiver
+        entity_id: media_player.spotify
         source: "Dmitri's Echo Dot"
     - service: media_player.media_play
       entity_id: media_player.spotify
