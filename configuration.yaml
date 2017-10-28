@@ -220,6 +220,10 @@ media_player:
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
+    aliases:
+      eufy Genie-63F0: "alexa"
+      Dmitri's Echo Dot: "echo"
+#    TV,DRAGON-ARCHY,eufy Genie-63F0,Dmitri's Echo Dot
   #- platform: vlc
     # name: vlc
  # - platform: cast
