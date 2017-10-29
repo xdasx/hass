@@ -107,8 +107,8 @@ script:
     - service: script.pb_debug
       data:
         title: Looking for OP3
-        text: Timer is set for {{ states.input_slider.device_out_delay.state | int }} min
-    - delay: 00:{{ states.input_slider.device_out_delay.state | int }}:00
+        text: Timer is set for {{ states.input_number.device_out_delay.state | int }} min
+    - delay: 00:{{ states.input_number.device_out_delay.state | int }}:00
     - service: automation.turn_off
       entity_id: automation.devicearchyout
     # - service: automation.turn_on
@@ -122,8 +122,8 @@ script:
     - service: script.pb_debug
       data:
         title: Looking for arS7
-        text: Timer is set for {{ states.input_slider.device_out_delay.state | int }} min
-    - delay: 00:{{ states.input_slider.device_out_delay.state | int }}:00
+        text: Timer is set for {{ states.input_number.device_out_delay.state | int }} min
+    - delay: 00:{{ states.input_number.device_out_delay.state | int }}:00
     - service: automation.turn_off
       entity_id: automation.devicejaneout    
       # - service: automation.turn_on
@@ -145,7 +145,7 @@ device_tracker:
       Jane: stat/hass/jane
       Dmitri: stat/hass/dmitri
 
-input_slider:
+input_number:
   device_out_delay:
     name: Device Away Delay
     min: 5
@@ -153,12 +153,13 @@ input_slider:
     step: 5
     initial: 20
     icon: mdi:timer
+    mode: box
 
 group:
   presence :
     name: Presence
     entities:
-    - input_slider.device_out_delay
+    - input_number.device_out_delay
     - group.all_devices
     - automation.devicearchyhome
     - automation.devicearchyout

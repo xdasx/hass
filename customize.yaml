@@ -105,7 +105,7 @@
   sensor.mode:
     custom_ui_state_card: state-card-custom-ui
     show_last_changed: true
-  input_slider.motion_watchdog_delay:
+  input_number.motion_watchdog_delay:
     confirm_controls: true
     custom_ui_state_card: state-card-custom-ui
   group.dev_pi:

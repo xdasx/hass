@@ -2,7 +2,7 @@ script:
   tv_shutdown_timer:
     alias: TV.shutdown_timer.
     sequence:
-    - delay: 00:{{ states.input_slider.tv_timer.state | int }}:00
+    - delay: 00:{{ states.input_number.tv_timer.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.tv
   tv_on:
@@ -96,7 +96,7 @@ switch:
         turn_off:
           service: script.tv_off
 
-input_slider:
+input_number:
   tv_timer:
     name: Tv Timer
     min: 5
@@ -104,12 +104,13 @@ input_slider:
     step: 5
     initial: 30
     icon: mdi:timer
+    mode: box
 
 sensor:
   - platform: template
     sensors:
       tv_timer:
-        value_template: '{{ states("input_slider.tv_timer") }}'
+        value_template: '{{ states("input_number.tv_timer") }}'
         friendly_name: 'Timer'
         unit_of_measurement: Min
   - platform: template
@@ -140,7 +141,7 @@ group:
     name: Tv Timer
     entities:
     - sensor.tv_timer
-    - input_slider.tv_timer
+    - input_number.tv_timer
     - script.tv_shutdown_timer
   yamaha_input:
     - sensor.spotify_input

@@ -62,7 +62,7 @@ script:
       entity_id: switch.hall_switch
     - service: homeassistant.turn_off
       entity_id: input_boolean.motion_light_hall
-    - delay: 00:{{ states.input_slider.door_light_delay.state | int }}:00
+    - delay: 00:{{ states.input_number.door_light_delay.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.hall_switch
     - service: homeassistant.turn_on
@@ -102,9 +102,9 @@ script:
     - service: script.pb_debug
       data:
         title: Looking for activity
-        text: Timer is set for {{ states.input_slider.door_away_delay.state | int }} min
+        text: Timer is set for {{ states.input_number.door_away_delay.state | int }} min
     - service: script.flash_red_init
-    - delay: 00:{{ states.input_slider.door_away_delay.state | int }}:00
+    - delay: 00:{{ states.input_number.door_away_delay.state | int }}:00
     - service: input_select.select_option
       data:
         entity_id: input_select.mode
@@ -177,7 +177,7 @@ sensor:
             N/A
             {% endif %}
 
-input_slider:
+input_number:
   door_light_delay:
     name: Light dellay
     min: 1
@@ -185,6 +185,7 @@ input_slider:
     step: 1
     initial: 5
     icon: mdi:timer
+    mode: box
   door_away_delay:
     name: Door Away Delay
     min: 5
@@ -192,6 +193,7 @@ input_slider:
     step: 5
     initial: 10
     icon: mdi:timer
+    mode: box
 
 input_select:
   door_event:
@@ -224,8 +226,8 @@ group:
       - group.door_scripts
   door_settings:
     entities:
-      - input_slider.door_light_delay
-      - input_slider.door_away_delay
+      - input_number.door_light_delay
+      - input_number.door_away_delay
   door:
     name: Door
     entities:

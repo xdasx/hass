@@ -14,7 +14,7 @@ script:
   motion_watchdog:
     alias: MOTION.watchdog
     sequence:
-    - delay: 00:{{ states.input_slider.motion_watchdog_delay.state | int }}:00
+    - delay: 00:{{ states.input_number.motion_watchdog_delay.state | int }}:00
     - service: input_select.select_option
       data:
         entity_id: input_select.motion_event
@@ -93,7 +93,7 @@ sensor:
           - binary_sensor.motion_sensor_158d00016db268
           - binary_sensor.motion_sensor_158d0001a40748
 
-input_slider:
+input_number:
   motion_watchdog_delay:
    name: Motion Watchdog Dellay
    min: 1
@@ -101,4 +101,5 @@ input_slider:
    step: 1
    initial: 5
    icon: mdi:timer
+   mode: box
 

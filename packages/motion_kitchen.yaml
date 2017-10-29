@@ -27,7 +27,7 @@ script:
   motion_light_timer_kitchen_end:
     alias: MOTION.light.timer.kitchen.end
     sequence:
-    - delay: 00:{{ states.input_slider.motion_light_kitchen_delay.state | int }}:00
+    - delay: 00:{{ states.input_number.motion_light_kitchen_delay.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.kitchen_switch
 
@@ -50,7 +50,7 @@ input_boolean:
     initial: off
     icon: mdi:run
     
-input_slider:   
+input_number:
   motion_light_kitchen_delay:
    name: Kitchen light Delay
    min: 1
@@ -58,6 +58,7 @@ input_slider:
    step: 1
    initial: 5
    icon: mdi:timer
+   mode: box
 
 group:
   motion_kitchen:
@@ -65,7 +66,7 @@ group:
     entities:
     - binary_sensor.motion_sensor_158d0001a40748
     - input_boolean.motion_light_kitchen
-    - input_slider.motion_light_kitchen_delay
+    - input_number.motion_light_kitchen_delay
 
 homeassistant:
   customize:
