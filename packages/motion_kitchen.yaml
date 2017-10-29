@@ -9,8 +9,8 @@ automation:
     - service: script.motion_watchdog_init
       data:
         place: Kitchen
-         
-  - alias: motion_kitchen_off
+
+  - alias: motion.EndKitchen
     initial_state: 'off'
     trigger:
       platform: state
@@ -37,16 +37,16 @@ script:
     - condition: state
       entity_id: input_boolean.motion_light_kitchen
       state: 'on'
-    - service: switch.turn_on
-      entity_id: switch.kitchen_switch
     - service: script.turn_off
       entity_id: script.motion_light_timer_kitchen_end
+    - service: switch.turn_on
+      entity_id: switch.kitchen_switch
     - service: automation.turn_on
       entity_id: automation.motionendkitchen
 
 input_boolean:    
   motion_light_kitchen:
-    name: Motion light Kitchen  
+    name: Motion light Kitchen
     initial: off
     icon: mdi:run
     
@@ -75,12 +75,11 @@ homeassistant:
         entity_id: binary_sensor.motion_sensor_158d0001a40748
       hide_control: true
       icon: mdi:run
-
-    sensor.illumination_158d0001a40748:
-      friendly_name: Kitchen Light
-      icon: mdi:weather-sunny
     binary_sensor.motion_sensor_158d0001a40748:
       custom_ui_state_card: state-card-custom-ui
       device_class: motion
       friendly_name: Kitchen Motion
+    sensor.illumination_158d0001a40748:
+      friendly_name: Kitchen Light
+      icon: mdi:weather-sunny
       show_last_changed: true

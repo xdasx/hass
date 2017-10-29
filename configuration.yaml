@@ -23,15 +23,7 @@ shell_command: !include_dir_named shell_command/
 
 
 #introduction:
-emulated_hue:
-  listen_port: 8300
-  expose_by_default: true
-  exposed_domains:
-    - switch
-    - light
-    - scene
-    - script
-config:
+
 updater:
 discovery:
 # conversation:
@@ -192,42 +184,14 @@ notify:
  - platform: pushbullet 
    name: pb
    api_key: !secret pushbullet_api_key
- # - platform: html5 
-   # gcm_api_key: !secret gcm_api_key
-   # gcm_sender_id: !secret gcm_sender_id
-   
 
 media_player:
-  - platform: yamaha
-    host: 192.168.31.27
-    source_ignore:
-      - "AV1"
-      - "AV2"
-      - "AV3"
-      - "AV4"
-      - "AV5"
-      - "NET RADIO"
-      - "HDMI3"
-      - "HDMI4"
-    source_names:
-      HDMI1: "miTV"
-      HDMI2: "PC"
-      AUDIO: "Alexa"
-      AV6: "Bluetooth"
-#      source_list: AirPlaySERVER,TUNER,USB,V-AUX,iPod (USB),miTV
-#      AUDIO,AirPlay,HDMI1,HDMI2,HDMI3,HDMI4,NET RADIO,SERVER,TUNER,USB,V-AUX,iPod (USB)
-
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
     aliases:
       eufy Genie-63F0: "alexa"
       Dmitri's Echo Dot: "echo"
-#    TV,DRAGON-ARCHY,eufy Genie-63F0,Dmitri's Echo Dot
-  #- platform: vlc
-    # name: vlc
- # - platform: cast
-   # host: 192.168.31.105
 mqtt:
   broker: !secret mqtt_broker
   port: !secret mqtt_port
@@ -249,14 +213,9 @@ fan:
   - platform: mqtt
     name: "Hall Blink"
     command_topic: "cmnd/sonoff1/POWER"
-    # oscillation_state_topic: "bedroom_fan/oscillation/state"
-    # oscillation_command_topic: "bedroom_fan/oscillation/set"
-    # speed_state_topic: "bedroom_fan/speed/state"
     speed_command_topic: "cmnd/sonoff1/BlinkCount"
     payload_on: 3
     payload_off: 4
-    # payload_oscillation_on: "true"
-    # payload_oscillation_off: "false"
     payload_low_speed: "2"
     payload_medium_speed: "3"
     payload_high_speed: "10"
@@ -268,12 +227,7 @@ alarm_control_panel:
   - platform: manual_mqtt
     state_topic: "home/alarm"
     command_topic: "home/alarm/set"
-# panel_custom:
-  # - name: floorplan
-    # sidebar_title: Floorplan
-    # sidebar_icon: mdi:home
-    # url_path: floorplan
-    # config: !include floorplan.yaml
+
 panel_iframe:
   docker:
     title: Docker

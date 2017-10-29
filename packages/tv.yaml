@@ -78,7 +78,6 @@ script:
         entity_id: media_player.yamaha_receiver
         source: Alexa
 
-
 switch:
   - platform: mqtt
     state_topic: "stat/sonoff3/POWER"

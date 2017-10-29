@@ -1,1 +1,17 @@
-
+media_player:
+  - platform: yamaha
+    host: 192.168.31.27
+    source_ignore:
+      - "AV1"
+      - "AV2"
+      - "AV3"
+      - "AV4"
+      - "AV5"
+      - "NET RADIO"
+      - "HDMI3"
+      - "HDMI4"
+    source_names:
+      HDMI1: "miTV"
+      HDMI2: "PC"
+      AUDIO: "Alexa"
+      AV6: "Bluetooth"

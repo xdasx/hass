@@ -23,7 +23,6 @@ automation:
     action:
      - service: script.motion_light_timer_hall_end
 
-         
 script:
   motion_light_timer_hall_end:
     alias: MOTION.light.timer.hall.end
@@ -44,15 +43,8 @@ script:
       entity_id: switch.hall
     - service: automation.turn_on
       entity_id: automation.motionendhall
-      
-binary_sensor:
-  - platform: rpi_gpio
-    invert_logic: false
-    pull_mode: DOWN
-    ports:
-     12: Motion Hall
-     
-input_boolean:   
+
+input_boolean:
   motion_light_hall:
     name: Motion light Hall
     initial: on
@@ -88,3 +80,10 @@ homeassistant:
       show_last_changed: true
       device_class: motion
       friendly_name: Hall Motion
+
+binary_sensor:
+  - platform: rpi_gpio
+    invert_logic: false
+    pull_mode: DOWN
+    ports:
+     12: Motion Hall

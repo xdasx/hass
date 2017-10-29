@@ -1,21 +1,9 @@
 
-  motion_watchdog_delay:
-   name: Motion Watchdog Dellay
-   min: 1
-   max: 20
-   step: 1
-   initial: 5
-   icon: mdi:timer
 
 
 
 
-  room_light:
-   name: room_light
-   min: 0
-   max: 2
-   step: 1
-   initial: 0
+
   # sun_angle:
    # name: light automation sun angle 
    # min: -20

@@ -5,8 +5,6 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d0001656a38
       to: 'on'
     action:
-     # - service: automation.turn_on
-       # entity_id: automation.motionEndRoom
       - service: script.motion_light_timer_wc_start
       - service: script.motion_watchdog_init
         data:
@@ -24,9 +22,6 @@ automation:
       state: 'on'
     action:
       - service: script.motion_light_timer_wc_end
-      - service: script.motion_watchdog_init
-        data:
-          place: Wc
 
 script:
   motion_light_timer_wc_end:
@@ -35,16 +30,17 @@ script:
     - delay: 00:{{ states.input_slider.motion_light_wc_delay.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.wc_switch
+
   motion_light_timer_wc_start:
     alias: MOTION.light.timer.wc.start
     sequence:
     - condition: state
       entity_id: input_boolean.motion_light_wc
       state: 'on'
-    - service: switch.turn_on
-      entity_id: switch.wc_switch
     - service: script.turn_off
       entity_id: script.motion_light_timer_wc_end
+    - service: switch.turn_on
+      entity_id: switch.wc_switch
     - service: automation.turn_on
       entity_id: automation.motionendwc
 
@@ -62,7 +58,6 @@ input_slider:
    step: 1
    initial: 5
    icon: mdi:timer
-
 
 group:
   motion_wc:

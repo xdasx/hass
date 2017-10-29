@@ -203,6 +203,12 @@ input_slider:
     max: 200
     step: 10
     initial: 0
+  room_light:
+    name: room_light
+    min: 0
+    max: 2
+    step: 1
+    initial: 0
 
 group:
   mi_cube_automation:
