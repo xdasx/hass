@@ -89,7 +89,7 @@ input_number:
     step: 0.5
     initial: 20
     icon: mdi:temperature-celsius
-    mode: box
+#    mode: box
   clima_away_temp:
     name: Away Temp
     min: 10
@@ -97,7 +97,7 @@ input_number:
     step: 0.5
     initial: 10
     icon: mdi:temperature-celsius
-    mode: box
+#    mode: box
     
 group:
   clima:
