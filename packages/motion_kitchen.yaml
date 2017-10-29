@@ -30,6 +30,8 @@ script:
     - delay: 00:{{ states.input_number.motion_light_kitchen_delay.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.kitchen_switch
+    - service: automation.turn_off
+      entity_id: automation.motionendkitchen
 
   motion_light_timer_kitchen_start:
     alias: MOTION.light.timer.kitchen.start
