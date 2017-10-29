@@ -15,7 +15,7 @@ script:
     - service: media_player.select_source
       data:
         entity_id: media_player.yamaha_receiver
-        source: Bluetooth
+        source: miTV
   tv_off:
     alias: TV off
     sequence:
@@ -24,6 +24,59 @@ script:
     - service: switch.turn_off
       entity_id: switch.tvrelay
 
+  play_spotify_alexa:
+    alias: play Spotify on Alexa
+    sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver
+        source: Alexa
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: "eufy Genie-63F0"
+    - service: media_player.media_play
+      entity_id: media_player.spotify
+
+  play_spotify_echo:
+    alias: play Spotify on echo
+    sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver
+        source: Bluetooth
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: "Dmitri's Echo Dot"
+    - service: media_player.media_play
+      entity_id: media_player.spotify
+
+  yamaha_source_blue:
+    alias: Input Bluetooth
+    sequence:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver
+        source: Bluetooth
+  yamaha_source_tv:
+    alias: Input tv
+    sequence:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver
+        source: miTV
+  yamaha_source_alexa:
+    alias: Input Alexa
+    sequence: 
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver
+        source: Alexa
 
 
 switch:
@@ -60,6 +113,20 @@ sensor:
         value_template: '{{ states("input_slider.tv_timer") }}'
         friendly_name: 'Timer'
         unit_of_measurement: Min
+  - platform: template
+    sensors:
+      spotify_input:
+        value_template: '{{ states.media_player.spotify.attributes.source}}'
+        friendly_name: Spotfy
+        icon_template: mdi:spotify
+#        unit_of_measurement: Min
+  - platform: template
+    sensors:
+      yamaha_input:
+        value_template: '{{ states.media_player.yamaha_receiver.attributes.source}}'
+        friendly_name: Reciever
+        icon_template: mdi:speaker
+#        unit_of_measurement: Min
 
 group:
   tv:
@@ -76,6 +143,14 @@ group:
     - sensor.tv_timer
     - input_slider.tv_timer
     - script.tv_shutdown_timer
+  yamaha_input:
+    - sensor.spotify_input
+    - sensor.yamaha_input
+    - script.yamaha_source_blue
+    - script.yamaha_source_tv
+    - script.yamaha_source_alexa
+    - script.play_spotify_echo
+    - script.play_spotify_alexa
 
 homeassistant:
   customize:

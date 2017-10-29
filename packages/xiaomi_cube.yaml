@@ -1,7 +1,7 @@
 ### automation ###
 automation:
   - alias: Cube event flip90
-    initial_state: 'off'
+    initial_state: 'on'
     trigger:
       platform: event
       event_type: cube_action
@@ -15,8 +15,9 @@ automation:
           # color_name: "springgreen"
       - service: switch.toggle
         entity_id: switch.living_switch_1
+
   - alias: Cube event flip180
-    initial_state: 'off'
+    initial_state: 'on'
     trigger:
       platform: event
       event_type: cube_action
@@ -28,10 +29,13 @@ automation:
         # entity_id: light.gateway_light_34ce008c0676
         # data:
           # color_name: "darkviolet"
-      - service: switch.toggle
+      - service: switch.turn_off
+        entity_id: switch.living_switch_1
+      - service: switch.turn_off
         entity_id: switch.living_switch_2
+
   - alias: Cube event move
-    initial_state: 'off'
+    initial_state: 'on'
     trigger:
       platform: event
       event_type: cube_action
@@ -39,12 +43,11 @@ automation:
         entity_id: binary_sensor.cube_158d000103a328
         action_type: move
     action:
-      - service: light.turn_on
-        entity_id: light.gateway_light_34ce008c0676
-        data:
-          color_name: "gold"
+      - service: media_player.media_play
+        entity_id: media_player.spotify
+
   - alias: Cube event tap_twice
-    initial_state: 'off'
+    initial_state: 'on'
     trigger:
       platform: event
       event_type: cube_action
@@ -52,15 +55,11 @@ automation:
         entity_id: binary_sensor.cube_158d000103a328
         action_type: tap_twice
     action:
-      # - service: light.turn_on
-        # entity_id: light.gateway_light_34ce008c0676
-        # data:
-          # color_name: "deepskyblue"
-      - service: light.turn_on
-        entity_id: light.gateway_light_34ce008c0676
-        data:
-          color_name: "deepskyblue"
+      - service: switch.toggle
+        entity_id: switch.living_switch_2
+
   - alias: Cube event shake_air
+    initial_state: 'on'
     trigger:
       platform: event
       event_type: cube_action
@@ -114,7 +113,7 @@ automation:
           entity_id: input_select.mode
           option: Home
   - alias: Cube event free_fall
-    initial_state: 'off'
+    initial_state: 'on'
     trigger:
       platform: event
       event_type: cube_action
@@ -122,10 +121,8 @@ automation:
         entity_id: binary_sensor.cube_158d000103a328
         action_type: free_fall
     action:
-      - service: light.turn_on
-        entity_id: light.gateway_light_34ce008c0676
-        data:
-          color_name: "purple"
+      - service: script.play_spotify_alexa
+
   - alias: Cube event rotate
     trigger:
       platform: event
@@ -134,33 +131,37 @@ automation:
         entity_id: binary_sensor.cube_158d000103a328
         action_type: rotate
     action:
-      # - service: switch.toggle
-        # data_template:
-        # entity_id: >
-        # {%if trigger.event.data.action_value | float > 0 %}
-        # switch.focos_tele_comedor
-        # {% else %}
-        # switch.focos_another_one
-        # {% endif %}
       - service: input_slider.select_value
         data_template:
           entity_id: input_slider.cube_rotate
           value: '{{ trigger.event.data.action_value | float }}'
-      - service: input_slider.select_value
+#      - service: input_slider.select_value
+#        data_template:
+#          entity_id: input_slider.room_light
+#          value: >-
+#            {%if (trigger.event.data.action_value | int > 25) and (states.input_slider.room_light.state | int < 2) %}
+#            2
+#            {% elif (trigger.event.data.action_value | int) < -25 and (states.input_slider.room_light.state | int > 0) %}
+#            0
+#            {% elif (trigger.event.data.action_value | int > 0) and (states.input_slider.room_light.state | int < 2) %}
+#            {{ (states.input_slider.room_light.state | int) + 1 }}
+#            {% elif (trigger.event.data.action_value | int) < 0 and (states.input_slider.room_light.state | int > 0) %}
+#            {{ (states.input_slider.room_light.state | int) - 1 }}
+#            {% else %}
+#            {{ states.input_slider.room_light.state | int }}
+#            {% endif %}
+
+      - service: media_player.volume_set
         data_template:
-          entity_id: input_slider.room_light
-          value: >-
-            {%if (trigger.event.data.action_value | int > 25) and (states.input_slider.room_light.state | int < 2) %}
-            2
-            {% elif (trigger.event.data.action_value | int) < -25 and (states.input_slider.room_light.state | int > 0) %}
-            0
-            {% elif (trigger.event.data.action_value | int > 0) and (states.input_slider.room_light.state | int < 2) %}
-            {{ (states.input_slider.room_light.state | int) + 1 }}
-            {% elif (trigger.event.data.action_value | int) < 0 and (states.input_slider.room_light.state | int > 0) %}
-            {{ (states.input_slider.room_light.state | int) - 1 }}
-            {% else %}
-            {{ states.input_slider.room_light.state | int }}
-            {% endif %}
+          entity_id: media_player.yamaha_receiver
+          volume_level: >
+                      {% set state = states.media_player.yamaha_receiver.attributes.volume_level + (trigger.event.data.action_value|float)/90 -%}
+                      {%-  if state > 1 -%}
+                         {%- set state  = 1 -%}
+                      {%-  elif state < 0 -%}
+                         {%- set state  = 0 -%}
+                      {%- endif %}
+                      {{ state }}
             
   - alias: Cube event rotate light tracker 0
     trigger:
@@ -226,3 +227,10 @@ homeassistant:
       extra_data_template: ${ entities['input_slider.cube_rotate'].state}
       friendly_name: Cube
       icon: mdi:cube-outline
+    group.mi_cube_automation:
+      custom_ui_state_card: state-card-custom-ui
+      extra_data_template: ${ entities['input_slider.cube_rotate'].state}
+      friendly_name: Cube Settings
+      icon: mdi:cube-outline
+
+

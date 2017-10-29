@@ -1,0 +1,219 @@
+homeassistant:
+  customize:
+    script.mode_at_home:
+      emulated_hue_hidden: true
+      emulated_hue_name: "automation"
+
+    script.mode_away:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.door_light_hall_timer:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.door_out:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.door_out_away:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.door_out_away_init:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.door_out_away_kill:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.door_in:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.door_in_mode:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.device_in_dmitri:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.device_in_jane:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.device_away_dmitri:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.device_away_jane:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.flash_green:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.flash_red:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.flash_red_init:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.flash_red_kill:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.mode_jane:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_hall_end:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_hall_start:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_kitchen_end:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_kitchen_start:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_room_end:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_room_start:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_wc_end:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_light_timer_wc_start:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_watchdog:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_watchdog_init:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.motion_watchdog_kill:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.mqtt_door_opened:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.pb_debug:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.pb_notify:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.securety_entrance:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.securety_exit:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.save_home_temp:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.mqtt_temp_set:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.pb_door_opened:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.pb_mode:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.pb_motion_state:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.play_spotify_alexa:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Spotify on alexa"
+
+    script.play_spotify_echo:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Spotify on echo"
+
+    script.tv_off:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.tv_on:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.tv_shutdown_timer:
+      emulated_hue_hidden: false
+      emulated_hue_name: "tv timer"
+
+    script.warmup:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.mode_zzz:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.mode_archy:
+      emulated_hue_hidden: false
+      emulated_hue_name: "full automation"
+
+    script.git_dev:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.git_master:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.git_sandbox:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+    script.yamaha_source_alexa:
+      emulated_hue_hidden: false
+      emulated_hue_name: "sound alexa"
+
+    script.yamaha_source_blue:
+      emulated_hue_hidden: false
+      emulated_hue_name: "sound blue"
+
+    script.yamaha_source_tv:
+      emulated_hue_hidden: false
+      emulated_hue_name: "sound tv"
+
+    script.update_config:
+      emulated_hue_hidden: true
+      emulated_hue_name: ""
+
+# :\n      emulated_hue_hidden: true\n      emulated_hue_name: ""\n
