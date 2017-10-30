@@ -122,7 +122,7 @@ sensor:
         friendly_name: Reciever
         icon_template: mdi:speaker
         value_template:  >-
-            {% if states.input_select.door_event.state == "off" %}
+            {% if states.media_player.yamaha_receiver.state == "off" %}
             OFF
             {% else %}
             {{ states.media_player.yamaha_receiver.attributes.source}}
@@ -148,13 +148,12 @@ group:
     - input_number.tv_timer
     - script.tv_shutdown_timer
   yamaha_input:
-#    - sensor.spotify_input
-#    - sensor.yamaha_input
     - script.yamaha_source_blue
     - script.yamaha_source_tv
     - script.yamaha_source_alexa
     - script.play_spotify_echo
     - script.play_spotify_alexa
+
 
 homeassistant:
   customize:

@@ -49,7 +49,7 @@
     entities:
     - sensor.spotify_input
     - sensor.yamaha_input
-    - sensor.yamaha_input
+    - sensor.tv
     - group.Tv
     - group.yamaha_input
     - media_player.spotify
@@ -95,6 +95,7 @@
     - group.debug
     - input_select.mode
     - input_select.power_mode
+    - group.yamaha_input
   
   weather:
     name: Weather
