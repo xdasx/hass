@@ -1,3 +1,14 @@
+automation:
+  - alias: Inputs visibility
+    trigger:
+      platform: state
+      entity_id: media_player.yamaha_receiver
+    action:
+      service: script.group_visibility
+      data:
+        entity_id: group.yamaha_input
+        cond: media_player.yamaha_receiver
+        visible_state: 'on'
 script:
   tv_shutdown_timer:
     alias: TV.shutdown_timer.
