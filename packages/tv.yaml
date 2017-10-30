@@ -161,3 +161,10 @@ homeassistant:
       icon: mdi:timer
     switch.tv:
       icon: mdi:monitor
+    group.yamaha_input:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: sensor.yamaha_input
+      hide_control: true
+      icon: mdi:git
+      extra_data_template: ${ entities['sensor.spotify_input'].state}

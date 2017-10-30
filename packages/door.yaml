@@ -231,8 +231,8 @@ group:
   door:
     name: Door
     entities:
-      - binary_sensor.front_door
-      - sensor.door_event
+#      - binary_sensor.front_door
+#      - sensor.door_event
       - input_boolean.n_door
       - group.door_automation
       - group.door_scripts
@@ -242,3 +242,17 @@ homeassistant:
   customize:
     binary_sensor.front_door:
       device_class: opening
+    group.door_automation:
+      custom_ui_state_card: state-card-custom-ui
+      icon: mdi:robot
+    group.door_scripts:
+      custom_ui_state_card: state-card-custom-ui
+      hide_control: true
+      icon: mdi:code-tags
+    group.door:
+      custom_ui_state_card: state-card-custom-ui
+      extra_badge:
+        entity_id: binary_sensor.front_door
+      hide_control: true
+      icon: mdi:git
+      extra_data_template: ${ entities['sensor.door_event'].state}
