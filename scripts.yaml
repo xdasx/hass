@@ -128,6 +128,12 @@ flash_red_init:
       data:
         entity_id: script.flash_red
 
+group_visibility:
+  sequence:
+    - service: group.set_visibility
+      data_template:
+        entity_id: '{{ entity_id }}'
+        visible: '{{ is_state(cond, visible_state) }}'
 ## CLIMA ##   
  
 ##NOT USED##

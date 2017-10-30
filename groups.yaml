@@ -47,7 +47,9 @@
     view: true
     icon: mdi:play-circle-outline
     entities:
-
+    - sensor.spotify_input
+    - sensor.yamaha_input
+    - sensor.yamaha_input
     - group.Tv
     - group.yamaha_input
     - media_player.spotify
