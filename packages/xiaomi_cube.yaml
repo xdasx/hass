@@ -131,10 +131,10 @@ automation:
         entity_id: binary_sensor.cube_158d000103a328
         action_type: rotate
     action:
-      - service: input_number.select_value
-        data_template:
-          entity_id: input_number.cube_rotate
-          value: '{{ trigger.event.data.action_value | float }}'
+#      - service: input_number.select_value
+#        data_template:
+#          entity_id: input_number.cube_rotate
+#          value: '{{ trigger.event.data.action_value | float }}'
 #      - service: input_slider.select_value
 #        data_template:
 #          entity_id: input_slider.room_light
