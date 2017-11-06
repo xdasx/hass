@@ -168,7 +168,7 @@ group:
   tv_switch:
     name: Tv Switch
     entities:
-    - switch.tv
+    - switch.tvrelay
     - switch.yamaha_reciever
 
   tv_timer:
