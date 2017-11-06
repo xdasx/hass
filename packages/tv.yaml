@@ -197,7 +197,7 @@ homeassistant:
       extra_badge:
         entity_id: sensor.tv_timer
       icon: mdi:timer
-    switch.tv_switch:
+    group.tv_switch:
       custom_ui_state_card: state-card-custom-ui
       extra_badge:
         entity_id: sensor.yamaha_input
