@@ -163,7 +163,7 @@ group:
     name: Tv
     entities:
     - switch.tv
-    - switch.tv_switch
+    - group.tv_switch
     - group.tv_timer
   tv_switch:
     name: Tv Switch
