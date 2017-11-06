@@ -179,6 +179,7 @@ group:
     - script.tv_shutdown_timer
   yamaha_input:
     name: Reciever
+    entities:
     - script.yamaha_source_blue
     - script.yamaha_source_hdmi2
     - script.yamaha_source_tv
