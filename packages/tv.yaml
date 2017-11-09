@@ -114,7 +114,7 @@ switch:
         turn_off:
           service: script.tv_off
       yamaha_reciever:
-        friendly_name: Recieaver
+        friendly_name: "Receiver"
         value_template: "{{ is_state('media_player.yamaha_receiver', 'on') }}"
         turn_on:
           service: media_player.turn_on
