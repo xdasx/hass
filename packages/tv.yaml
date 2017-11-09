@@ -168,14 +168,14 @@ group:
     - sensor.tv
     - group.tv_switch
     - group.tv_timer
-#    - group.Tv
+    - group.Tv
     - group.yamaha_input
   tv:
     name: Tv
     entities:
 #    - switch.tv
 #    - group.tv_switch
-#    - group.tv_timer
+    - group.tv_timer
   tv_switch:
     name: Tv Switch
     entities:
