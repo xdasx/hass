@@ -154,7 +154,6 @@ frontend:
       table-row-alternative-background-color: "var(--sidebar-text_-_background)"
 http:
   api_password: !secret http_password
-  development: 0
   login_attempts_threshold: 5
   trusted_networks:
     - 127.0.0.1

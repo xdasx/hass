@@ -159,12 +159,23 @@ sensor:
         icon_template: mdi:monitor
 
 group:
+  media:
+    name: Media
+    view: true
+    icon: mdi:play-circle-outline
+    entities:
+    - sensor.spotify_input
+    - sensor.tv
+    - group.tv_switch
+    - group.tv_timer
+#    - group.Tv
+    - group.yamaha_input
   tv:
     name: Tv
     entities:
-    - switch.tv
-    - group.tv_switch
-    - group.tv_timer
+#    - switch.tv
+#    - group.tv_switch
+#    - group.tv_timer
   tv_switch:
     name: Tv Switch
     entities:
@@ -186,8 +197,8 @@ group:
     - script.yamaha_source_alexa
     - script.play_spotify_echo
     - script.play_spotify_alexa
-    - media_player.tv
     - media_player.yamaha_receiver
+    - media_player.tv
     - media_player.spotify
 
 homeassistant:
