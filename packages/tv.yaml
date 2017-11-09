@@ -167,7 +167,6 @@ group:
     - sensor.spotify_input
     - sensor.tv
     - group.tv_switch
-    - group.tv_timer
     - group.Tv
     - group.yamaha_input
   tv:
@@ -213,12 +212,12 @@ homeassistant:
       extra_badge:
         entity_id: sensor.yamaha_input
       icon: mdi:monitor
-    switch.tvrealy:
+    switch.tvrelay:
       icon: mdi:monitor
-      name: TV
+      friendly_name: TV
     switch.yamaha_reciever:
       name: Recieaver
-      icon: mdi:speaker
+      friendly_name: mdi:speaker
     group.yamaha_input:
       custom_ui_state_card: state-card-custom-ui
       extra_badge:
