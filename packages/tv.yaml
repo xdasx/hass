@@ -213,8 +213,12 @@ homeassistant:
       extra_badge:
         entity_id: sensor.yamaha_input
       icon: mdi:monitor
-    switch.tv:
+    switch.tvrealy:
       icon: mdi:monitor
+      name: TV
+    switch.yamaha_reciever:
+      name: Recieaver
+      icon: mdi:speaker
     group.yamaha_input:
       custom_ui_state_card: state-card-custom-ui
       extra_badge:
