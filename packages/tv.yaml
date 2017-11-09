@@ -167,7 +167,7 @@ group:
     entities:
     - sensor.spotify_input
     - sensor.tv
-    - sensor.sensor.yamaha_input
+    - sensor.yamaha_input
     - group.tv_switch
     - group.Tv
     - group.yamaha_input
