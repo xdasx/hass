@@ -66,36 +66,37 @@ script:
         source: "Dmitri's Echo Dot"
     - service: media_player.media_play
       entity_id: media_player.spotify
-    play_spotify_chromecast:
-      alias: play Spotify on chromecast
-      sequence:
-      - service: media_player.turn_on
+
+  play_spotify_chromecast:
+    alias: play Spotify on chromecast
+    sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver
+    - service: media_player.select_source
+      data:
         entity_id: media_player.yamaha_receiver
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.yamaha_receiver
-          source: ChromeCast
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.spotify
-          source: "Receiver"
-      - service: media_player.media_play
+        source: ChromeCast
+    - service: media_player.select_source
+      data:
         entity_id: media_player.spotify
-    play_spotify_tv:
-      alias: play Spotify on tv
-      sequence:
-      - service: media_player.turn_on
+        source: "Receiver"
+    - service: media_player.media_play
+      entity_id: media_player.spotify
+  play_spotify_tv:
+    alias: play Spotify on tv
+    sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver
+    - service: media_player.select_source
+      data:
         entity_id: media_player.yamaha_receiver
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.yamaha_receiver
-          source: miTV
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.spotify
-          source: "TV"
-      - service: media_player.media_play
+        source: miTV
+    - service: media_player.select_source
+      data:
         entity_id: media_player.spotify
+        source: "TV"
+    - service: media_player.media_play
+      entity_id: media_player.spotify
 
   yamaha_source_blue:
     alias: Input Bluetooth
