@@ -233,6 +233,10 @@ homeassistant:
       emulated_hue_hidden: false
       emulated_hue_name: "inpit chromecast"
 
+    switch.tvrelay:
+      emulated_hue_hidden: false
+      emulated_hue_name: "TV switch"
+
     script.update_config:
       emulated_hue_hidden: true
       emulated_hue_name: ""
