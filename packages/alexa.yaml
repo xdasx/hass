@@ -167,11 +167,15 @@ homeassistant:
 
     script.play_spotify_alexa:
       emulated_hue_hidden: false
-      emulated_hue_name: "Spotify on alexa"
+      emulated_hue_name: "Spotify alexa"
 
     script.play_spotify_echo:
       emulated_hue_hidden: false
-      emulated_hue_name: "Spotify on echo"
+      emulated_hue_name: "Spotify echo"
+
+    script.play_spotify_chromecast:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Spotify chromecast"
 
     script.tv_off:
       emulated_hue_hidden: true
@@ -211,15 +215,23 @@ homeassistant:
 
     script.yamaha_source_alexa:
       emulated_hue_hidden: false
-      emulated_hue_name: "sound alexa"
+      emulated_hue_name: "input alexa"
 
     script.yamaha_source_blue:
       emulated_hue_hidden: false
-      emulated_hue_name: "sound blue"
+      emulated_hue_name: "input blue"
 
     script.yamaha_source_tv:
       emulated_hue_hidden: false
-      emulated_hue_name: "sound tv"
+      emulated_hue_name: "input tv"
+
+    script.yamaha_source_hdmi2:
+      emulated_hue_hidden: false
+      emulated_hue_name: "inpit hdmi"
+
+    script.yamaha_source_av1:
+      emulated_hue_hidden: false
+      emulated_hue_name: "inpit chromecast"
 
     script.update_config:
       emulated_hue_hidden: true

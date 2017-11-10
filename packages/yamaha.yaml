@@ -2,7 +2,7 @@ media_player:
   - platform: yamaha
     host: 192.168.31.27
     source_ignore:
-      - "AV1"
+#      - "AV1"
       - "AV2"
       - "AV3"
       - "AV4"
@@ -15,3 +15,5 @@ media_player:
       HDMI2: "PC"
       AUDIO: "Alexa"
       AV6: "Bluetooth"
+      AV1: "ChromeCast"
+
