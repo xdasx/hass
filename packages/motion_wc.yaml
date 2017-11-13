@@ -25,41 +25,6 @@ automation:
     action:
       - service: script.motion_light_timer_wc_end
 
-  - alias: timer finished
-    trigger:
-      platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.wc
-    action:
-      - service: script.pb_debug
-        data_template:
-          title: Timer
-          text: Finished
-
-  - alias: timer cancelled
-    trigger:
-      platform: event
-      event_type: timer.cancelled
-      event_data:
-        entity_id: timer.wc
-    action:
-      - service: script.pb_debug
-        data_template:
-          title: Timer
-          text: cancelled
-
-  - alias: timer started
-    trigger:
-      platform: event
-      event_type: timer.started
-      event_data:
-        entity_id: timer.wc
-    action:
-      - service: script.pb_debug
-        data_template:
-          title: Timer
-          text: started
 
 
 script:

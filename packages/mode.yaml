@@ -51,7 +51,7 @@ script:
   pb_mode:
     alias: Send Mode state to PB
     sequence:
-    - service: script.pb_debug
+    - service: script.pb_notify
       data_template:
         title: Mode
         text: Mode Changed  to {{ states('input_select.mode') }}

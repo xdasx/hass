@@ -1,0 +1,49 @@
+timer:
+  test:
+    duration: '00:00:30'
+
+automation:
+  - alias: timer test
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656a38
+      to: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.wc
+
+  - alias: timer finished
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.wc
+    action:
+      - service: script.pb_notify
+        data_template:
+          title: Timer
+          text: Finished
+
+  - alias: timer cancelled
+    trigger:
+      platform: event
+      event_type: timer.cancelled
+      event_data:
+        entity_id: timer.wc
+    action:
+      - service: script.pb_notify
+        data_template:
+          title: Timer
+          text: cancelled
+
+  - alias: timer started
+    trigger:
+      platform: event
+      event_type: timer.started
+      event_data:
+        entity_id: timer.wc
+    action:
+      - service: script.pb_notify
+        data_template:
+          title: Timer
+          text: started
