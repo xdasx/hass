@@ -9,10 +9,10 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d0001656a38
       to: 'on'
     action:
-      - service: script.pb_notify
-          data_template:
-            title: wc
-            text: startt
+    - service: script.pb_notify
+      data_template:
+        title: wc
+        text: startt
 
   - alias: wc off
     trigger:
@@ -20,46 +20,46 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d0001656a38
       to: 'off'
     action:
-      - service: script.pb_notify
-          data_template:
-            title: wc
-            text: endd
+    - service: script.pb_notify
+      data_template:
+        title: wc
+        text: endd
 
-  - alias: timer finished
-    trigger:
-      platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.test
-    action:
-      - service: script.pb_notify
-        data_template:
-          title: Timer
-          text: Finished
-
-  - alias: timer cancelled
-    trigger:
-      platform: event
-      event_type: timer.cancelled
-      event_data:
-        entity_id: timer.test
-    action:
-      - service: script.pb_notify
-        data_template:
-          title: Timer
-          text: cancelled
-
-  - alias: timer started
-    trigger:
-      platform: event
-      event_type: timer.started
-      event_data:
-        entity_id: timer.test
-    action:
-      - service: script.pb_notify
-        data_template:
-          title: Timer
-          text: started
+#  - alias: timer finished
+#    trigger:
+#      platform: event
+#      event_type: timer.finished
+#      event_data:
+#        entity_id: timer.test
+#    action:
+#      - service: script.pb_notify
+#        data_template:
+#          title: Timer
+#          text: Finished
+#
+#  - alias: timer cancelled
+#    trigger:
+#      platform: event
+#      event_type: timer.cancelled
+#      event_data:
+#        entity_id: timer.test
+#    action:
+#      - service: script.pb_notify
+#        data_template:
+#          title: Timer
+#          text: cancelled
+#
+#  - alias: timer started
+#    trigger:
+#      platform: event
+#      event_type: timer.started
+#      event_data:
+#        entity_id: timer.test
+#    action:
+#      - service: script.pb_notify
+#        data_template:
+#          title: Timer
+#          text: started
 script:
   start_timer:
     sequence:
