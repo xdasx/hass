@@ -10,14 +10,14 @@ automation:
       to: 'on'
     action:
       - service: timer.start
-        entity_id: timer.wc
+        entity_id: timer.test
 
   - alias: timer finished
     trigger:
       platform: event
       event_type: timer.finished
       event_data:
-        entity_id: timer.wc
+        entity_id: timer.test
     action:
       - service: script.pb_notify
         data_template:
@@ -29,7 +29,7 @@ automation:
       platform: event
       event_type: timer.cancelled
       event_data:
-        entity_id: timer.wc
+        entity_id: timer.test
     action:
       - service: script.pb_notify
         data_template:
@@ -41,14 +41,25 @@ automation:
       platform: event
       event_type: timer.started
       event_data:
-        entity_id: timer.wc
+        entity_id: timer.test
     action:
       - service: script.pb_notify
         data_template:
           title: Timer
           text: started
-
-
+script:
+  start_timer:
+    sequence:
+    - service: timer.start
+      entity_id: timer.test
+  stop_timer:
+    sequence:
+    - service: timer.cancel
+      entity_id: timer.test
+  pause_timer:
+    sequence:
+    - service: timer.pause
+      entity_id: timer.test
 group:
   timer:
     name: timer
@@ -58,3 +69,6 @@ group:
     - automation.timer_started
     - automation.timer_test
     - timer.test
+    - script.start_timer
+    - script.pause_timer
+    - script.stop_timer
