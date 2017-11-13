@@ -73,6 +73,7 @@
     name: Dev
     icon: mdi:developer-board
     entities:
+    - group.timer
     - group.all_devices
     - group.dev_pi
     - group.xiaomi

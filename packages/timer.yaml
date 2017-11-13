@@ -47,3 +47,14 @@ automation:
         data_template:
           title: Timer
           text: started
+
+
+group:
+  timer:
+    name: timer
+    entities:
+    - automation.timer_cancelled
+    - automation.timer_finished
+    - automation.timer_started
+    - automation.timer_test
+    - timer.test
