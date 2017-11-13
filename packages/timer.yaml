@@ -3,27 +3,45 @@ timer:
     duration: '00:00:30'
 
 automation:
-  - alias: wc on
+  - alias: state change wc
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001656a38
-      to: 'on'
     action:
     - service: script.pb_notify
       data_template:
         title: wc
-        text: startt
+        text: {{ states.binary_sensor.motion_sensor_158d0001656a38.state }}
 
-  - alias: wc off
+  - alias: state change room
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001656a38
-      to: 'off'
+      entity_id: binary_sensor.motion_sensor_158d00016db268
     action:
     - service: script.pb_notify
       data_template:
-        title: wc
-        text: endd
+        title: room
+        text: {{ states.binary_sensor.motion_sensor_158d00016db268.state }}
+
+  - alias: state change kitchen
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a40748
+    action:
+    - service: script.pb_notify
+      data_template:
+        title: kitchen
+        text: {{ states.binary_sensor.motion_sensor_158d0001a40748.state }}
+
+  - alias: state change hall
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_hall
+    action:
+    - service: script.pb_notify
+      data_template:
+        title: hall
+        text: {{ states.binary_sensor.motion_hall.state }}
 
 #  - alias: timer finished
 #    trigger:
