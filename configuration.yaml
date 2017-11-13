@@ -246,7 +246,7 @@ weblink:
       url: !secret github_url
 
 no_ip:
-  domain: xdasx.ddns.com
+  domain: xdasx.ddns.net
   username: !secret noip_user
   password: !secret noip_pass
 # plant:
