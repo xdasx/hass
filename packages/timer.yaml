@@ -11,8 +11,7 @@ automation:
     - service: script.pb_notify
       data_template:
         title: wc
-        text: {{ states.binary_sensor.motion_sensor_158d0001656a38.state }}
-
+        text: "{{ states.binary_sensor.motion_sensor_158d0001656a38.state }}"
   - alias: state change room
     trigger:
       platform: state
@@ -21,7 +20,7 @@ automation:
     - service: script.pb_notify
       data_template:
         title: room
-        text: {{ states.binary_sensor.motion_sensor_158d00016db268.state }}
+        text: "{{ states.binary_sensor.motion_sensor_158d00016db268.state }}"
 
   - alias: state change kitchen
     trigger:
@@ -31,7 +30,7 @@ automation:
     - service: script.pb_notify
       data_template:
         title: kitchen
-        text: {{ states.binary_sensor.motion_sensor_158d0001a40748.state }}
+        text: "{{ states.binary_sensor.motion_sensor_158d0001a40748.state }}"
 
   - alias: state change hall
     trigger:
@@ -41,7 +40,7 @@ automation:
     - service: script.pb_notify
       data_template:
         title: hall
-        text: {{ states.binary_sensor.motion_hall.state }}
+        text: "{{ states.binary_sensor.motion_hall.state }}"
 
 #  - alias: timer finished
 #    trigger:
