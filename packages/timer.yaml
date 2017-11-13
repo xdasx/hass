@@ -3,18 +3,17 @@ timer:
     duration: '00:00:30'
 
 automation:
-  - alias: timer test
+  - alias: wc on
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001656a38
       to: 'on'
     action:
-#      - service: timer.start
-#        entity_id: timer.test
       - service: script.pb_notify
           data_template:
             title: wc
-            text: on
+            text: startt
+
   - alias: wc off
     trigger:
       platform: state
@@ -24,7 +23,7 @@ automation:
       - service: script.pb_notify
           data_template:
             title: wc
-            text: off
+            text: endd
 
   - alias: timer finished
     trigger:
