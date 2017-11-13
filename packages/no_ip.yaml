@@ -1,0 +1,4 @@
+no_ip:
+  domain: xdasx.ddns.com
+  username: !secret noip_pass
+  password: !secret noip_user
