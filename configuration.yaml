@@ -190,6 +190,7 @@ media_player:
     aliases:
       eufy Genie-63F0: "alexa"
       Dmitri's Echo Dot: "echo"
+
 mqtt:
   broker: !secret mqtt_broker
   port: !secret mqtt_port
@@ -205,8 +206,6 @@ mqtt:
     topic: 'tele/hass/LWT'
     payload: 'Offline'
 
-
-
 fan:
   - platform: mqtt
     name: "Hall Blink"
@@ -221,10 +220,11 @@ fan:
       - low
       - medium
       - high
-alarm_control_panel:
-  - platform: manual_mqtt
-    state_topic: "home/alarm"
-    command_topic: "home/alarm/set"
+
+#alarm_control_panel:
+#  - platform: manual_mqtt
+#    state_topic: "home/alarm"
+#    command_topic: "home/alarm/set"
 
 panel_iframe:
   docker:
@@ -235,6 +235,7 @@ panel_iframe:
     title: Router
     url: !secret wifi_url
     icon: mdi:router-wireless
+
 weblink:
   entities:
     - name: Router
@@ -243,6 +244,11 @@ weblink:
       url: https://home-assistant.io
     - name: GitHub
       url: !secret github_url
+
+no_ip:
+  domain: xdasx.ddns.com
+  username: !secret noip_user
+  password: !secret noip_pass
 # plant:
   # simulated_plant:
     # sensors:
