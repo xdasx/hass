@@ -225,7 +225,7 @@ group:
   tv_timer:
     name: Tv Timer
     entities:
-    - sensor.tv_timer
+#    - sensor.tv_timer
     - input_number.tv_timer
     - script.tv_shutdown_timer
   yamaha_input:

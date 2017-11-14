@@ -117,6 +117,7 @@ script:
       data:
         title: Status Away
         text: No movement detected
+
   door_out_away_kill:
     alias: DOOR.out.away.kill
     sequence:

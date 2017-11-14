@@ -6,7 +6,7 @@
     entities:
     - sensor.motion_tracker
     - sensor.door_event
-    - sensor.heater_temp
+#    - sensor.heater_temp
     - sensor.temperature_158d0001dc1f30
     - sensor.mode
     

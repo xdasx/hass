@@ -130,8 +130,8 @@ homeassistant:
       friendly_name: Room Temp
       icon: mdi:thermometer
     sensor.pressure_158d0001dc1f30:
-      friendly_name: Room Temp
-      icon: mdi:arrow-collapse-down
+      friendly_name: Room Press
+      icon: mdi:speedometer
     sensor.humidity_158d0001dc1f30:
       friendly_name: Room Hum
       icon: mdi:water-percent
