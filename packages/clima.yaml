@@ -46,7 +46,8 @@ climate:
   - platform: generic_thermostat
     name: Room
     heater: switch.heating
-    target_sensor: sensor.heater_temp
+    target_sensor: sensor.temperature_158d0001dc1f30
+#    target_sensor: sensor.heater_temp
     min_temp: 19
     max_temp: 30
     target_temp: 20
@@ -113,6 +114,9 @@ group:
     entities:
     - switch.heating
     - sensor.heater
+    - sensor.temperature_158d0001dc1f30
+    - sensor.pressure_158d0001dc1f30
+    - sensor.humidity_158d0001dc1f30
     - sensor.current_temp
     - sensor.home_temp
     - sensor.away_temp
@@ -120,3 +124,14 @@ group:
     - input_number.clima_away_temp
     - script.mqtt_temp_set
     - script.warmup
+homeassistant:
+  customize:
+    sensor.temperature_158d0001dc1f30:
+      friendly_name: Room Temp
+      icon: mdi:thermometer
+    sensor.pressure_158d0001dc1f30:
+      friendly_name: Room Temp
+      icon: mdi:arrow-collapse-down
+    sensor.humidity_158d0001dc1f30:
+      friendly_name: Room Hum
+      icon: mdi:water-percent

@@ -1,18 +1,18 @@
 automation:
-  - alias: motion.DetectedWc
+  - alias: m_on_wc
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001656a38
       to: 'on'
     action:
-      - service: timer.start
-        entity_id: timer.wc
-#      - service: script.motion_light_timer_wc_start
+      - service: script.motion_light_timer_wc_start
       - service: script.motion_watchdog_init
         data:
           place: Wc
-  
-  - alias: motion.EndWc
+      - service: automation.turn_on
+        entity_id: automation.mo_off_wc
+
+  - alias: mo_off_wc
     initial_state: 'off'
     trigger:
       platform: state
@@ -23,9 +23,9 @@ automation:
       entity_id: input_boolean.motion_light_wc
       state: 'on'
     action:
-      - service: script.motion_light_timer_wc_end
-
-
+      - service: timer.start
+        entity_id: timer.wc
+#      - service: script.motion_light_timer_wc_end
 
 script:
   motion_light_timer_wc_end:
@@ -43,12 +43,8 @@ script:
     - condition: state
       entity_id: input_boolean.motion_light_wc
       state: 'on'
-    - service: script.turn_off
-      entity_id: script.motion_light_timer_wc_end
     - service: switch.turn_on
       entity_id: switch.wc_switch
-    - service: automation.turn_on
-      entity_id: automation.motionendwc
 
 timer:
   wc:

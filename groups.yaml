@@ -7,6 +7,7 @@
     - sensor.motion_tracker
     - sensor.door_event
     - sensor.heater_temp
+    - sensor.temperature_158d0001dc1f30
     - sensor.mode
     
     - group.light
@@ -128,6 +129,9 @@
     - sensor.illumination_34ce008c0676
     - binary_sensor.switch_158d0001644276
     - binary_sensor.switch_158d00016c49f1
+    - sensor.temperature_158d0001dc1f30
+    - sensor.pressure_158d0001dc1f30
+    - sensor.humidity_158d0001dc1f30
     
   debug:
     entities:

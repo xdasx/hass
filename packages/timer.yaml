@@ -4,6 +4,7 @@ timer:
 
 automation:
   - alias: state change wc
+    initial_state: 'off'
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001656a38
@@ -13,6 +14,7 @@ automation:
         title: wc
         text: "{{ states.binary_sensor.motion_sensor_158d0001656a38.state }}"
   - alias: state change room
+    initial_state: 'off'
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d00016db268
@@ -23,6 +25,7 @@ automation:
         text: "{{ states.binary_sensor.motion_sensor_158d00016db268.state }}"
 
   - alias: state change kitchen
+    initial_state: 'off'
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001a40748
@@ -33,6 +36,7 @@ automation:
         text: "{{ states.binary_sensor.motion_sensor_158d0001a40748.state }}"
 
   - alias: state change hall
+    initial_state: 'off'
     trigger:
       platform: state
       entity_id: binary_sensor.motion_hall
