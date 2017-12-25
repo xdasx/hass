@@ -9,6 +9,21 @@ automation:
         entity_id: group.yamaha_input
         cond: media_player.yamaha_receiver
         visible_state: 'on'
+  - alias: Change reciever input on play
+    trigger:
+      platform: state
+      entity_id: media_player.receiver
+      to: 'playing'
+    action:
+      service: script.yamaha_source_av1
+
+  - alias: Change reciever to tv input on stop
+    trigger:
+      platform: state
+      entity_id: media_player.receiver
+      to: 'off'
+    action:
+      service: script.yamaha_source_tv
 script:
   tv_shutdown_timer:
     alias: TV.shutdown_timer.
@@ -242,6 +257,7 @@ group:
     - media_player.yamaha_receiver
     - media_player.tv
     - media_player.spotify
+    - media_player.receiver
 
 homeassistant:
   customize:
