@@ -193,6 +193,8 @@ media_player:
       Dmitri's Echo Dot: "echo"
 
 mqtt:
+  discovery: true
+  discovery_prefix: ha
   broker: !secret mqtt_broker
   port: !secret mqtt_port
   client_id: home-assistant-1
