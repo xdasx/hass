@@ -281,5 +281,5 @@ homeassistant:
       extra_badge:
         entity_id: sensor.yamaha_input
       hide_control: true
-      icon: mdi:git
+      icon: mdi:music-box-outline
       extra_data_template: ${ entities['sensor.spotify_input'].state}
