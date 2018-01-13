@@ -190,6 +190,7 @@ notify:
    platform: html5
    gcm_api_key: !secret gcm_api_key
    gcm_sender_id: !secret gcm_sender_id
+
 media_player:
   - platform: spotify
     client_id: !secret spotify_client_id
@@ -236,14 +237,24 @@ fan:
 #    command_topic: "home/alarm/set"
 
 panel_iframe:
-  docker:
-    title: Docker
-    icon: mdi:webpack
-    url: !secret docker_url
+  # docker:
+  #   title: Docker
+  #   icon: mdi:webpack
+  #   url: !secret docker_url
   router:
     title: Router
     url: !secret wifi_url
     icon: mdi:router-wireless
+google_assistant:
+  project_id: home-163008
+  client_id: helloArchy
+  access_token: helloArchyDma
+  exposed_domains:
+    - switch
+    - light
+    - scene
+    - media_player
+    - climate
 
 # weblink:
 #   entities:
