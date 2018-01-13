@@ -1,0 +1,37 @@
+
+adb connect 192.168.31.105
+	connected to 192.168.31.105:5555
+	already connected to 192.168.31.105:5555
+adb shell input keyevent BACK
+
+adb shell input keyevent DPAD_CENTER
+adb shell input keyevent HOME
+adb shell input keyevent DPAD_UP
+adb shell input keyevent DPAD_LEFT
+adb shell input keyevent DPAD_RIGHT
+adb shell input keyevent DPAD_DOWN
+adb shell input keyevent VOLUME_DOWN
+adb shell input keyevent VOLUME_UP
+adb shell input keyevent POWER
+adb shell input keyevent MENU
+adb shell input keyevent BACK
+adb shell input keyevent
+
+
+
+
+key 28 DPAD_CENTER
+key 102 HOME
+key 103 DPAD_UP
+key 105 DPAD_LEFT
+key 106 DPAD_RIGHT
+key 108 DPAD_DOWN
+key 114 VOLUME_DOWN
+key 115 VOLUME_UP
+key 116 POWER
+key 127 MENU
+key 158 BACK
+
+
+
+adb shell ps com.android.providers.tv

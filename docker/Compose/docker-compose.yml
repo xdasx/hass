@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+  mqtt:
+    image: pascaldevink/rpi-mosquitto
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/mqtt/log:/mqtt/log
+      - /srv/mqtt/data/:/mqtt/data
+      - /srv/mqtt/config:/mqtt/config
+    ports:
+      - 1883:1883
+      - 9001:9001
+  hass:
+    # build: /home/docker/rpi-home-assistant
+    container_name: hass
+    image: lroguet/rpi-home-assistant:latest
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/hass:/config 
+      - /dev/bus/usb:/dev/bus/usb
+    ports:
+      - 66:8123
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+      - "/dev/mem:/dev/mem"
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    privileged: true
+    network_mode: host
+
+  portainer:
+    image: hypriot/rpi-portainer
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 9000:9000
+
+  letsencrypt:
+    image: bcecchinato/letsencrypt-rpi
+    restart: always
+    
+  # njs:
+    # build:
+      # context: rpi-node-example-hello-world
+      # dockerfile: Dockerfile
+    # ports:
+      # - 80:80
+    # volumes:
+      # - /home/nodejs:/src
+
+  # ngrok:
+    # build:
+      # context: docker-rpi-ngrok
+      # dockerfile: Dockerfile
+    # environment:
+      # - HTTP_PORT=80
+      # - AUTHTOKEN=2ZtS9Sn8LWheCs3jPPLnK_7V2mzJ2pcFKw5unAigNpK
+    # links:
+      # - "njs"

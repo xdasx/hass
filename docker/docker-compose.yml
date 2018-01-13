@@ -1,0 +1,105 @@
+version: '2'
+
+services:
+  nginx-proxy:
+    image: andbobsyouruncle/rpi-nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    networks:
+      - nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
+  lets-encrypt:
+    image: andbobsyouruncle/rpi-letsencrypt-nginx-proxy-companion
+    container_name: lets-encrypt
+    restart: always
+    networks:
+      - nginx
+    depends_on:
+      - nginx-proxy
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - ./certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  mqtt:
+    image: pascaldevink/rpi-mosquitto
+    restart: always
+    container_name: mqtt
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/mqtt/log:/mqtt/log
+      - /srv/mqtt/data/:/mqtt/data
+      - /srv/mqtt/config:/mqtt/config
+    ports:
+      - 1883:1883
+      - 9001:9001
+    networks:
+      - home-assistant
+  mqtt-bridge:
+    image: andbobsyouruncle/rpi-smartthings-mqtt-bridge
+    container_name: mqtt-bridge
+    restart: always
+    volumes:
+      - ./mqtt-bridge:/config
+    networks:
+      - home-assistant
+    ports:
+      - 1234:8080
+  home-assistant:
+    image: lroguet/rpi-home-assistant:latest
+    container_name: home-assistant
+    restart: always
+    networks:
+      - nginx
+      - home-assistant
+    depends_on:
+      - nginx-proxy
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+      - "/dev/mem:/dev/mem"
+      # - "/dev/ttyUSB0:/dev/ttyUSB0"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/hass:/config 
+      - /dev/bus/usb:/dev/bus/usb
+    environment:
+      - VIRTUAL_HOST=${HOME_ASSISTANT_HOST}
+      - VIRTUAL_PORT=443
+      - LETSENCRYPT_HOST=${HOME_ASSISTANT_HOST}
+      - LETSENCRYPT_EMAIL=${LETS_ENCRYPT_EMAIL}
+  rpi-homebridge:
+    image: andbobsyouruncle/rpi-homebridge-homeassistant
+    container_name: rpi-homebridge
+    network_mode: host
+    restart: always
+    ports:
+      - 51826:51826
+      - 5353:5353
+    environment:
+      - HOME_ASSISTANT_URL=${HOME_ASSISTANT_URL}
+      - HOME_ASSISTANT_PASSWORD=${HOME_ASSISTANT_PASSWORD}
+  portainer:
+    image: hypriot/rpi-portainer
+    restart: always
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 9000:9000
+
+networks:
+  nginx:
+    external:
+      name: nginx
+  home-assistant:
+    external:
+      name: home-assistant

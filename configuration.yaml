@@ -154,6 +154,9 @@ frontend:
       table-row-alternative-background-color: "var(--sidebar-text_-_background)"
 
 http:
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
   api_password: !secret http_password
   login_attempts_threshold: 5
   trusted_networks:
@@ -183,7 +186,10 @@ notify:
  - platform: pushbullet 
    name: pb
    api_key: !secret pushbullet_api_key
-
+ - name: gm
+   platform: html5
+   gcm_api_key: !secret gcm_api_key
+   gcm_sender_id: !secret gcm_sender_id
 media_player:
   - platform: spotify
     client_id: !secret spotify_client_id
@@ -239,19 +245,19 @@ panel_iframe:
     url: !secret wifi_url
     icon: mdi:router-wireless
 
-weblink:
-  entities:
-    - name: Router
-      url: !secret wifi_url
-    - name: Home Assistant
-      url: https://home-assistant.io
-    - name: GitHub
-      url: !secret github_url
+# weblink:
+#   entities:
+#     - name: Router
+#       url: !secret wifi_url
+#     - name: Home Assistant
+#       url: https://home-assistant.io
+#     - name: GitHub
+#       url: !secret github_url
 
-no_ip:
-  domain: xdasx.ddns.net
-  username: !secret noip_user
-  password: !secret noip_pass
+# no_ip:
+#   domain: xdasx.ddns.net
+#   username: !secret noip_user
+#   password: !secret noip_pass
 # plant:
   # simulated_plant:
     # sensors:
