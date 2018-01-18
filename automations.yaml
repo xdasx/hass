@@ -3,10 +3,11 @@
       platform: homeassistant
       event: start
     action:
-      - service: script.pb_notify
+      - service: script.gm_notify
         data_template:
           title: Common
-          text: Server Started on {{ states('sensor.git') }}
+          # text: Server Started on {{ states('sensor.git') }}
+          text: Server Started
           
 ### MQTT ###
   - alias: MQTT.PUB.ClimaTempChange

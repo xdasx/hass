@@ -27,13 +27,17 @@ updater:
 discovery:
 # conversation:
 history:
-  exclude:
+  # exclude:
+    # domains:
+      # - group
+      # - script
+      # - sensor
+      # - sun
+  include:
     domains:
-      - group
-      - script
       - sensor
-      - sun
-  # include:
+      - switch
+      - media_player
     # entities:
       # - sensor.away_time
       # - sensor.command_sensor
@@ -236,15 +240,15 @@ fan:
 #    state_topic: "home/alarm"
 #    command_topic: "home/alarm/set"
 
-panel_iframe:
+# panel_iframe:
   # docker:
   #   title: Docker
   #   icon: mdi:webpack
   #   url: !secret docker_url
-  router:
-    title: Router
-    url: !secret wifi_url
-    icon: mdi:router-wireless
+  # router:
+  #   title: Router
+  #   url: !secret wifi_url
+  #   icon: mdi:router-wireless
 google_assistant:
   project_id: home-163008
   client_id: helloArchy

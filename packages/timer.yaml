@@ -23,7 +23,6 @@ automation:
       data_template:
         title: room
         text: "{{ states.binary_sensor.motion_sensor_158d00016db268.state }}"
-
   - alias: state change kitchen
     initial_state: 'off'
     trigger:
@@ -34,7 +33,6 @@ automation:
       data_template:
         title: kitchen
         text: "{{ states.binary_sensor.motion_sensor_158d0001a40748.state }}"
-
   - alias: state change hall
     initial_state: 'off'
     trigger:

@@ -15,6 +15,7 @@ automation:
       - service: automation.turn_on
         entity_id: automation.doorclose
       - service: script.pb_door_opened
+      - service: script.door_out_push
       
   - alias: door.close
     initial_state: 'off'

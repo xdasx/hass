@@ -201,17 +201,17 @@ homeassistant:
       emulated_hue_hidden: false
       emulated_hue_name: "full automation"
 
-    script.git_dev:
-      emulated_hue_hidden: true
-      emulated_hue_name: ""
+    # script.git_dev:
+    #   emulated_hue_hidden: true
+    #   emulated_hue_name: ""
 
-    script.git_master:
-      emulated_hue_hidden: true
-      emulated_hue_name: ""
+    # script.git_master:
+    #   emulated_hue_hidden: true
+    #   emulated_hue_name: ""
 
-    script.git_sandbox:
-      emulated_hue_hidden: true
-      emulated_hue_name: ""
+    # script.git_sandbox:
+    #   emulated_hue_hidden: true
+    #   emulated_hue_name: ""
 
     script.yamaha_source_alexa:
       emulated_hue_hidden: false

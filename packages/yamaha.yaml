@@ -12,8 +12,8 @@ media_player:
       - "HDMI4"
     source_names:
       HDMI1: "miTV"
-      HDMI2: "PC"
-      AUDIO: "Alexa"
+      HDMI2: "Game"
+      AUDIO: "Aux"
       AV6: "Bluetooth"
       AV1: "ChromeCast"
 

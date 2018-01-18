@@ -50,68 +50,66 @@ script:
     - service: switch.turn_off
       entity_id: switch.tvrelay
 
-  play_spotify_alexa:
-    alias: play Spotify on Alexa
-    sequence:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver
-        source: Alexa
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.spotify
-        source: "eufy Genie-63F0"
-    - service: media_player.media_play
-      entity_id: media_player.spotify
-
-  play_spotify_echo:
-    alias: play Spotify on echo
-    sequence:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver
-        source: Bluetooth
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.spotify
-        source: "Dmitri's Echo Dot"
-    - service: media_player.media_play
-      entity_id: media_player.spotify
-
-  play_spotify_chromecast:
-    alias: play Spotify on chromecast
-    sequence:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver
-        source: ChromeCast
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.spotify
-        source: "Receiver"
-    - service: media_player.media_play
-      entity_id: media_player.spotify
-  play_spotify_tv:
-    alias: play Spotify on tv
-    sequence:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver
-        source: miTV
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.spotify
-        source: "TV"
-    - service: media_player.media_play
-      entity_id: media_player.spotify
+  # play_spotify_alexa:
+  #   alias: play Spotify on Alexa
+  #   sequence:
+  #   - service: media_player.turn_on
+  #     entity_id: media_player.yamaha_receiver
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.yamaha_receiver
+  #       source: Alexa
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.spotify
+  #       source: "eufy Genie-63F0"
+  #   - service: media_player.media_play
+  #     entity_id: media_player.spotify
+  # play_spotify_echo:
+  #   alias: play Spotify on echo
+  #   sequence:
+  #   - service: media_player.turn_on
+  #     entity_id: media_player.yamaha_receiver
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.yamaha_receiver
+  #       source: Bluetooth
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.spotify
+  #       source: "Dmitri's Echo Dot"
+  #   - service: media_player.media_play
+  #     entity_id: media_player.spotify
+  # play_spotify_chromecast:
+  #   alias: play Spotify on chromecast
+  #   sequence:
+  #   - service: media_player.turn_on
+  #     entity_id: media_player.yamaha_receiver
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.yamaha_receiver
+  #       source: ChromeCast
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.spotify
+  #       source: "Receiver"
+  #   - service: media_player.media_play
+  #     entity_id: media_player.spotify
+  # play_spotify_tv:
+  #   alias: play Spotify on tv
+  #   sequence:
+  #   - service: media_player.turn_on
+  #     entity_id: media_player.yamaha_receiver
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.yamaha_receiver
+  #       source: miTV
+  #   - service: media_player.select_source
+  #     data:
+  #       entity_id: media_player.spotify
+  #       source: "TV"
+  #   - service: media_player.media_play
+  #     entity_id: media_player.spotify
 
   yamaha_source_blue:
     alias: Input Bluetooth
@@ -135,14 +133,14 @@ script:
         entity_id: media_player.yamaha_receiver
         source: Alexa
   yamaha_source_hdmi2:
-    alias: Input HDMI2
+    alias: Input Game
     sequence:
     - service: media_player.select_source
       data:
         entity_id: media_player.yamaha_receiver
-        source: PC
+        source: Game
   yamaha_source_av1:
-    alias: Input AV1
+    alias: Input ChromeCast
     sequence:
     - service: media_player.select_source
       data:
@@ -251,9 +249,9 @@ group:
     - script.yamaha_source_blue
     - script.yamaha_source_alexa
     - script.yamaha_source_av1
-    - script.play_spotify_echo
-    - script.play_spotify_chromecast
-    - script.play_spotify_alexa
+    # - script.play_spotify_echo
+    # - script.play_spotify_chromecast
+    # - script.play_spotify_alexa
     - media_player.yamaha_receiver
     - media_player.tv
     - media_player.spotify
