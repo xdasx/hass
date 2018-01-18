@@ -16,6 +16,7 @@ lib
 deps
 tts
 secrets.yaml
+ip_bans.yaml
 secrets
 known_devices.yaml
 phue.conf

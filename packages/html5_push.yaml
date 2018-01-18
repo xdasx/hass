@@ -1,0 +1,58 @@
+### DOOR OPENED ###
+script:
+  door_out_push:
+    alias: Door Away Notification
+    sequence:
+      service: notify.gm
+      data_template:
+        message: '{{ states(''sensor.time'') }} : Door Is opened '
+        data:
+          actions:
+          - action: cancel_away
+            icon: "/static/icons/favicon-192x192.png"
+            title: Cancel Away
+          - action: set_away
+            title: Set Away
+  door_in_push:
+    alias: Door In Notification
+    sequence:
+      service: notify.gm
+      data_template:
+        message: '{{ states(''sensor.time'') }} : Door Is opened '
+        data:
+          actions:
+          - action: room_low
+            icon: "/static/icons/favicon-192x192.png"
+            title: Turn on Room Light
+automation:
+  - alias: Cancel Away
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: open_door
+    action:
+      - service: script.door_out_away_kill
+
+  - alias: Set Away
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: open_door
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.mode
+          option: Away
+
+  - alias: Turn on Room Light
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: room_low
+    action:
+      - service: switch.turn_on
+        entity_id: switch.living_switch_1
+

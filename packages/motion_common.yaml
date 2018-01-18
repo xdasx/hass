@@ -87,11 +87,11 @@ sensor:
             {% else %}
             {{ states("input_select.motion_event") }}
             {% endif %}
-        entity_id:
-          # - sensor.time
-          - sensor.motion_event
-          - binary_sensor.motion_sensor_158d00016db268
-          - binary_sensor.motion_sensor_158d0001a40748
+        # entity_id:
+        #   # - sensor.time
+        #   - sensor.motion_event
+        #   - binary_sensor.motion_sensor_158d00016db268
+        #   - binary_sensor.motion_sensor_158d0001a40748
 
 input_number:
   motion_watchdog_delay:
