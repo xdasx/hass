@@ -5,6 +5,7 @@
 *.key
 *.conf
 *.pickle
+*.json
 OZW_Log.txt
 home-assistant.log
 home-assistant_v2.db

@@ -105,12 +105,15 @@
   sensor.mode:
     custom_ui_state_card: state-card-custom-ui
     show_last_changed: true
-  input_slider.motion_watchdog_delay:
+  input_number.motion_watchdog_delay:
     confirm_controls: true
     custom_ui_state_card: state-card-custom-ui
   group.dev_pi:
     friendly_name: Pi States
+  group.light:
+    icon: mdi:lightbulb-outline
   group.scenes:
+    icon: mdi:home-circle
     custom_ui_state_card: state-card-custom-ui
   sensor.motion_event:
     friendly_name: Home Motion

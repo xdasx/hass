@@ -1,18 +1,20 @@
 automation:
-  - alias: motion.DetectedWc
+  - alias: m_on_wc
+
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001656a38
       to: 'on'
+
     action:
-     # - service: automation.turn_on
-       # entity_id: automation.motionEndRoom
       - service: script.motion_light_timer_wc_start
       - service: script.motion_watchdog_init
         data:
           place: Wc
-  
-  - alias: motion.EndWc
+      - service: automation.turn_on
+        entity_id: automation.mo_off_wc
+
+  - alias: mo_off_wc
     initial_state: 'off'
     trigger:
       platform: state
@@ -23,38 +25,58 @@ automation:
       entity_id: input_boolean.motion_light_wc
       state: 'on'
     action:
-      - service: script.motion_light_timer_wc_end
-      - service: script.motion_watchdog_init
-        data:
-          place: Wc
+      - service: timer.start
+        entity_id: timer.wc
+#      - service: script.motion_light_timer_wc_end
+  - alias: timer_wc_end
+    initial_state: 'off'
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.test
+    condition:
+      condition: state
+      entity_id: input_boolean.motion_light_wc
+      state: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.wc
+#      - service: script.motion_light_timer_wc_end
 
 script:
   motion_light_timer_wc_end:
     alias: MOTION.light.timer.wc.end
     sequence:
-    - delay: 00:{{ states.input_slider.motion_light_wc_delay.state | int }}:00
+
+    - delay: 00:{{ states.input_number.motion_light_wc_delay.state | int }}:00
+
     - service: switch.turn_off
       entity_id: switch.wc_switch
+    - service: automation.turn_off
+      entity_id: automation.motionendwc
+
   motion_light_timer_wc_start:
     alias: MOTION.light.timer.wc.start
     sequence:
+
     - condition: state
       entity_id: input_boolean.motion_light_wc
       state: 'on'
+
     - service: switch.turn_on
       entity_id: switch.wc_switch
-    - service: script.turn_off
-      entity_id: script.motion_light_timer_wc_end
-    - service: automation.turn_on
-      entity_id: automation.motionendwc
 
+timer:
+  wc:
+    duration: '00:00:30'
 input_boolean:
   motion_light_wc:
     name: Motion light Wc
     initial: off
     icon: mdi:run
 
-input_slider:
+input_number:
   motion_light_wc_delay:
    name: Wc light Delay
    min: 1
@@ -63,14 +85,13 @@ input_slider:
    initial: 5
    icon: mdi:timer
 
-
 group:
   motion_wc:
     name: Motion Wc
     entities:
     - binary_sensor.motion_sensor_158d0001656a38
     - input_boolean.motion_light_wc
-    - input_slider.motion_light_wc_delay
+    - input_number.motion_light_wc_delay
 
 homeassistant:
   customize:

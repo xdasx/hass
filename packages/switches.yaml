@@ -1,24 +1,4 @@
- ### HALL
-  - platform: mqtt
-    state_topic: "stat/sonoff1/POWER1"
-    command_topic: "cmnd/sonoff1/POWER1"
-    ##availability_topic: "tele/sonoff1/LWT"
-    name: "Hall"
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
- ### Heating
-  - platform: mqtt
-    state_topic: "stat/sonoff2/POWER"
-    command_topic: "cmnd/sonoff2/POWER"
-    #availability_topic: "tele/sonoff2/LWT"
-    name: "Heating"
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-
+switch:
  ### RF SWITCHES
   - platform: mqtt
     name: "Living Switch 1"
@@ -85,3 +65,49 @@
     optimistic: true
     qos: 0
     retain: false
+
+ ### HALL
+  - platform: mqtt
+    state_topic: "stat/sonoff1/POWER1"
+    command_topic: "cmnd/sonoff1/POWER1"
+    ##availability_topic: "tele/sonoff1/LWT"
+    name: "Hall"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+ ### Heating
+  - platform: mqtt
+    state_topic: "stat/sonoff2/POWER"
+    command_topic: "cmnd/sonoff2/POWER"
+    #availability_topic: "tele/sonoff2/LWT"
+    name: "Heating"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+homeassistant:
+  customize:
+    switch.heating:
+      icon: mdi:radiator
+      friendly_name: Radiator
+    switch.hall:
+      assumed_state: true
+      friendly_name: Hall Mirror
+      icon: mdi:spotlight-beam
+    switch.hall_switch:
+      friendly_name: Hall
+      icon: mdi:ceiling-light
+    switch.wc_switch:
+      icon: mdi:lightbulb
+    switch.bath_switch:
+      icon: mdi:lightbulb
+    switch.kitchen_switch:
+      friendly_name: Kitchen
+      icon: mdi:ceiling-light
+    switch.living_switch_1:
+      friendly_name: Room low
+      icon: mdi:lightbulb-outline
+    switch.living_switch_2:
+      friendly_name: Room High
+      icon: mdi:lightbulb

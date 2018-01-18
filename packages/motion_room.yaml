@@ -5,8 +5,6 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d00016db268
       to: 'on'
     action:
-     # - service: automation.turn_on
-       # entity_id: automation.motionEndRoom
       - service: script.motion_light_timer_room_start
       - service: script.motion_watchdog_init
         data:
@@ -24,30 +22,27 @@ automation:
       state: 'on'
     action:
       - service: script.motion_light_timer_room_end
-      - service: script.motion_watchdog_init
-        data:
-          place: Room
 
 script:
   motion_light_timer_room_end:
     alias: MOTION.light.timer.room.end
     sequence:
-    - delay: 00:{{ states.input_slider.motion_light_room_delay.state | int }}:00
+    - delay: 00:{{ states.input_number.motion_light_room_delay.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.living_switch_1
+
   motion_light_timer_room_start:
     alias: MOTION.light.timer.room.start
     sequence:
     - condition: state
       entity_id: input_boolean.motion_light_room
       state: 'on'
-    - service: switch.turn_on
-      entity_id: switch.living_switch_1
     - service: script.turn_off
       entity_id: script.motion_light_timer_room_end
+    - service: switch.turn_on
+      entity_id: switch.living_switch_1
     - service: automation.turn_on
       entity_id: automation.motionendroom
-
 
 input_boolean:
   motion_light_room:
@@ -55,14 +50,15 @@ input_boolean:
     initial: off
     icon: mdi:run
 
-input_slider:
+input_number:
   motion_light_room_delay:
-   name: Motion light Room Delay
+   name: Room light Delay
    min: 1
    max: 60
    step: 1
    initial: 5
    icon: mdi:timer
+   mode: box
 
 group:
   motion_room:
@@ -70,7 +66,7 @@ group:
     entities:
     - binary_sensor.motion_sensor_158d00016db268
     - input_boolean.motion_light_room
-    - input_slider.motion_light_room_delay
+    - input_number.motion_light_room_delay
 
 homeassistant:
   customize:
@@ -85,6 +81,6 @@ homeassistant:
       icon: mdi:weather-sunny
     binary_sensor.motion_sensor_158d00016db268:
       custom_ui_state_card: state-card-custom-ui
-      show_last_changed: true
       device_class: motion
       friendly_name: Room Motion
+      show_last_changed: true

@@ -57,22 +57,25 @@ pb_notify:
       message: '{{ states(''sensor.time'') }} : {{ text }}'
       data:
         url: '{{ states.sensor.ip_ext.state}}:7766/'
+gm_notify:
+  alias: gm.NOTIFY
+  sequence:
+  - service: notify.gm
+    data_template:
+      title: 'HASS : {{ title }}'
+      message: '{{ states(''sensor.time'') }} : {{ text }}'
+      data:
+        url: '{{ states.sensor.ip_ext.state}}:7766/'
 
 ## SECURETY ##
 securety_entrance:
   alias: SECURETY.entrance
   sequence:
-  - service: script.pb_notify
-    data_template:
-      title: Door Status
-      text: Someone entered
+  - service: script.door_in_push
 securety_exit:
   alias: SECURETY.exit
   sequence:
-  - service: script.pb_notify
-    data_template:
-      title: Home Status
-      text: Someone Left Home
+  - service: script.door_out_push
 
 ## UTIL ##
 
@@ -128,6 +131,12 @@ flash_red_init:
       data:
         entity_id: script.flash_red
 
+group_visibility:
+  sequence:
+    - service: group.set_visibility
+      data_template:
+        entity_id: '{{ entity_id }}'
+        visible: '{{ is_state(cond, visible_state) }}'
 ## CLIMA ##   
  
 ##NOT USED##

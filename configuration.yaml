@@ -12,37 +12,32 @@ sensor: !include_dir_merge_list sensors
 # automation old: !include_dir_merge_list automation
 automation: !include automations.yaml
 #scene: !include scene.yaml
-switch: !include switch.yaml
+#switch: !include switch.yaml
 # script: !include_dir_merge_named script
 script: !include scripts.yaml
 group: !include groups.yaml
 input_select: !include input_select.yaml
 input_boolean: !include input_boolean.yaml
-input_slider: !include input_slider.yaml
 shell_command: !include_dir_named shell_command/
 
 
 #introduction:
-emulated_hue:
-  listen_port: 8300
-  expose_by_default: true
-  exposed_domains:
-    - switch
-    - light
-    - scene
-    - script
-#config:
+
 updater:
 discovery:
 # conversation:
 history:
-  exclude:
+  # exclude:
+    # domains:
+      # - group
+      # - script
+      # - sensor
+      # - sun
+  include:
     domains:
-      - group
-      - script
       - sensor
-#      - sun
-  # include:
+      - switch
+      - media_player
     # entities:
       # - sensor.away_time
       # - sensor.command_sensor
@@ -66,19 +61,19 @@ history:
       # - sensor.since_last_boot
       # - sensor.tv_esp
 
-#logbook:
-#  exclude:
-#    entities:
-#      - sensor.cpu_temp
-#      - sensor.cpu_use
-#      - sensor.date
-#      - sensor.date__time
-#      - sensor.disk_use_
-#      - sensor.home_time
-#      - sensor.since_last_boot
-#      - sensor.time
-#      - sensor.time__date
-#sun:
+logbook:
+  exclude:
+    entities:
+      - sensor.cpu_temp
+      - sensor.cpu_use
+      - sensor.date
+      - sensor.date__time
+      - sensor.disk_use_
+      - sensor.home_time
+      - sensor.since_last_boot
+      - sensor.time
+      - sensor.time__date
+sun:
 frontend:
   extra_html_url:
     - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui.html
@@ -161,9 +156,12 @@ frontend:
       secondary-text-color: "var(--primary-color)"
       table-row-background-color: "var(--paper-card-background-color)"
       table-row-alternative-background-color: "var(--sidebar-text_-_background)"
+
 http:
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
   api_password: !secret http_password
-#  development: 0
   login_attempts_threshold: 5
   trusted_networks:
     - 127.0.0.1
@@ -192,37 +190,22 @@ notify:
  - platform: pushbullet 
    name: pb
    api_key: !secret pushbullet_api_key
- # - platform: html5 
-   # gcm_api_key: !secret gcm_api_key
-   # gcm_sender_id: !secret gcm_sender_id
-   
+ - name: gm
+   platform: html5
+   gcm_api_key: !secret gcm_api_key
+   gcm_sender_id: !secret gcm_sender_id
+
 media_player:
-  - platform: yamaha
-    host: 192.168.31.27
-    source_ignore:
-      - "AUX"
-      - "AV1"
-      - "AV2"
-      - "AV3"
-      - "AV4"
-      - "AV5"
-      - "AV6"
-      - "NET RADIO"
-      - "HDMI3"
-      - "HDMI4"
-    source_names:
-      HDMI1: "TV"
-      HDMI2: "PC"
-      AUDIO: "Bluetooth"
-#      source_list: AirPlay,Bluetooth,SERVER,TUNER,USB,V-AUX,iPod (USB)
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
-  #- platform: vlc
-    # name: vlc
- # - platform: cast
-   # host: 192.168.31.105
+    aliases:
+      eufy Genie-63F0: "alexa"
+      Dmitri's Echo Dot: "echo"
+
 mqtt:
+  discovery: true
+  discovery_prefix: ha
   broker: !secret mqtt_broker
   port: !secret mqtt_port
   client_id: home-assistant-1
@@ -237,20 +220,13 @@ mqtt:
     topic: 'tele/hass/LWT'
     payload: 'Offline'
 
-
-
 fan:
   - platform: mqtt
     name: "Hall Blink"
     command_topic: "cmnd/sonoff1/POWER"
-    # oscillation_state_topic: "bedroom_fan/oscillation/state"
-    # oscillation_command_topic: "bedroom_fan/oscillation/set"
-    # speed_state_topic: "bedroom_fan/speed/state"
     speed_command_topic: "cmnd/sonoff1/BlinkCount"
     payload_on: 3
     payload_off: 4
-    # payload_oscillation_on: "true"
-    # payload_oscillation_off: "false"
     payload_low_speed: "2"
     payload_medium_speed: "3"
     payload_high_speed: "10"
@@ -258,22 +234,45 @@ fan:
       - low
       - medium
       - high
-alarm_control_panel:
-  - platform: manual_mqtt
-    state_topic: "home/alarm"
-    command_topic: "home/alarm/set"
-# panel_custom:
-  # - name: floorplan
-    # sidebar_title: Floorplan
-    # sidebar_icon: mdi:home
-    # url_path: floorplan
-    # config: !include floorplan.yaml
-panel_iframe:
-  docker:
-    title: Docker
-    icon: mdi:webpack
-    url: !secret docker_url
 
+#alarm_control_panel:
+#  - platform: manual_mqtt
+#    state_topic: "home/alarm"
+#    command_topic: "home/alarm/set"
+
+# panel_iframe:
+  # docker:
+  #   title: Docker
+  #   icon: mdi:webpack
+  #   url: !secret docker_url
+  # router:
+  #   title: Router
+  #   url: !secret wifi_url
+  #   icon: mdi:router-wireless
+google_assistant:
+  project_id: home-163008
+  client_id: helloArchy
+  access_token: helloArchyDma
+  exposed_domains:
+    - switch
+    - light
+    - scene
+    - media_player
+    - climate
+
+# weblink:
+#   entities:
+#     - name: Router
+#       url: !secret wifi_url
+#     - name: Home Assistant
+#       url: https://home-assistant.io
+#     - name: GitHub
+#       url: !secret github_url
+
+# no_ip:
+#   domain: xdasx.ddns.net
+#   username: !secret noip_user
+#   password: !secret noip_pass
 # plant:
   # simulated_plant:
     # sensors:

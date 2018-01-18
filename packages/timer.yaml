@@ -1,0 +1,106 @@
+timer:
+  test:
+    duration: '00:00:30'
+
+automation:
+  - alias: state change wc
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656a38
+    action:
+    - service: script.pb_notify
+      data_template:
+        title: wc
+        text: "{{ states.binary_sensor.motion_sensor_158d0001656a38.state }}"
+  - alias: state change room
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00016db268
+    action:
+    - service: script.pb_notify
+      data_template:
+        title: room
+        text: "{{ states.binary_sensor.motion_sensor_158d00016db268.state }}"
+  - alias: state change kitchen
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a40748
+    action:
+    - service: script.pb_notify
+      data_template:
+        title: kitchen
+        text: "{{ states.binary_sensor.motion_sensor_158d0001a40748.state }}"
+  - alias: state change hall
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_hall
+    action:
+    - service: script.pb_notify
+      data_template:
+        title: hall
+        text: "{{ states.binary_sensor.motion_hall.state }}"
+
+#  - alias: timer finished
+#    trigger:
+#      platform: event
+#      event_type: timer.finished
+#      event_data:
+#        entity_id: timer.test
+#    action:
+#      - service: script.pb_notify
+#        data_template:
+#          title: Timer
+#          text: Finished
+#
+#  - alias: timer cancelled
+#    trigger:
+#      platform: event
+#      event_type: timer.cancelled
+#      event_data:
+#        entity_id: timer.test
+#    action:
+#      - service: script.pb_notify
+#        data_template:
+#          title: Timer
+#          text: cancelled
+#
+#  - alias: timer started
+#    trigger:
+#      platform: event
+#      event_type: timer.started
+#      event_data:
+#        entity_id: timer.test
+#    action:
+#      - service: script.pb_notify
+#        data_template:
+#          title: Timer
+#          text: started
+script:
+  start_timer:
+    sequence:
+    - service: timer.start
+      entity_id: timer.test
+  stop_timer:
+    sequence:
+    - service: timer.cancel
+      entity_id: timer.test
+  pause_timer:
+    sequence:
+    - service: timer.pause
+      entity_id: timer.test
+group:
+  timer:
+    name: timer
+    entities:
+    - automation.timer_cancelled
+    - automation.timer_finished
+    - automation.timer_started
+    - automation.timer_test
+    - timer.test
+    - script.start_timer
+    - script.pause_timer
+    - script.stop_timer

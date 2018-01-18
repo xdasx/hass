@@ -6,12 +6,12 @@ script:
     - service: mqtt.publish
       data:
         topic: home/clima/home
-        payload_template: '{{ states(''input_slider.clima_home_temp'') }}'
+        payload_template: '{{ states(''input_number.clima_home_temp'') }}'
         retain: 'true'
     - service: mqtt.publish
       data:
         topic: home/clima/away
-        payload_template: '{{ states(''input_slider.clima_away_temp'') }}'
+        payload_template: '{{ states(''input_number.clima_away_temp'') }}'
         retain: 'true'
         
   save_home_temp:
@@ -28,7 +28,7 @@ script:
     - service: script.pb_debug
       data_template:
         title: CLIMA
-        text: Home Temperature {{ states.input_slider.clima_home_temp.state }} Saved 
+        text: Home Temperature {{ states.input_number.clima_home_temp.state }} Saved
         
   warmup:
     alias: Warmup
@@ -46,7 +46,8 @@ climate:
   - platform: generic_thermostat
     name: Room
     heater: switch.heating
-    target_sensor: sensor.heater_temp
+    target_sensor: sensor.temperature_158d0001dc1f30
+#    target_sensor: sensor.heater_temp
     min_temp: 19
     max_temp: 30
     target_temp: 20
@@ -81,14 +82,15 @@ sensor:
         friendly_name: 'Climate temp'
         unit_of_measurement: '°C'
 
-input_slider:
+input_number:
   clima_home_temp:
     name: Home Temp
     min: 10
     max: 30
     step: 0.5
-    initial: 20
+    initial: 22
     icon: mdi:temperature-celsius
+#    mode: box
   clima_away_temp:
     name: Away Temp
     min: 10
@@ -96,6 +98,7 @@ input_slider:
     step: 0.5
     initial: 10
     icon: mdi:temperature-celsius
+#    mode: box
     
 group:
   clima:
@@ -111,10 +114,24 @@ group:
     entities:
     - switch.heating
     - sensor.heater
+    - sensor.temperature_158d0001dc1f30
+    - sensor.pressure_158d0001dc1f30
+    - sensor.humidity_158d0001dc1f30
     - sensor.current_temp
     - sensor.home_temp
     - sensor.away_temp
-    - input_slider.clima_home_temp
-    - input_slider.clima_away_temp
+    - input_number.clima_home_temp
+    - input_number.clima_away_temp
     - script.mqtt_temp_set
     - script.warmup
+homeassistant:
+  customize:
+    sensor.temperature_158d0001dc1f30:
+      friendly_name: Room Temp
+      icon: mdi:thermometer
+    sensor.pressure_158d0001dc1f30:
+      friendly_name: Room Press
+      icon: mdi:speedometer
+    sensor.humidity_158d0001dc1f30:
+      friendly_name: Room Hum
+      icon: mdi:water-percent

@@ -23,12 +23,11 @@ automation:
     action:
      - service: script.motion_light_timer_hall_end
 
-         
 script:
   motion_light_timer_hall_end:
     alias: MOTION.light.timer.hall.end
     sequence:
-    - delay: 00:00:{{ states.input_slider.motion_light_hall_delay.state | int }}
+    - delay: 00:00:{{ states.input_number.motion_light_hall_delay.state | int }}
     - service: switch.turn_off
       entity_id: switch.hall
       
@@ -44,21 +43,14 @@ script:
       entity_id: switch.hall
     - service: automation.turn_on
       entity_id: automation.motionendhall
-      
-binary_sensor:
-  - platform: rpi_gpio
-    invert_logic: false
-    pull_mode: DOWN
-    ports:
-     12: Motion Hall
-     
-input_boolean:   
+
+input_boolean:
   motion_light_hall:
     name: Motion light Hall
     initial: on
     icon: mdi:run
 
-input_slider:
+input_number:
   motion_light_hall_delay:
    name: Hall light Delay
    min: 1
@@ -66,6 +58,7 @@ input_slider:
    step: 10
    initial: 30
    icon: mdi:timer
+   mode: box
 
 group:
   motion_hall:
@@ -73,7 +66,7 @@ group:
     entities:
     - binary_sensor.motion_sensor_hall
     - input_boolean.motion_light_hall
-    - input_slider.motion_light_hall_delay
+    - input_number.motion_light_hall_delay
 
 homeassistant:
   customize:
@@ -88,3 +81,10 @@ homeassistant:
       show_last_changed: true
       device_class: motion
       friendly_name: Hall Motion
+
+binary_sensor:
+  - platform: rpi_gpio
+    invert_logic: false
+    pull_mode: DOWN
+    ports:
+     12: Motion Hall

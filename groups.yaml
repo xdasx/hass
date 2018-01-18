@@ -6,7 +6,8 @@
     entities:
     - sensor.motion_tracker
     - sensor.door_event
-    - sensor.heater_temp
+#    - sensor.heater_temp
+    - sensor.temperature_158d0001dc1f30
     - sensor.mode
     
     - group.light
@@ -40,18 +41,6 @@
     - switch.hall_switch
     - light.gateway_light_34ce008c0676
     - group.motion
-  
-  ## MEDIA ##
-  media:
-    name: Media
-    view: true
-    icon: mdi:play-circle-outline
-    entities:
-
-    - group.Tv
-    - media_player.spotify
-
-    
 
     
   ## SETTINGS ##
@@ -85,6 +74,7 @@
     name: Dev
     icon: mdi:developer-board
     entities:
+    - group.timer
     - group.all_devices
     - group.dev_pi
     - group.xiaomi
@@ -92,7 +82,8 @@
     - group.debug
     - input_select.mode
     - input_select.power_mode
-
+    - group.yamaha_input
+  
   weather:
     name: Weather
     view: false
@@ -126,6 +117,7 @@
   xiaomi:
     name: xiaomi
     entities:
+    - group.mi_cube_automation
     - binary_sensor.cube_158d000103a328
     - binary_sensor.motion_sensor_158d00016db268
     - binary_sensor.motion_sensor_158d0001a40748
@@ -137,6 +129,9 @@
     - sensor.illumination_34ce008c0676
     - binary_sensor.switch_158d0001644276
     - binary_sensor.switch_158d00016c49f1
+    - sensor.temperature_158d0001dc1f30
+    - sensor.pressure_158d0001dc1f30
+    - sensor.humidity_158d0001dc1f30
     
   debug:
     entities:
