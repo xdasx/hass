@@ -31,6 +31,11 @@ script:
     - delay: 00:{{ states.input_number.tv_timer.state | int }}:00
     - service: switch.turn_off
       entity_id: switch.tv
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.tv_timer
+        value: "{{ brightness }}"
+    
   tv_on:
     alias: TV on
     sequence:
@@ -180,7 +185,7 @@ light:
       tv_timer:
         friendly_name: "Tv Timer"
         level_template: "{{ states.input_number.tv_timer.state | int }}"
-        value_template: "{{ states.input_number.tv_timer.state | int > 0 }}"
+        value_template: "{{ states.script.tv_shutdown_timer.state }}"
         turn_on:
           service: script.turn_on
           entity_id: script.tv_shutdown_timer
@@ -199,7 +204,7 @@ input_number:
     min: 0
     max: 100
     step: 1
-    initial: 30
+    initial: 0
     icon: mdi:timer
     mode: box
 
