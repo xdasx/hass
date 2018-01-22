@@ -60,7 +60,7 @@ input_number:
 light:
   - platform: template
     lights:
-      tv_timer:
+      sleep_timer:
         friendly_name: "Sleep Timer"
         level_template: "{{ states.input_number.sleep_timer.state | int }}"
         value_template: "{{ states.script.sleep_timer.state }}"
