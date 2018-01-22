@@ -189,9 +189,9 @@ light:
           entity_id: script.tv_shutdown_timer
         set_level:
           service: input_number.set_value
-        data_template:
-          entity_id: input_number.tv_timer
-          value: "{{ brightness }}"
+          data_template:
+            entity_id: input_number.tv_timer
+            value: "{{ brightness }}"
 
 input_number:
   tv_timer:
