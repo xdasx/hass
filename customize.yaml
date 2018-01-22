@@ -87,9 +87,9 @@
   
   
   sensor.motion_tracker:
-    custom_ui_state_card: state-card-custom-ui
-    template:
-      unit_of_measurement: entities['input_select.motion_event'].state
+    # custom_ui_state_card: state-card-custom-ui
+    # template:
+    #   unit_of_measurement: entities['input_select.motion_event'].state
   group.dev_clima:
     friendly_name: Heater
   

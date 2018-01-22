@@ -34,7 +34,7 @@ script:
     - service: input_number.set_value
       data_template:
         entity_id: input_number.tv_timer
-        value: "{{ brightness }}"
+        value: 0
     
   tv_on:
     alias: TV on
