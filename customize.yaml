@@ -86,7 +86,7 @@
     friendly_name: MiButton2
   
   
-  sensor.motion_tracker:
+  # sensor.motion_tracker:
     # custom_ui_state_card: state-card-custom-ui
     # template:
     #   unit_of_measurement: entities['input_select.motion_event'].state
