@@ -7,7 +7,7 @@
     - sensor.motion_tracker
     - sensor.door_event
 #    - sensor.heater_temp
-    - sensor.temperature_158d0001dc1f30
+    # - sensor.temperature_158d0001dc1f30
     - sensor.mode
     
     - group.light
@@ -54,8 +54,8 @@
     - group.motion
     - group.notify
     - group.presence
-    - group.git
-    - sensor.git
+    # - group.git
+    # - sensor.git
     - configurator.spotify
 
 
@@ -74,15 +74,15 @@
     name: Dev
     icon: mdi:developer-board
     entities:
-    - group.timer
-    - group.all_devices
+    # - group.timer
+    # - group.all_devices
     - group.dev_pi
     - group.xiaomi
     - group.dev_states
     - group.debug
     - input_select.mode
     - input_select.power_mode
-    - group.yamaha_input
+    # - group.yamaha_input
   
   weather:
     name: Weather

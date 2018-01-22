@@ -50,7 +50,7 @@ climate:
 #    target_sensor: sensor.heater_temp
     min_temp: 19
     max_temp: 30
-    target_temp: 20
+    target_temp: 22
     tolerance: 1
     
 sensor:
