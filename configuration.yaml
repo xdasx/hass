@@ -259,6 +259,70 @@ google_assistant:
     - scene
     - media_player
     - climate
+  entity_config:
+    switch.bath_switch:
+      name: Bath
+      type: light
+      expose: true
+    switch.hall:
+      name: Hall Mirror
+      type: light
+      expose: true
+    switch.hall_switch:
+      name: Hall
+      type: light
+      expose: true
+    switch.heating:
+      name: Radiator
+      # type: 
+      expose: true
+    switch.tv:
+      name: Tv
+      # type:
+      expose: true
+    switch.tvrelay:
+      name: Tv Box
+      # type:
+      expose: true
+    switch.wc_switch:
+      name: Wc
+      aliases:
+        - Wc
+        - Toilet
+      type: light
+      expose: true
+    switch.kitchen_switch:
+      name: Kitchen
+      type: light
+      expose: true
+    switch.living_switch_1:
+      name: Room Low
+      type: light
+      expose: true
+    switch.living_switch_2:
+      name: Room High
+      type: light
+      expose: true
+    switch.yamaha_reciever:
+      # name:
+      # type:
+      expose: false
+    media_player.google_home:
+      name: Google Home media player
+      expose: false
+    media_player.receiver:
+      name: ChromeCast media player
+      expose: true
+    media_player.spotify:
+      name: Spotify media player
+      expose: false
+    media_player.tv:
+      name: Tv Cast media player
+      expose: false
+    media_player.yamaha_receiver:
+      name: Reciever media player
+      expose: true
+
 
 # weblink:
 #   entities:
