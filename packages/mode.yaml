@@ -46,8 +46,46 @@ automation:
       to: 'J&D'
     action:
       service: script.mode_jane
-      
+
+input_number:
+  sleep_timer:
+    name: Sleep Timer
+    min: 0
+    max: 100
+    step: 1
+    initial: 0
+    icon: mdi:timer
+    mode: box
+
+light:
+  - platform: template
+    lights:
+      tv_timer:
+        friendly_name: "Sleep Timer"
+        level_template: "{{ states.input_number.sleep_timer.state | int }}"
+        value_template: "{{ states.script.sleep_timer.state }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.sleep_timer
+        turn_off:
+          service: script.turn_off
+          entity_id: script.sleep_timer
+        set_level:
+          service: input_number.set_value
+          data_template:
+            entity_id: input_number.sleep_timer
+            value: "{{ (brightness / 255 * 100)|int }}"
 script:
+  sleep_timer:
+    alias: Sleep timer.
+    sequence:
+    - delay: 00:{{ states.input_number.sleep_timer.state | int }}:00
+    - service: scene.turn_on
+      entity_id: scene.zzz
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.sleep_timer
+        value: 0
   pb_mode:
     alias: Send Mode state to PB
     sequence:
