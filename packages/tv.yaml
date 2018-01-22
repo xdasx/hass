@@ -196,7 +196,7 @@ light:
           service: input_number.set_value
           data_template:
             entity_id: input_number.tv_timer
-            value: "{{ brightness }}"
+            value: "{{ (brightness / 255 * 100)|int }}"
 
 input_number:
   tv_timer:
