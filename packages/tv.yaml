@@ -263,6 +263,7 @@ group:
 #    - sensor.tv_timer
     - input_number.tv_timer
     - script.tv_shutdown_timer
+    - light.tv_timer
   yamaha_input:
     name: Reciever
     entities:

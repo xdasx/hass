@@ -82,6 +82,7 @@
     - group.debug
     - input_select.mode
     - input_select.power_mode
+    - light.tv_timer
     # - group.yamaha_input
   
   weather:
