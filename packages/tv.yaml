@@ -174,10 +174,6 @@ switch:
         turn_off:
           service: media_player.turn_off
           entity_id: media_player.yamaha_receiver
-      tv_timer:
-        friendly_name: "Tv Timer"
-        value_template: "{{ is_state('switch.tv_shutdown_timer', 'on') }}"
-        
 light:
   - platform: template
     lights:
