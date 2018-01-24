@@ -76,7 +76,11 @@ logbook:
 sun:
 frontend:
   extra_html_url:
-    - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui.html
+    - https://github.com/andrey-git/home-assistant-custom-ui/releases/download/20171129/state-card-custom-ui-dbg.html
+  extra_html_url_es5:
+    - https://github.com/andrey-git/home-assistant-custom-ui/releases/download/20171129/state-card-custom-ui-dbg-es5.html
+  # extra_html_url:
+  #   - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui.html
   themes:
     minimal:
       dark-primary-color: "#192231"
