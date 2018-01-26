@@ -10,7 +10,7 @@ automation:
       data:
         place: Kitchen
 
-  - alias: motion.EndKitchen
+  - alias: motion_kitchen_end
     initial_state: 'off'
     trigger:
       platform: state
@@ -31,7 +31,7 @@ script:
     - service: switch.turn_off
       entity_id: switch.kitchen_switch
     - service: automation.turn_off
-      entity_id: automation.motionendkitchen
+      entity_id: automation.motion_kitchen_end
 
   motion_light_timer_kitchen_start:
     alias: MOTION.light.timer.kitchen.start
@@ -44,7 +44,7 @@ script:
     - service: switch.turn_on
       entity_id: switch.kitchen_switch
     - service: automation.turn_on
-      entity_id: automation.motionendkitchen
+      entity_id: automation.motion_kitchen_end
 
 input_boolean:    
   motion_light_kitchen:
@@ -69,6 +69,12 @@ group:
     - binary_sensor.motion_sensor_158d0001a40748
     - input_boolean.motion_light_kitchen
     - input_number.motion_light_kitchen_delay
+    - automation.motion_kitchen_end
+    - automation.motion_kitchen_on
+    - script.motion_light_timer_kitchen_start
+    - script.motion_watchdog_init
+    - script.motion_light_timer_kitchen_end
+
 
 homeassistant:
   customize:

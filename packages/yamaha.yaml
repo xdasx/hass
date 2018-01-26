@@ -1,6 +1,6 @@
 media_player:
   - platform: yamaha
-    host: 192.168.31.27
+    host: 192.168.31.103
     source_ignore:
 #      - "AV1"
       - "AV2"
