@@ -134,10 +134,10 @@ sensor:
     state_topic: "stat/hass/jane"
 
 device_tracker:
-  - platform: tplink
-    host: 192.168.31.1
-    username: admin
-    password: !secret wifi_pwd
+  #- platform: tplink
+   # host: 192.168.31.1
+  #  username: admin
+   # password: !secret wifi_pwd
 # device_tracker:
 #   - platform: xiaomi
 #     host: 192.168.31.1
