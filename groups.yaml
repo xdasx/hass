@@ -57,6 +57,8 @@
     # - group.git
     # - sensor.git
     - configurator.spotify
+    - switch.server
+
 
 
   notify:
