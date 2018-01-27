@@ -143,7 +143,13 @@ device_tracker:
 #     host: 192.168.31.1
 #     password: !secret wifi_pwd
   - platform: nmap_tracker
-    hosts: 192.168.1.1-255
+    hosts: 192.168.31.1-255
+    exclude:
+     - 192.168.31.105
+     - 192.168.31.103
+     - 192.168.31.23
+     - 192.168.31.24
+     - 192.168.31.25
   - platform: mqtt
     devices:
       Jane: stat/hass/jane
