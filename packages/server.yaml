@@ -2,6 +2,7 @@ switch:
   - platform: wake_on_lan
     name: "Server"
     mac_address: "00:19:99:51:c0:ac"
+    optimistic: true
     turn_off:
       service: shell_command.turn_off_server
 
