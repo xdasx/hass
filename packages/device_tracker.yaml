@@ -142,6 +142,8 @@ device_tracker:
 #   - platform: xiaomi
 #     host: 192.168.31.1
 #     password: !secret wifi_pwd
+  - platform: nmap_tracker
+    hosts: 192.168.1.1-255
   - platform: mqtt
     devices:
       Jane: stat/hass/jane
