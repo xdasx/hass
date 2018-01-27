@@ -213,7 +213,7 @@ mqtt:
   broker: !secret mqtt_broker
   port: !secret mqtt_port
   client_id: home-assistant-1
-  keepalive: 60
+  keepalive: 60s
   username: !secret mqtt_username
   # password: !secret mqtt_password
   protocol: 3.1
@@ -244,15 +244,15 @@ fan:
 #    state_topic: "home/alarm"
 #    command_topic: "home/alarm/set"
 
-# panel_iframe:
-  # docker:
-  #   title: Docker
-  #   icon: mdi:webpack
-  #   url: !secret docker_url
-  # router:
-  #   title: Router
-  #   url: !secret wifi_url
-  #   icon: mdi:router-wireless
+panel_iframe:
+  docker:
+    title: Docker
+    icon: mdi:webpack
+    url: !secret docker_url
+  router:
+    title: Torrent
+    url: !secret torrent_url
+    icon: mdi:arrow-down-bold-hexagon-outline
 google_assistant:
   project_id: home-163008
   client_id: helloArchy

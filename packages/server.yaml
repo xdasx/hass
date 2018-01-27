@@ -1,0 +1,20 @@
+switch:
+  - platform: wake_on_lan
+    name: "Server"
+    mac_address: "00:19:99:51:c0:ac"
+    turn_off:
+      service: shell_command.turn_off_server
+
+shell_command:
+  turn_off_server: 'ssh root@http://192.168.31.112 systemctl start systemd-suspend.service'
+
+sensor:
+  - platform: transmission
+    host: !secret transmission_host
+    username: !secret transmission_user
+    password: !secret transmission_password
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+      - 'active_torrents'
