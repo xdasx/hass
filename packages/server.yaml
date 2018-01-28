@@ -7,7 +7,8 @@ switch:
       service: shell_command.turn_off_server
 
 shell_command:
-  turn_off_server: 'ssh -i “/config/.ssh/id_rsa” hass@192.168.31.112 /usr/sbin/pm-suspend'
+  # turn_off_server: 'ssh -i “/config/.ssh/id_rsa” hass@192.168.31.112 /usr/sbin/pm-suspend'
+  turn_off_server: 'ssh -i /config/.ssh/id_rsa hass@192.168.31.112 "sudo /usr/sbin/pm-suspend"'
 
 sensor:
   - platform: transmission
