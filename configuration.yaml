@@ -243,16 +243,23 @@ fan:
 #  - platform: manual_mqtt
 #    state_topic: "home/alarm"
 #    command_topic: "home/alarm/set"
-
-panel_iframe:
-  docker:
-    title: Docker
-    icon: mdi:webpack
-    url: !secret docker_url
-  router:
-    title: Torrent
-    url: !secret torrent_url
-    icon: mdi:arrow-down-bold-hexagon-outline
+weblink:
+  entities:
+    - name: Docker
+      icon: mdi:webpack
+      url: !secret docker_url
+    - name: Torrent
+      url: !secret torrent_url
+      icon: mdi:arrow-down-bold-hexagon-outline
+# panel_iframe:
+#   docker:
+#     title: Docker
+#     icon: mdi:webpack
+#     url: !secret docker_url
+#   router:
+#     title: Torrent
+#     url: !secret torrent_url
+#     icon: mdi:arrow-down-bold-hexagon-outline
 google_assistant:
   project_id: home-163008
   client_id: helloArchy

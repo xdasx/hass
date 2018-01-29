@@ -57,7 +57,16 @@
     # - group.git
     # - sensor.git
     - configurator.spotify
+    - group.server
+
+
+  server:
+    name: Notifications
+    entities:
     - switch.server
+    - weblink.docker
+    - weblink.torrent
+
 
 
 
