@@ -251,9 +251,12 @@ weblink:
     - name: Torrent
       url: !secret torrent_url
       icon: mdi:arrow-down-bold-hexagon-outline
-    - name: ServerStats
+    - name: Server Stats
       url: !secret glances_url
       icon: mdi:speedometer
+    - name: Plex
+      url: !secret plex_url
+      icon: mdi:plex
 # panel_iframe:
 #   docker:
 #     title: Docker
