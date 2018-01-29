@@ -251,6 +251,9 @@ weblink:
     - name: Torrent
       url: !secret torrent_url
       icon: mdi:arrow-down-bold-hexagon-outline
+    - name: ServerStats
+      url: !secret glances_url
+      icon: mdi:speedometer
 # panel_iframe:
 #   docker:
 #     title: Docker
