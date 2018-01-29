@@ -8,7 +8,9 @@ switch:
 
 shell_command:
   # turn_off_server: 'ssh -i “/config/.ssh/id_rsa” hass@192.168.31.112 /usr/sbin/pm-suspend'
-  turn_off_server: 'ssh -i /config/.ssh/id_rsa hass@192.168.31.112 "sudo /usr/sbin/pm-suspend"'
+  # turn_off_server: 'ssh -i /config/.ssh/id_rsa hass@192.168.31.112 "sudo /usr/sbin/pm-suspend"'
+  turn_off_server: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa hass@192.168.31.112 sudo pm-suspend'
+  
 
 sensor:
   - platform: transmission
