@@ -11,17 +11,29 @@ automation:
         visible_state: 'on'
   - alias: Change reciever input on play
     trigger:
-      platform: state
-      entity_id: media_player.receiver
-      to: 'playing'
+      - platform: state
+        entity_id: media_player.receiver
+        to: 'playing'
+      - platform: state
+        entity_id: media_player.home_2
+        to: 'playing'
+      - platform: state
+        entity_id: media_player.home
+        to: 'playing'
     action:
       service: script.yamaha_source_av1
 
   - alias: Change reciever to tv input on stop
     trigger:
-      platform: state
-      entity_id: media_player.receiver
-      to: 'off'
+      - platform: state
+        entity_id: media_player.receiver
+        to: 'off'
+      - platform: state
+        entity_id: media_player.home_2
+        to: 'off'
+      - platform: state
+        entity_id: media_player.home
+        to: 'off'
     action:
       service: script.yamaha_source_tv
 script:
