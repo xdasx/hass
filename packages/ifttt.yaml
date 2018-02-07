@@ -69,3 +69,10 @@ automation:
     action:
       service: ifttt.trigger
       data_template: {"event":"fanoff"}
+
+homeassistant:
+  customize:
+    switch.fan:
+      icon: mdi:fan
+    switch.lamp:
+      icon: mdi:lamp

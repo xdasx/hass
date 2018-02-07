@@ -26,6 +26,7 @@
     - switch.kitchen_switch
     - switch.hall
     - switch.hall_switch
+    - switch.lamp
     - light.gateway_light_34ce008c0676
   
   lightg:
@@ -57,6 +58,7 @@
     # - group.git
     # - sensor.git
     - configurator.spotify
+    - switch.fan
     - group.server
 
 
