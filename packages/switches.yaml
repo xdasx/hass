@@ -10,13 +10,12 @@ switch:
     optimistic: false
     qos: 0
     retain: false
-    availability_topic: "tele/esp_rf/LWT"
 
   - platform: mqtt
     name: "Living Switch 2"
     # state_topic: "home/bedroom/switch1"
     command_topic: "cmnd/esp_rf/MQTTto433"
-    availability_topic: "tele/esp_rf/LWT"
+    #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110122"
     payload_off: "11110123"
     optimistic: false
@@ -27,7 +26,7 @@ switch:
     name: "Hall Switch"
     # state_topic: "home/bedroom/switch1"
     command_topic: "cmnd/esp_rf/MQTTto433"
-    availability_topic: "tele/esp_rf/LWT"
+    #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110012"
     payload_off: "11110013"
     optimistic: false
@@ -38,7 +37,7 @@ switch:
     name: "WC Switch"
     # state_topic: "home/bedroom/switch1"
     command_topic: "cmnd/esp_rf/MQTTto433"
-    availability_topic: "tele/esp_rf/LWT"
+    #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110212"
     payload_off: "11110213"
     optimistic: false
@@ -49,7 +48,7 @@ switch:
     name: "Bath Switch"
     # state_topic: "home/bedroom/switch1"
     command_topic: "cmnd/esp_rf/MQTTto433"
-    availability_topic: "tele/esp_rf/LWT"
+    #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110312"
     payload_off: "11110313"
     optimistic: false
@@ -60,7 +59,7 @@ switch:
     name: "Kitchen Switch"
     # state_topic: "home/bedroom/switch1"
     command_topic: "cmnd/esp_rf/MQTTto433"
-    availability_topic: "tele/esp_rf/LWT"
+    #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110412"
     payload_off: "11110413"
     optimistic: true
@@ -71,7 +70,7 @@ switch:
   - platform: mqtt
     state_topic: "stat/sonoff1/POWER1"
     command_topic: "cmnd/sonoff1/POWER1"
-    availability_topic: "tele/sonoff1/LWT"
+    ##availability_topic: "tele/sonoff1/LWT"
     name: "Hall"
     payload_on: "ON"
     payload_off: "OFF"
@@ -81,7 +80,7 @@ switch:
   - platform: mqtt
     state_topic: "stat/sonoff2/POWER"
     command_topic: "cmnd/sonoff2/POWER"
-    availability_topic: "tele/sonoff2/LWT"
+    #availability_topic: "tele/sonoff2/LWT"
     name: "Heating"
     payload_on: "ON"
     payload_off: "OFF"
