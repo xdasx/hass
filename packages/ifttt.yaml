@@ -17,6 +17,7 @@ switch:
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+    optimistic: false
 
   - platform: mqtt
     name: "Lamp"
@@ -26,6 +27,7 @@ switch:
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+    optimistic: false
 
 sensor:
   - platform: mqtt
