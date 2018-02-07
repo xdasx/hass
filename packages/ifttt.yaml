@@ -1,11 +1,11 @@
 ifttt:
   key: d-0OUhGrIRt_ZrodxUKyeN
 
-script:
-  ifttt_notify:
-  sequence:
-    - service: ifttt.trigger
-      data_template: {"event":"TestHA_Trigger}
+# script:
+#   ifttt_notify:
+#   sequence:
+#     - service: ifttt.trigger
+#       data_template: {"event":"TestHA_Trigger}
 
 
 switch:
