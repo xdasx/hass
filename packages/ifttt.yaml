@@ -1,0 +1,71 @@
+ifttt:
+  key: d-0OUhGrIRt_ZrodxUKyeN
+
+script:
+  ifttt_notify:
+  sequence:
+    - service: ifttt.trigger
+      data_template: {"event":"TestHA_Trigger}
+
+
+switch:
+  - platform: mqtt
+    name: "Fan"
+    state_topic: "stat/fan/POWER"
+    command_topic: "cmnd/fan/POWER"
+    #availability_topic: "tele/sonoff2/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+  - platform: mqtt
+    name: "Lamp"
+    state_topic: "stat/lamp/POWER"
+    command_topic: "cmnd/lamp/POWER"
+    #availability_topic: "tele/sonoff2/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+sensor:
+  - platform: mqtt
+    name: Night Lamp
+    state_topic: "stat/lamp/POWER"
+  - platform: mqtt
+    name: Kichen Fan
+    state_topic: "stat/fan/POWER"
+
+automation:
+  - alias: lamp.on
+    trigger:
+      platform: mqtt
+      topic: cmnd/lamp/POWER
+      payload: 'ON'
+    action:
+      service: ifttt.trigger
+      data_template: {"event":"lampon"}
+  - alias: lamp.off
+    trigger:
+      platform: mqtt
+      topic: cmnd/lamp/POWER
+      payload: 'OFF'
+    action:
+      service: ifttt.trigger
+      data_template: {"event":"lampoff"}
+
+  - alias: lamp.on
+    trigger:
+      platform: mqtt
+      topic: cmnd/fan/POWER
+      payload: 'ON'
+    action:
+      service: ifttt.trigger
+      data_template: {"event":"fanpon"}
+  - alias: lamp.on
+    trigger:
+      platform: mqtt
+      topic: cmnd/fan/POWER
+      payload: 'OFF'
+    action:
+      service: ifttt.trigger
+      data_template: {"event":"fanoff"}
