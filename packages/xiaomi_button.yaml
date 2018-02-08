@@ -1,21 +1,24 @@
-- alias: Xiami button1 fan
-  trigger:
-    platform: event
-    event_type: click
-    event_data:
-      entity_id: binary_sensor.switch_158d0001644276
-      click_type: single
-  action:
-    service: switch.toggle
-    entity_id: switch.lamp
-
-- alias: Xiami button1 Light
-  trigger:
-    platform: event
-    event_type: click
-    event_data:
-      entity_id: binary_sensor.switch_158d0001644276
-      click_type: double
-  action:
-    service: switch.toggle
-    entity_id: switch.lamp
+automation:
+  - alias: Xiami button1 fan
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        # entity_id: binary_sensor.switch_158d0001644276
+        entity_id: binary_sensor.switch_158d00016c49f1
+        click_type: single
+    action:
+      service: switch.toggle
+      entity_id: switch.lamp
+  
+  - alias: Xiami button1 Light
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        # entity_id: binary_sensor.switch_158d0001644276
+        entity_id: binary_sensor.switch_158d00016c49f1
+        click_type: double
+    action:
+      service: switch.toggle
+      entity_id: switch.lamp
