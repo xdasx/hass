@@ -8,7 +8,7 @@ automation:
         click_type: single
     action:
       service: switch.toggle
-      entity_id: switch.lamp
+      entity_id: switch.fan
   
   - alias: Xiami button1 Light
     trigger:
@@ -19,4 +19,4 @@ automation:
         click_type: double
     action:
       service: switch.toggle
-      entity_id: switch.lamp
+      entity_id: switch.kitchen_switch
