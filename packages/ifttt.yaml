@@ -10,16 +10,6 @@ ifttt:
 
 switch:
   - platform: mqtt
-    name: "Fan"
-    # state_topic: "stat/fan/POWER"
-    command_topic: "cmnd/fan/POWER"
-    #availability_topic: "tele/sonoff2/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-    optimistic: false
-
-  - platform: mqtt
     name: "Lamp"
     # state_topic: "stat/lamp/POWER"
     command_topic: "cmnd/lamp/POWER"
