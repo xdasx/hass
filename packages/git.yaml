@@ -48,10 +48,10 @@
 # homeassistant:
 #   customize:
 #     sensor.commits:
-#       custom_ui_state_card: state-card-custom-ui
+#       custom_ui_state_card: custom-ui
 #       blacklist_states: 0
 #     group.gitin:
-#       custom_ui_state_card: state-card-custom-ui
+#       custom_ui_state_card: custom-ui
 #       extra_badge:
 #         entity_id: sensor.commits
 #       hide_control: true

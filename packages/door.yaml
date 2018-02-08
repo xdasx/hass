@@ -245,9 +245,9 @@ homeassistant:
     binary_sensor.front_door:
       device_class: opening
     group.door_automation:
-      custom_ui_state_card: state-card-custom-ui
+      custom_ui_state_card: custom-ui
       icon: mdi:robot
     group.door_scripts:
-      custom_ui_state_card: state-card-custom-ui
+      custom_ui_state_card: custom-ui
       hide_control: true
       icon: mdi:code-tags

@@ -71,7 +71,7 @@ group:
 homeassistant:
   customize:
     group.motion_room:
-      custom_ui_state_card: state-card-custom-ui
+      custom_ui_state_card: custom-ui
       extra_badge:
         entity_id: binary_sensor.motion_sensor_158d00016db268
       hide_control: true
@@ -80,7 +80,7 @@ homeassistant:
       friendly_name: Room Light
       icon: mdi:weather-sunny
     binary_sensor.motion_sensor_158d00016db268:
-      custom_ui_state_card: state-card-custom-ui
+      custom_ui_state_card: custom-ui
       device_class: motion
       friendly_name: Room Motion
       show_last_changed: true
