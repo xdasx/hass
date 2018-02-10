@@ -65,19 +65,20 @@ group:
     name: Motion Hall
     entities:
     - binary_sensor.motion_sensor_hall
+    - binary_sensor.motion_hall
     - input_boolean.motion_light_hall
     - input_number.motion_light_hall_delay
 
 homeassistant:
   customize:
     group.motion_hall:
-      custom_ui_state_card: custom-ui
-      extra_badge:
-        entity_id: binary_sensor.motion_hall
+      # custom_ui_state_card: custom-ui
+      # extra_badge:
+      #   entity_id: binary_sensor.motion_hall
       hide_control: true
       icon: mdi:run
     binary_sensor.motion_hall:
-      custom_ui_state_card: custom-ui
+      # custom_ui_state_card: custom-ui
       show_last_changed: true
       device_class: motion
       friendly_name: Hall Motion

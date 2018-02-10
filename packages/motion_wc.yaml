@@ -96,16 +96,16 @@ group:
 homeassistant:
   customize:
     group.motion_wc:
-      custom_ui_state_card: custom-ui
-      extra_badge:
-        entity_id: binary_sensor.motion_sensor_158d0001656a38
+      # custom_ui_state_card: custom-ui
+      # extra_badge:
+      #   entity_id: binary_sensor.motion_sensor_158d0001656a38
       hide_control: true
       icon: mdi:run
     sensor.illumination_158d0001656a38:
       friendly_name: Wc Light
       icon: mdi:weather-sunny
     binary_sensor.motion_sensor_158d0001656a38:
-      custom_ui_state_card: custom-ui
+      # custom_ui_state_card: custom-ui
       device_class: motion
       friendly_name: Wc Motion
       show_last_changed: true
