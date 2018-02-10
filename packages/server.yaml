@@ -12,13 +12,13 @@ shell_command:
   turn_off_server: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa hass@192.168.31.112 sudo pm-suspend'
   
 
-sensor:
-  - platform: transmission
-    host: !secret transmission_host
-    username: !secret transmission_user
-    password: !secret transmission_password
-    monitored_variables:
-      - 'current_status'
-      - 'download_speed'
-      - 'upload_speed'
-      - 'active_torrents'
+# sensor:
+#   - platform: transmission
+#     host: !secret transmission_host
+#     username: !secret transmission_user
+#     password: !secret transmission_password
+#     monitored_variables:
+#       - 'current_status'
+#       - 'download_speed'
+#       - 'upload_speed'
+#       - 'active_torrents'

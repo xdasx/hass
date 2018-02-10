@@ -118,6 +118,7 @@
     - sensor.tv_esp
     - sensor.heater_esp
     - sensor.hall_esp
+    - sensor.fan_esp
   
   dev_pi:
     name: Pi
