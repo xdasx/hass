@@ -68,6 +68,8 @@
     - switch.server
     - weblink.docker
     - weblink.torrent
+    - weblink.server_stats
+    - weblink.plex
 
 
 
