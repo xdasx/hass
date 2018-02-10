@@ -17,7 +17,7 @@
   - platform: mqtt
     name: "Heater ESP"
     state_topic: "tele/sonoff2/LWT"
-    name: "Fan ESP"
+  - name: "Fan ESP"
     state_topic: "tele/fan/LWT"
     
     
