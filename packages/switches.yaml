@@ -90,7 +90,7 @@ switch:
     name: "Fan"
     state_topic: "stat/fan/POWER"
     command_topic: "cmnd/fan/POWER"
-    availability_topic: "tele/fan/LWT"
+    # availability_topic: "tele/fan/LWT"
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
