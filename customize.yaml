@@ -84,3 +84,5 @@ script.yamaha_source_hdmi2:
   icon: mdi:playstation
 script.yamaha_source_tv:
   icon: mdi:video-4k-box
+light.600194955cb6_19216831113:
+  icon: mdi:led-strip

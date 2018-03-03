@@ -114,9 +114,11 @@ group:
     entities:
     - switch.heating
     - sensor.heater
-    - sensor.temperature_158d0001dc1f30
+    # - sensor.temperature_158d0001dc1f30
     - sensor.pressure_158d0001dc1f30
     - sensor.humidity_158d0001dc1f30
+    - sensor.pressure_158d0001ab2616
+    - sensor.humidity_158d0001ab2616
     - sensor.current_temp
     - sensor.home_temp
     - sensor.away_temp
@@ -134,4 +136,13 @@ homeassistant:
       icon: mdi:speedometer
     sensor.humidity_158d0001dc1f30:
       friendly_name: Room Hum
+      icon: mdi:water-percent
+    sensor.temperature_158d0001ab2616:
+      friendly_name: Balcony Temp
+      icon: mdi:thermometer
+    sensor.pressure_158d0001ab2616:
+      friendly_name: Balcony Press
+      icon: mdi:speedometer
+    sensor.humidity_158d0001ab2616:
+      friendly_name: Balcony Hum
       icon: mdi:water-percent

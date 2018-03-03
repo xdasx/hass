@@ -6,6 +6,9 @@
     entities:
     - sensor.motion_tracker
     - sensor.door_event
+    - sensor.temperature_158d0001ab2616
+    - sensor.temperature_158d0001dc1f30
+
 #    - sensor.heater_temp
     # - sensor.temperature_158d0001dc1f30
     - sensor.mode
@@ -28,6 +31,8 @@
     - switch.hall_switch
     - switch.lamp
     - light.gateway_light_34ce008c0676
+    - light.600194955cb6_19216831113
+
   
   lightg:
     view: false

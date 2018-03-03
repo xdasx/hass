@@ -20,3 +20,13 @@ automation:
     action:
       service: switch.toggle
       entity_id: switch.kitchen_switch
+  - alias: Xiami button1 long press light
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001644276
+        click_type: long_click_press
+    action:
+      service: light.toggle
+      entity_id: light.600194955cb6_19216831113
