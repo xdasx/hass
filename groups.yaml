@@ -104,6 +104,10 @@
     - input_select.power_mode
     - light.tv_timer
     - light.sleep_timer
+    - binary_sensor.kitchen_light
+    - binary_sensor.wc_light
+    - binary_sensor.room_light
+    - binary_sensor.hall_light
     # - group.yamaha_input
   
   weather:

@@ -1,10 +1,6 @@
 light:
   - platform: flux_led
     automatic_add: True
-  - platform: zengge
-    devices:
-      E2:D2:39:89:AC:9A:
-        name: Living Room 1
 
 switch:
  ### RF SWITCHES
@@ -131,3 +127,4 @@ homeassistant:
       icon: mdi:lightbulb
     light.600194955cb6_19216831113:
       friendly_name: Oven Lamp
+      assumed_state: true

@@ -1,9 +1,19 @@
 automation:
   - alias: motion_kitchen_on
     trigger:
-      platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001a40748
-      to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001a40748
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.kitchen_light
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.kitchen_light
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.motion_light_kitchen
+        state: 'off'
     action:
     - service: script.motion_light_timer_kitchen_start
     - service: script.motion_watchdog_init
@@ -58,9 +68,8 @@ input_number:
    min: 1
    max: 60
    step: 1
-   initial: 5
+   initial: 1
    icon: mdi:timer
-   mode: box
 
 group:
   motion_kitchen:
@@ -74,7 +83,6 @@ group:
     - script.motion_light_timer_kitchen_start
     - script.motion_watchdog_init
     - script.motion_light_timer_kitchen_end
-
 
 homeassistant:
   customize:
