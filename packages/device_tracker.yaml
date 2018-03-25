@@ -144,8 +144,8 @@ device_tracker:
 #     password: !secret wifi_pwd
   - platform: nmap_tracker
     hosts:
-      - 192.168.31.102
-      - 192.168.31.107
+      - 192.168.1.102
+      - 192.168.1.104
     consider_home: 300
     track_new_devices: yes
     home_interval: 10
