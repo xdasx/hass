@@ -279,15 +279,15 @@ google_assistant:
   entity_config:
     switch.bath_switch:
       name: Bath
-      type: light
+      # type: light
       expose: true
     switch.hall:
       name: Hall Mirror
-      type: light
+      # type: light
       expose: true
     switch.hall_switch:
       name: Hall
-      type: light
+      # type: light
       expose: true
     switch.heating:
       name: Radiator
@@ -306,19 +306,19 @@ google_assistant:
       aliases:
         - Wc
         - Toilet
-      type: light
+      # type: light
       expose: true
     switch.kitchen_switch:
       name: Kitchen
-      type: light
+      # type: light
       expose: true
     switch.living_switch_1:
       name: Room Low
-      type: light
+      # type: light
       expose: true
     switch.living_switch_2:
       name: Room High
-      type: light
+      # type: light
       expose: true
     switch.yamaha_reciever:
       # name:

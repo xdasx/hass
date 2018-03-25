@@ -1,3 +1,7 @@
+light:
+  - platform: flux_led
+    automatic_add: True
+
 switch:
  ### RF SWITCHES
   - platform: mqtt
@@ -90,7 +94,7 @@ switch:
     name: "Fan"
     state_topic: "stat/fan/POWER"
     command_topic: "cmnd/fan/POWER"
-    availability_topic: "tele/fan/LWT"
+    # availability_topic: "tele/fan/LWT"
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
@@ -121,3 +125,6 @@ homeassistant:
     switch.living_switch_2:
       friendly_name: Room High
       icon: mdi:lightbulb
+    light.600194955cb6_19216831113:
+      friendly_name: Oven Lamp
+      assumed_state: true

@@ -87,11 +87,25 @@ sensor:
             {% else %}
             {{ states("input_select.motion_event") }}
             {% endif %}
-        # entity_id:
-        #   # - sensor.time
-        #   - sensor.motion_event
-        #   - binary_sensor.motion_sensor_158d00016db268
-        #   - binary_sensor.motion_sensor_158d0001a40748
+binary_sensor:
+  - platform: template
+    sensors:
+      kitchen_light:
+        friendly_name: "Kichen light"
+        value_template: >-
+          {{ states.sensor.illumination_158d0001a40748.state|float > 5 }}
+      wc_light:
+        friendly_name: "Wc light"
+        value_template: >-
+          {{ states.sensor.illumination_158d0001656a38.state|float > 5 }}
+      room_light:
+        friendly_name: "Room light"
+        value_template: >-
+          {{ states.sensor.illumination_158d00016db268.state|float > 5 }}
+      hall_light:
+        friendly_name: "Hall light"
+        value_template: >-
+          {{ states.sensor.illumination_34ce008c0676.state|float > 300 }}
 
 input_number:
   motion_watchdog_delay:

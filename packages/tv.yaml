@@ -216,7 +216,7 @@ input_number:
     min: 0
     max: 100
     step: 1
-    initial: 0
+    initial: 15
     icon: mdi:timer
     mode: box
 
