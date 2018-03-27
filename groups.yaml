@@ -159,6 +159,7 @@
     - sensor.temperature_158d0001dc1f30
     - sensor.pressure_158d0001dc1f30
     - sensor.humidity_158d0001dc1f30
+    - binary_sensor.smoke_sensor_158d0001bbb06f
     
   debug:
     entities:
