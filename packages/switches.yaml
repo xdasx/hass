@@ -125,6 +125,6 @@ homeassistant:
     switch.living_switch_2:
       friendly_name: Room High
       icon: mdi:lightbulb
-    light.600194955cb6_19216831113:
+    light.600194955cb6_1921683140:
       friendly_name: Oven Lamp
       assumed_state: true

@@ -29,4 +29,4 @@ automation:
         click_type: long_click_press
     action:
       service: light.toggle
-      entity_id: light.600194955cb6_19216831113
+      entity_id: light.600194955cb6_1921683140

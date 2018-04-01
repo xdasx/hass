@@ -31,7 +31,6 @@
     - switch.hall_switch
     - switch.lamp
     - light.gateway_light_34ce008c0676
-    - light.600194955cb6_19216831113
     - light.600194955cb6_1921683140
 
   

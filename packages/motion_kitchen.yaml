@@ -39,7 +39,7 @@ script:
     sequence:
     - delay: 00:{{ states.input_number.motion_light_kitchen_delay.state | int }}:00
     - service: light.turn_off
-      entity_id: light.600194955cb6_19216831113
+      entity_id: light.600194955cb6_1921683140
     - service: automation.turn_off
       entity_id: automation.motion_kitchen_end
 
@@ -52,7 +52,7 @@ script:
     - service: script.turn_off
       entity_id: script.motion_light_timer_kitchen_end
     - service: light.turn_on
-      entity_id: light.600194955cb6_19216831113
+      entity_id: light.600194955cb6_1921683140
     - service: automation.turn_on
       entity_id: automation.motion_kitchen_end
 
