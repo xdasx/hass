@@ -103,6 +103,6 @@ media_player.unnamed_device:
   platform: plex
   unique_id: ixruifwvglbm7s15yfbu3i4v
 binary_sensor.smoke_sensor_158d0001bbb06f:
-  name:
+  name: Smoke
   platform: xiaomi_aqara
   unique_id: alarm158d0001bbb06f
