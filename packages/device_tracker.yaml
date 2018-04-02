@@ -20,7 +20,7 @@ automation:
     trigger:
       platform: state
       # entity_id: device_tracker.jane_op3
-      entity_id: device_tracker.opx
+      entity_id: device_tracker.op5
       to: 'home'
     action:
     - service: mqtt.publish
@@ -61,7 +61,7 @@ automation:
     trigger:
       platform: state
       # entity_id: device_tracker.jane_op3
-      entity_id: device_tracker.opx
+      entity_id: device_tracker.op5
       to: 'not_home'
     action:
     - service: mqtt.publish
