@@ -126,6 +126,7 @@
     entities:
     - sensor.ip_ext
     - sensor.rf_code
+    - sensor.rf_code_in
     - sensor.rf_hub
     - sensor.tv_esp
     - sensor.heater_esp

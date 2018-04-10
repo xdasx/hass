@@ -2,7 +2,13 @@
   ### RF
   - platform: mqtt
     name: "RF Code"
-    state_topic: "stat/esp_rf/433toMQTT"
+    state_topic: "stat/sonoffRf/RESULT"
+    value_template: '{{ value_json.RfCode }}'
+  - platform: mqtt
+    name: "RF Code in"
+    state_topic: "tele/sonoffRf/RESULT"
+    value_template: '{{ value_json.RfReceived.Data }}'
+
     
   ### LWT
   - platform: mqtt
