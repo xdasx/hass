@@ -5,6 +5,15 @@ light:
 switch:
  ### RF SWITCHES
   - platform: mqtt
+    name: "Table Led"
+    command_topic: "cmnd/sonoffRf/RfCode"
+    payload_on: "#260B01"
+    optimistic: false
+    qos: 0
+    retain: false
+    icon: mdi:led-strip
+
+  - platform: mqtt
     name: "Living Switch 1"
     # state_topic: "home/bedroom/switch1"
     command_topic: "cmnd/sonoffRf/RfCode"

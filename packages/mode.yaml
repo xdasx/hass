@@ -120,12 +120,14 @@ script:
     sequence:
     - service: homeassistant.turn_off
       entity_id: group.motion_triggers
-    - service: script.rf_light_off
+    - service: homeassistant.turn_off
+      entity_id: group.light
     - service: homeassistant.turn_off
       entity_id: switch.hall
     - service: homeassistant.turn_off
       entity_id: switch.tv
     - service: script.pb_mode
+    - service: script.rf_light_off
     - service: mqtt.publish
       data:
         topic: stat/hass/mode
@@ -141,12 +143,15 @@ script:
     sequence:
     - service: homeassistant.turn_off
       entity_id: group.motion_triggers
-    - service: script.rf_light_off
+    - service: homeassistant.turn_off
+      entity_id: group.light
     - service: switch.turn_off
       entity_id: switch.hall
     - service: switch.turn_off
       entity_id: switch.tv
+    - service: script.rf_light_off
     - service: script.pb_mode
+    
     - service: mqtt.publish
       data:
         topic: stat/hass/mode
