@@ -7,7 +7,7 @@ switch:
   - platform: mqtt
     name: "Living Switch 1"
     # state_topic: "home/bedroom/switch1"
-    command_topic: "cmnd/esp_rf/MQTTto433"
+    command_topic: "cmnd/sonoffRf/RfCode"
     #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110112"
     payload_off: "11110113"
@@ -18,7 +18,7 @@ switch:
   - platform: mqtt
     name: "Living Switch 2"
     # state_topic: "home/bedroom/switch1"
-    command_topic: "cmnd/esp_rf/MQTTto433"
+    command_topic: "cmnd/sonoffRf/RfCode"
     #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110122"
     payload_off: "11110123"
@@ -29,7 +29,7 @@ switch:
   - platform: mqtt
     name: "Hall Switch"
     # state_topic: "home/bedroom/switch1"
-    command_topic: "cmnd/esp_rf/MQTTto433"
+    command_topic: "cmnd/sonoffRf/RfCode"
     #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110012"
     payload_off: "11110013"
@@ -40,7 +40,7 @@ switch:
   - platform: mqtt
     name: "WC Switch"
     # state_topic: "home/bedroom/switch1"
-    command_topic: "cmnd/esp_rf/MQTTto433"
+    command_topic: "cmnd/sonoffRf/RfCode"
     #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110212"
     payload_off: "11110213"
@@ -51,7 +51,7 @@ switch:
   - platform: mqtt
     name: "Bath Switch"
     # state_topic: "home/bedroom/switch1"
-    command_topic: "cmnd/esp_rf/MQTTto433"
+    command_topic: "cmnd/sonoffRf/RfCode"
     #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110312"
     payload_off: "11110313"
@@ -62,7 +62,7 @@ switch:
   - platform: mqtt
     name: "Kitchen Switch"
     # state_topic: "home/bedroom/switch1"
-    command_topic: "cmnd/esp_rf/MQTTto433"
+    command_topic: "cmnd/sonoffRf/RfCode"
     #availability_topic: "tele/esp_rf/LWT"
     payload_on: "11110412"
     payload_off: "11110413"
