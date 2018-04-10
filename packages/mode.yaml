@@ -76,6 +76,7 @@ light:
             entity_id: input_number.sleep_timer
             value: "{{ (brightness / 255 * 100)|int }}"
 script:
+
   sleep_timer:
     alias: Sleep timer.
     sequence:
@@ -119,8 +120,7 @@ script:
     sequence:
     - service: homeassistant.turn_off
       entity_id: group.motion_triggers
-    - service: homeassistant.turn_off
-      entity_id: group.light
+    - service: script.rf_light_off
     - service: homeassistant.turn_off
       entity_id: switch.hall
     - service: homeassistant.turn_off
@@ -141,8 +141,7 @@ script:
     sequence:
     - service: homeassistant.turn_off
       entity_id: group.motion_triggers
-    - service: homeassistant.turn_off
-      entity_id: group.light
+    - service: script.rf_light_off
     - service: switch.turn_off
       entity_id: switch.hall
     - service: switch.turn_off
@@ -167,6 +166,27 @@ script:
       entity_id: group.motion_triggers
     - entity_id: input_boolean.motion_light_hall
       service: homeassistant.turn_on
+
+  rf_light_off:
+    alias: turn off rf light
+    sequence:
+    - service: homeassistant.turn_off
+      switch.bath_switch
+    - delay: '00:00:01'
+    - service: homeassistant.turn_off
+      switch.hall_switch
+    - delay: '00:00:01'
+    - service: homeassistant.turn_off
+      switch.kitchen_switch
+    - delay: '00:00:01'
+    - service: homeassistant.turn_off
+      switch.living_switch_1
+    - delay: '00:00:01'
+    - service: homeassistant.turn_off
+      switch.living_switch_2
+    - delay: '00:00:01'
+    - service: homeassistant.turn_off
+      switch.wc_switch
         
 sensor:        
   - platform: template
