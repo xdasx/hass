@@ -9,6 +9,9 @@
     name: "RF HUB"
     state_topic: "tele/esp_rf/LWT"
   - platform: mqtt
+    name: "SRF HUB"
+    state_topic: "tele/sonoffRf/LWT"
+  - platform: mqtt
     name: "Hall ESP"
     state_topic: "tele/sonoff1/LWT"
   - platform: mqtt
