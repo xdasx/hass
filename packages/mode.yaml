@@ -171,22 +171,22 @@ script:
     alias: turn off rf light
     sequence:
     - service: homeassistant.turn_off
-      switch.bath_switch
+      entity_id: switch.bath_switch
     - delay: '00:00:01'
     - service: homeassistant.turn_off
-      switch.hall_switch
+      entity_id: switch.hall_switch
     - delay: '00:00:01'
     - service: homeassistant.turn_off
-      switch.kitchen_switch
+      entity_id: switch.kitchen_switch
     - delay: '00:00:01'
     - service: homeassistant.turn_off
-      switch.living_switch_1
+      entity_id: switch.living_switch_1
     - delay: '00:00:01'
     - service: homeassistant.turn_off
-      switch.living_switch_2
+      entity_id: switch.living_switch_2
     - delay: '00:00:01'
     - service: homeassistant.turn_off
-      switch.wc_switch
+      entity_id: switch.wc_switch
         
 sensor:        
   - platform: template
