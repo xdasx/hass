@@ -8,7 +8,8 @@ switch:
     name: "Table Led"
     command_topic: "cmnd/sonoffRf/RfCode"
     payload_on: "#260B01"
-    optimistic: false
+    payload_off: "#260B01"
+    optimistic: true
     qos: 0
     retain: false
     icon: mdi:led-strip
